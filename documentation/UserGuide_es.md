@@ -62,22 +62,21 @@ Los servicios creados por Muki comienzan con una descripción de las estructuras
 La descripción del servicio tiene 2 partes: por un lado está la definición de los **models**, que son las estructuras de datos que representan los parámetros de entrada y salida (resources); por otro lado están los **controllers** que procesan las peticiones HTTP y sirven los web resources del servicio.
 
 El siguiente fragmento muestra la estructura de definición de un servicio en Muki. El esquema completo del documento XML está disponible en: [muki-service-description-v01.xsd](muki-service-description-v01.xsd).
-	&lt;ns2:project name="MukiDemo" xmlns:ns2="http://muki/service-description/"&gt;
-	    <b>&lt;model-definitions ... &gt;</b>
-	        &lt;model name="CustomerData"&gt;
+	<ns2:project name="MukiDemo" xmlns:ns2="http://muki/service-description/">
+	    <b><model-definitions ... ></b>
+	        <model name="CustomerData">
 	            ...
-	        &lt;/model&gt;
+	        </model>
 	        ...
-	    <b>&lt;/model-definitions&gt;</b>
-	    <b>&lt;controller-definitions ... &gt;</b>
-	        &lt;controller name="CustomerController" ... &gt;
-	            &lt;get-operation ... /&gt;
-	            &lt;post-operation ... /&gt;
-	            &lt;put-operation ... /&gt;
-	            &lt;delete-operation ... /&gt;
+	    <b></model-definitions></b>
+	    <b><controller-definitions ... ></b>
+	        <controller name="CustomerController" ... >
+	            <get-operation ... />
+	            <post-operation ... />
+	            <put-operation ... />
+	            <delete-operation ... />
 	            ...
-	        &lt;/controller&gt;
+	        </controller>
 	        ...
-	    <b>&lt;/controller-definitions&gt;</b>
-	&lt;/ns2:project&gt;
-
+	    <b></controller-definitions></b>
+	</ns2:project>
