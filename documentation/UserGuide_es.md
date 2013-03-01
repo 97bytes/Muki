@@ -423,7 +423,6 @@ Con la definición anterior, Muki generará los siguientes métodos en el contro
         return this.getDelegate().addOrder(customerId, orderId, param);
     }
 
-
     @PUT
     @Path("/customers/{customerId}/{orderId}")
     @Consumes("application/json")
@@ -484,3 +483,22 @@ En la interface del stub en Objective-C, Muki declarará el siguiente método:
 
 	- (void)deleteOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
+5 - Invocando la generación de código
+=====================================
+El proceso de generación de las clases Java y Objective-C es un programa escrito en Java y se puede invocar desde una consola de comandos o bien desde un script de Ant. En ambos casos, además de la librería de Muki (muki-generator-1.0.jar), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
+
+Es necesario hacer una invocación para generar las clases Java y otra para generar las clases Objective-C.
+
+Cuando invocamos el proceso de generación, Muki evalúa la definición del servicio (XML). Si la definición no tiene errores, Muki genera las clases en el directorio de salida. Si la definición tiene errores, Muki lista los problemas encontrados. En este caso, debemos corregir los errores y volver a invocar el proceso de generación.
+
+5.1 - Por línea de comandos
+---------------------------
+La sintaxis es: **muki.tool.MukiGenerator &lt;option&gt; &lt;path-to-definition.xml&gt; &lt;output-directory&gt;**
+
+donde:
+**&lt;option&gt;**:  debe ser **generate-java** o **generate-objc**, para indicar si Muki genera las clases del servidor Java o del cliente Cocoa, respectivamente.
+
+**&lt;path-to-definition.xml&gt;**: la ruta completa al fichero XML que tiene la definición del servicio
+**&lt;output-directory&gt;**: ruta completa del directorio donde Muki genera las clases. El directorio debe existir.
+
+Ejemplo de una invocación para generar las clases en Java:
