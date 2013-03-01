@@ -276,3 +276,59 @@ Y también:
 Los **controllers** describen las operaciones del servicio que tratan las peticiones para recuperar, agregar, actualizar y borrar web resources del servidor. Con la definición de los **controllers**, Muki genera clases que simplifican la comunicación entre los clientes iOS y el servidor. Así, la comunicación remota se convierte en una simple invocación de métodos entre objetos. Las clases generadas se encargan de establecer la comunicación entre los clientes iOS y el servidor siguiendo los principios RESTful de usar los siguientes métodos definidos en HTTP: **GET**, **POST**, **PUT** y **DELETE**.
 
 El siguiente fragmento muestra la definición de los controllers:
+
+    <controller-definitions java-package="...">
+        <controller http-path="..." name="Controller1" >
+            <get-operation http-path="..." return-type="..." name="..." serialization-type="...">
+                <path-param name="..." />
+            </get-operation>
+            ...
+            <post-operation serialization-type="..." http-path="..." param-type="..." return-type="..." name="..." />
+            <put-operation serialization-type="..." http-path="..." param-type="..." name="..." />
+            <delete-operation http-path="..." name="...">
+                <path-param name="..." />
+            </delete-operation>
+        </controller>
+        <controller http-path="..." name="Controller2" >
+            ...
+        </controller>
+    </controller-definitions>
+
+Como el objetivo es crear un servicio RESTful, las operaciones se mapean directamente a invocaciones con métodos HTTP. Para enviar invocaciones desde iOS, Muki utiliza la definición de los controllers para generar **stubs** que preparan y envían las invocaciones por HTTP.  Para procesar las peticiones en el servidor JEE, Muki usa la definición de los controllers para crear clases con anotaciones que adhieren a la especificación [JAX-RS](http://jax-rs-spec.java.net">JAX-RS).
+
+4.2.1 - Operaciones GET
+-----------------------
+Las operaciones GET retornan resources. El siguiente fragmento muestra todos los atributos y sub-elementos para definir una operación de GET en Muki.
+
+    <get-operation http-path="/customers/{customerId}/{orderId}" return-type="OrderData" name="getOrder" serialization-type="json">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </get-operation>
+
+La siguiente tabla resume todos los atributos para definir una operación GET en Muki:
+
+<table>
+    <tr>
+        <th align="center"><b>Atributo</b></th>
+        <th align="center"><b>Comentarios</b></th>
+    </tr>
+    <tr>
+        <td align="center">name</td>
+        <td align="center">Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+    </tr>
+    <tr>
+        <td align="center">http-path</td>
+        <td align="center">Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+    </tr>
+    <tr>
+        <td align="center">return-type</td>
+        <td align="center">Es el tipo del resultado. El valor puede ser STRING o el nombre de un model.</td>
+    </tr>
+    <tr>
+        <td align="center">serialization-type</td>
+        <td align="center">Toma el valor "json" o "xml". Indica el formato para serializar el resource (model) retornado por la operación. Es obligatorio si el valor de return-type es el nombre de un model.</td>
+    </tr>
+</table>
+
+
+
