@@ -35,11 +35,11 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 *   Nótese que otras versiones de las librerías posiblemente también funcionen, pero ésas son las versiones que hemos utilizado en nuestras pruebas.
 
 
-2.2 - Requerimientos para integrar las clases generadas en el cliente iOS
+2.2 - Requerimientos del cliente iOS
 -------------------------------------------------------------------------
-*   Xcode 4.5.x
+*   Es necesario tener una instalación de Xcode 4.5.x
 
-2.3 - Requerimientos para integrar las clases generadas en la aplicación JEE
+2.3 - Requerimientos de la aplicación JEE
 ----------------------------------------------------------------------------
 *   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros</li>
 *   Opcional: es posible integrar las clases generadas con [Spring Framework<](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/)utilizando las librerías de RESTEasy v2.0.1.
@@ -60,4 +60,24 @@ La creación de un servicio con Muki se resume en 3 pasos:
 Los servicios creados por Muki comienzan con una descripción de las estructuras de datos y las operaciones para servir las peticiones de los clientes. La descripción del servicio debe estar disponible en un documento XML.
 
 La descripción del servicio tiene 2 partes: por un lado está la definición de los **models**, que son las estructuras de datos que representan los parámetros de entrada y salida (resources); por otro lado están los **controllers** que procesan las peticiones HTTP y sirven los web resources del servicio.
+
+El siguiente fragmento muestra la estructura de definición de un servicio en Muki. El esquema completo del documento XML está disponible en: [muki-service-description-v01.xsd](muki-service-description-v01.xsd).
+	&lt;ns2:project name="MukiDemo" xmlns:ns2="http://muki/service-description/"&gt;
+	    <b>&lt;model-definitions ... &gt;</b>
+	        &lt;model name="CustomerData"&gt;
+	            ...
+	        &lt;/model&gt;
+	        ...
+	    <b>&lt;/model-definitions&gt;</b>
+	    <b>&lt;controller-definitions ... &gt;</b>
+	        &lt;controller name="CustomerController" ... &gt;
+	            &lt;get-operation ... /&gt;
+	            &lt;post-operation ... /&gt;
+	            &lt;put-operation ... /&gt;
+	            &lt;delete-operation ... /&gt;
+	            ...
+	        &lt;/controller&gt;
+	        ...
+	    <b>&lt;/controller-definitions&gt;</b>
+	&lt;/ns2:project&gt;
 
