@@ -1,6 +1,6 @@
 Índice
 ======
-1 - <a href="#description">¿Qué es Muki?</a>
+*    1 - <a href="#description">¿Qué es Muki?</a>
 
 <a name="description"></a>
 1 -¿Qué es Muki?
