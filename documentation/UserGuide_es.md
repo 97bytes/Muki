@@ -88,3 +88,20 @@ El siguiente fragmento muestra la estructura de definición de un servicio en Mu
 En Muki, un **model** es un objeto que representa datos en la aplicación y que se usa enviar y recibir información entre los clientes iOS y el servidor. Un model puede verse como una clase que representan un web resource. Con la descripción de los *models*, Muki genera clases que automatizan el proceso de serializar y deserializar los objetos en formato JSON y XML. Para la serialización en Java, Muki genera las clases de los *models* con anotaciones JAXB. Para la serialización en iOS, Muki genera las clases de los *models* y además clases de soporte en Objective-C.
 
 El siguiente fragmento muestra la definición de los *models*:
+
+    <model-definitions java-package="...">
+        <model name="Model1">
+            <simple-attr type="..." name="..." />
+            <simple-attr type="..." name="..." />
+            ...
+        </model>
+        <model name="Model2">
+            <simple-attr type="..." name="..." />
+            <list-attr items-type="Model1" name="items" />
+            ...
+        </model>
+        ...
+    </model-definitions>
+
+Las definiciones de los *models* van dentro de un elemento **<model-definitions java-package = " ... ">**. El valor del atributo **java-package** es el nombre del paquete donde se generarán las clases Java (beans). Cada model se define con un elemento **<model name = " ... ">**. El valor del atributo **name** es el nombre que se utiliza para generar la correspondiente clase en Java y en Objective-C. Cada model tiene uno o varios atributos, que pueden ser de tipo simple o bien representar listas. Los atributos simples pueden tener tipos básicos (boolean, integer, string, etc) o bien referencias a otro models. Los atributos para listas solo pueden tener referencias a otros models; no es posible tener listas de tipos básicos.
+
