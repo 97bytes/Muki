@@ -1,0 +1,20 @@
+   ============================================================================
+   == NOTICE file corresponding to section 4 d of the Apache License,        ==
+   == Version 2.0. and other software and libraries included in this product ==
+   ============================================================================
+
+   The end-user documentation included with a redistribution, if any,
+   must include the following acknowledgement:
+
+     "This product includes the Muki software developed by 
+     Gabriel Casarini
+
+   Alternatively, this acknowledgement may appear in the software itself,
+   if and wherever such third-party acknowledgements normally appear.
+
+   The names "Muki" must not be used to  endorse or promote products 
+   derived from this software without prior written permission. 
+
+   ============================================================================
+
+
