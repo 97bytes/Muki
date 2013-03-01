@@ -5,5 +5,5 @@ Muki es una herramienta que facilita la integración de aplicaciones iOS con apl
 
 Ver [Documentación de Muki] (https://raw.github.com/97bytes/Muki/master/documentation/UserGuide_es.md) (Español)
 
-![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/Muki1_es.png)
+![Muki1](https://github.com/97bytes/Muki/blob/master/documentation/UserGuide_es.md)
 
