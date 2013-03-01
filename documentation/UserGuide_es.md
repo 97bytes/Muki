@@ -192,6 +192,8 @@ Con la definición anterior, Muki genera las siguientes clases en Java. Las clas
 	    ...
 	}
 
+	Y también:
+
 	@XmlRootElement(name = "albumdata")
 	@XmlType(name = "AlbumData", propOrder = {})
 	public class <b>AlbumData</b> implements Serializable {
