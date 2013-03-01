@@ -7,7 +7,7 @@
 
 Todo el proceso de comunicación por HTTP y la serialización y conversión de datos entre las aplicaciones es realizado automáticamente por las clases generadas. 
 
-![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/Muki1_es.png)
+![Muki1](Muki1_es.png)
 
 Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado es 100% legible y limpio. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
 
@@ -52,7 +52,7 @@ La creación de un servicio con Muki se resume en 3 pasos:
 ** PASO 2:** Invocar el proceso de generación, desde Java.
 ** PASO 3:** Integrar las clases generadas en las aplicaciones.
 
-![Muki2](https://raw.github.com/97bytes/Muki/master/documentation/Muki2_es.png)
+![Muki2](Muki2_es.png)
 
 
 4 - Definiendo un servicio
