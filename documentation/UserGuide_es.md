@@ -648,3 +648,22 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual para 
     TrackData *myTrack = [stub <b>getTrackId:@"3" error:&error</b>];
 
 Nótese que ***error** es un parámetro de salida enviado por referencia para que podamos consultar si se ha producido un error en la invocación. Es forma la correcta de gestionar los errores en Cocoa. [Ver más detalles](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/CreateCustomizeNSError/CreateCustomizeNSError.html").
+
+6.4 - Pasos para integrar las clases generadas en la aplicación del servidor (JEE)
+----------------------------------------------------------------------------------
+
+**PASO 1)** Agregar a la aplicación las librerías un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros.
+
+**PASO 2)** Agregar a la aplicación las clases Java que generó Muki
+
+**PASO 3)** Crear la clase para implementar las interfaces <b>*Delegate</b>. Estas interfaces tienen todos los métodos de los controllers del servicio
+
+**PASO 4)** Integrar las clases que implementan las interfaces <b>*Delegate</b> con los **controllers**. Esto puede hacerse directamente instanciando las clases desde los controllers, pero en una aplicación basada en [Spring Framework](http://www.springsource.org/spring-framework) es más recomendable usar la [inyección de dependencias](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
+
+**PASO 5)** Declarar el nombre completo de la clase **MukiExceptionMapper** como parámetro en el fichero **web.xml** de la aplicación. El nombre del parámetro depende de la implementación de JAX-RS que usemos. En el caso de Resteasy, la declaración sería la siguiente:
+
+   <context-param>
+       <param-name>resteasy.providers</param-name>
+       <param-value>package.name.MukiExceptionMapper</param-value>        
+   </context-param>
+
