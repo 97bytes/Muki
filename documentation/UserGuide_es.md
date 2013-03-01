@@ -634,18 +634,18 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual para 
 
 **PASO 5)** En la aplicación, agregar instanciar los stubs y models para hacer las invocaciones al servicio. Por ejemplo:
 
-    TrackData <b>*newTrack</b> = [[TrackData alloc] init];
+    TrackData *newTrack = [[TrackData alloc] init];
     newTrack.title = @"New track";
     newTrack.lengthInSeconds = 247;
     newTrack.price = 1.25;
     newTrack.newRelease = YES;
     newTrack.catalogId = 0;
     
-    TrackControllerStub  <b>*stub</b> = [[TrackControllerStub alloc] initControllerUrl: @"http://localhost:8080/demo-server/store"];
-    NSError <b>*error</b>;
-    TrackData *addedTrack = [stub <b>addTrack:newTrack error:&error</b>];
+    TrackControllerStub  *stub = [[TrackControllerStub alloc] initControllerUrl: @"http://localhost:8080/demo-server/store"];
+    NSError *error;
+    TrackData *addedTrack = [stub addTrack:newTrack error:&error];
 
-    TrackData *myTrack = [stub <b>getTrackId:@"3" error:&error</b>];
+    TrackData *myTrack = [stub getTrackId:@"3" error:&error];
 
 Nótese que ***error** es un parámetro de salida enviado por referencia para que podamos consultar si se ha producido un error en la invocación. Es forma la correcta de gestionar los errores en Cocoa. [Ver más detalles](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/CreateCustomizeNSError/CreateCustomizeNSError.html").
 
@@ -662,8 +662,16 @@ Nótese que ***error** es un parámetro de salida enviado por referencia para qu
 
 **PASO 5)** Declarar el nombre completo de la clase **MukiExceptionMapper** como parámetro en el fichero **web.xml** de la aplicación. El nombre del parámetro depende de la implementación de JAX-RS que usemos. En el caso de Resteasy, la declaración sería la siguiente:
 
-   <context-param>
-       <param-name>resteasy.providers</param-name>
-       <param-value>package.name.MukiExceptionMapper</param-value>        
-   </context-param>
+	&lt;context-param&gt;
+	   &lt;param-name&gt;resteasy.providers&lt;/param-name&gt;
+	   &lt;param-value&gt;package.name.MukiExceptionMapper&lt;/param-value&gt;        
+	&lt;/context-param&gt;
+
+7 - Un ejemplo completo
+=======================
+Hemos construído un ejemplo completo para mostrar cómo Muki genera las clases para que un cliente iOS se conecte con un servicio RESTful implementado en JEE.
+
+El servicio utiliza la implementación JAX-RS de [Resteasy](http://www.jboss.org/resteasy/) y también usa [Spring Framework](http://www.springsource.org/spring-framework) para la inyeccción de las dependencias.
+
+Para ver el ejemplo, hay que descargar el fichero zip, descomprimirlo y seguir las instrucciones del fichero demo_muki.html que viene adentro. El ejemplo ya incluye todas las librerías necesarias para ponerlo en marcha rápidamente!
 
