@@ -354,5 +354,73 @@ En la interface del stub en Objective-C, Muki declarará el siguiente método:
 
 	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
+4.2.2 - Operaciones PUT y POST
+------------------------------
+En general, las operaciones de POST se usan para agregar recursos nuevos y las operaciones de PUT para actualizar las propiedades de recursos ya existentes en el servidor. El siguiente fragmento muestra todos los atributos y sub-elementos para definir operaciones de POST y PUT en Muki. Su estructura es similar.
+
+    <post-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="addOrder" serialization-type="json">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </post-operation>
+
+    <put-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="updateOrder" serialization-type="json">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </put-operation>
+
+La siguiente tabla resume todos los atributos para definir una operación POST/PUT en Muki:
+
+<table>
+    <tr>
+        <th align="center"><b>Atributo</b></th>
+        <th align="center"><b>Comentarios</b></th>
+    </tr>
+    <tr>
+        <td align="center">name</td>
+        <td>Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+    </tr>
+    <tr>
+        <td align="center">http-path</td>
+        <td>Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+    </tr>
+    <tr>
+        <td align="center">param-type</td>
+        <td>En las operaciones de PUT y POST es posible enviar un objeto (model) como parámetro de entrada. El valor de param-type indica el tipo del parámetro y puede ser STRING o el nombre de un model. Si este atributo no está definido, significa que la operación no tiene parámetro de entrada.</td>
+    </tr>
+    <tr>
+        <td align="center">return-type</td>
+        <td>Es el tipo del resultado. El valor puede ser STRING o el nombre de un model. Si este atributo no está definido, significa que la operación no retorna resultado.</td>
+    </tr>
+    <tr>
+        <td align="center">serialization-type</td>
+        <td>Toma el valor "json" o "xml". Indica el formato para serializar el parámetro de entrada y el resultado retornado por la operación.</td>
+    </tr>
+</table>
+
+En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** para que la URI utilizada para invocar la operación sea más flexible. Ver la explicación para la declaración de operaciones GET.
+
+Tomemos como ejemplo la siguiente definición de una operación POST y otra PUT:
+
+    <get-operation http-path="/customers/{customerId}/{orderId}" return-type="OrderData" name="getOrder" serialization-type="json">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </get-operation>
+
+Con la definición anterior, Muki generará el siguiente método en el controller Java:
+
+    @GET
+    @Path("/customers/{customerId}/{orderId}")
+    @Produces("application/json")
+    public OrderData getOrder(@PathParam("customerId") String customerId, @PathParam("orderId") String orderId) {
+        OrderData result = this.getDelegate().getOrder(customerId, orderId);
+        ...
+    }
+
+En la interface del stub en Objective-C, Muki declarará el siguiente método:
+
+	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
+
+
+
 
 
