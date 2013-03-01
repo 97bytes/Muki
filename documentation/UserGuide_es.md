@@ -167,7 +167,7 @@ Con la definición anterior, Muki genera las siguientes clases en Java. Las clas
 
 	@XmlRootElement(name = "trackdata")
 	@XmlType(name = "TrackData", propOrder = {})
-	public class <b>TrackData</b> implements Serializable {
+	public class TrackData implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    private String title;
 	    private int lengthInSeconds;
@@ -192,11 +192,11 @@ Con la definición anterior, Muki genera las siguientes clases en Java. Las clas
 	    ...
 	}
 
-	Y también:
+Y también:
 
 	@XmlRootElement(name = "albumdata")
 	@XmlType(name = "AlbumData", propOrder = {})
-	public class <b>AlbumData</b> implements Serializable {
+	public class AlbumData implements Serializable {
 	    private static final long serialVersionUID = 1L;
 	    private long catalogId;
 	    private String title;
@@ -234,4 +234,40 @@ Con la definición anterior, Muki genera las siguientes clases en Java. Las clas
 
 	    ...
 	}
+
+Con la definición anterior, Muki genera las siguientes clases en Objective-C. Nótese que a diferencia de Java, las clases de Objective-C no tienen anotaciones y todo el proceso de serialización en XML y JSON es realizado por clases auxiliares.
+
+	@interface TrackData : NSObject {
+	    NSString *title;
+	    NSInteger lengthInSeconds;
+	    long long catalogId;
+	    BOOL newRelease;
+	    double price;
+	}
+	    @property (nonatomic, strong) NSString *title;
+	    @property NSInteger lengthInSeconds;
+	    @property long long catalogId;
+	    @property BOOL newRelease;
+	    @property double price;
+	    - (id)init;
+	@end
+
+Y también:
+
+	@interface AlbumData : NSObject {
+	    long long catalogId;
+	    NSString *title;
+	    NSString *artist;
+	    TrackData *mainTrack;
+	    NSMutableArray *tracks;
+	}
+	    @property long long catalogId;
+	    @property (nonatomic, strong) NSString *title;
+	    @property (nonatomic, strong) NSString *artist;
+	    @property (nonatomic, strong) TrackData *mainTrack;
+	    @property (nonatomic, strong) NSMutableArray *tracks;
+	    - (id)init;
+	    - (void)addToTracks: (TrackData *)anObject;
+	    - (void)removeFromTracks: (TrackData *)anObject;
+	@end
 
