@@ -11,7 +11,6 @@ Todo el proceso de comunicación por HTTP y la serialización y conversión de d
 
 Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado es 100% legible y limpio. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
 
-<pre>
     // Instanciar el proxy para aceeder al servicio
     CustomerControllerStub  *service = [[CustomerControllerStub alloc] initControllerUrl: @"http://localhost:8080/demo-server/store"];
     
@@ -24,4 +23,3 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
     
     // Recuperar un objeto del servidor
     Customer *anotherCustomer = [service getCustomerId:@"12345667" error:&error];;
-</pre>
