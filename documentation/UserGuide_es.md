@@ -62,6 +62,7 @@ Los servicios creados por Muki comienzan con una descripción de las estructuras
 La descripción del servicio tiene 2 partes: por un lado está la definición de los **models**, que son las estructuras de datos que representan los parámetros de entrada y salida (resources); por otro lado están los **controllers** que procesan las peticiones HTTP y sirven los web resources del servicio.
 
 El siguiente fragmento muestra la estructura de definición de un servicio en Muki. El esquema completo del documento XML está disponible en: [muki-service-description-v01.xsd](muki-service-description-v01.xsd).
+
 	<ns2:project name="MukiDemo" xmlns:ns2="http://muki/service-description/">
 	    <b><model-definitions ... ></b>
 	        <model name="CustomerData">
@@ -80,3 +81,10 @@ El siguiente fragmento muestra la estructura de definición de un servicio en Mu
 	        ...
 	    <b></controller-definitions></b>
 	</ns2:project>
+
+
+4.1 - Definiendo los modelos para representar los resources
+-----------------------------------------------------------
+En Muki, un **model** es un objeto que representa datos en la aplicación y que se usa enviar y recibir información entre los clientes iOS y el servidor. Un model puede verse como una clase que representan un web resource. Con la descripción de los *models*, Muki genera clases que automatizan el proceso de serializar y deserializar los objetos en formato JSON y XML. Para la serialización en Java, Muki genera las clases de los *models* con anotaciones JAXB. Para la serialización en iOS, Muki genera las clases de los *models* y además clases de soporte en Objective-C.
+
+El siguiente fragmento muestra la definición de los *models*:
