@@ -43,3 +43,21 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 ----------------------------------------------------------------------------
 *   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros</li>
 *   Opcional: es posible integrar las clases generadas con [Spring Framework<](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/)utilizando las librerías de RESTEasy v2.0.1.
+
+
+3 - ¿Cómo se utiliza Muki?
+==========================
+La creación de un servicio con Muki se resume en 3 pasos:
+**PASO 1:** Crear la definición del servicio usando un documento XML. La definición contiene las operaciones que expone el servicio y las estructuras de datos que representan los parámetros y resources.
+** PASO 2:** Invocar el proceso de generación, desde Java.
+** PASO 3:** Integrar las clases generadas en las aplicaciones.
+
+![Muki2](https://raw.github.com/97bytes/Muki/master/documentation/Muki2_es.png)
+
+
+4 - Definiendo un servicio
+==========================
+Los servicios creados por Muki comienzan con una descripción de las estructuras de datos y las operaciones para servir las peticiones de los clientes. La descripción del servicio debe estar disponible en un documento XML.
+
+La descripción del servicio tiene 2 partes: por un lado está la definición de los **models**, que son las estructuras de datos que representan los parámetros de entrada y salida (resources); por otro lado están los **controllers** que procesan las peticiones HTTP y sirven los web resources del servicio.
+
