@@ -401,26 +401,86 @@ En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** p
 
 Tomemos como ejemplo la siguiente definición de una operación POST y otra PUT:
 
-    <get-operation http-path="/customers/{customerId}/{orderId}" return-type="OrderData" name="getOrder" serialization-type="json">
+	<post-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="addOrder" serialization-type="json">
+	        <path-param name="customerId" />
+	        <path-param name="orderId" />
+	    </post-operation>
+
+Y también:
+
+    <put-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="updateOrder" serialization-type="json">
         <path-param name="customerId" />
         <path-param name="orderId" />
-    </get-operation>
+    </put-operation>
+
+Con la definición anterior, Muki generará los siguientes métodos en el controller Java:
+
+    @POST
+    @Path("/customers/{customerId}/{orderId}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public OrderData addOrder(@PathParam("customerId") String customerId, @PathParam("orderId") String orderId, OrderData param) {
+        return this.getDelegate().addOrder(customerId, orderId, param);
+    }
+
+
+    @PUT
+    @Path("/customers/{customerId}/{orderId}")
+    @Consumes("application/json")
+    @Produces("application/json")
+    public OrderData updateOrder(@PathParam("customerId") String customerId, @PathParam("orderId") String orderId, OrderData param) {
+        return this.getDelegate().updateOrder(customerId, orderId, param);
+    }
+
+En la interface del stub en Objective-C, Muki declarará los siguientes métodos:
+
+	- (OrderData*)addOrder: (OrderData *)anObject customerId: (NSString *)aString2 orderId: (NSString *)aString3 error: (NSError **)error;    
+	- (OrderData*)updateOrder: (OrderData *)anObject customerId: (NSString *)aString2 orderId: (NSString *)aString3 error: (NSError **)error;    
+
+4.2.3 - Operaciones DELETE
+--------------------------
+Las operaciones de DELETE permiten borrar recursos del servidor. El siguiente fragmento muestra todos los atributos y sub-elementos para definir operaciones de DELETE en Muki:
+
+    <delete-operation http-path="/customers/{customerId}/{orderId}" name="deleteOrder">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </delete-operation>
+
+La siguiente tabla resume todos los atributos para definir una operación DELETE en Muki:
+
+<table>
+    <tr>
+        <th align="center"><b>Atributo</b></th>
+        <th align="center"><b>Comentarios</b></th>
+    </tr>
+    <tr>
+        <td align="center">name</td>
+        <td>Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+    </tr>
+    <tr>
+        <td align="center">http-path</td>
+        <td>Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+    </tr>
+</table>
+
+En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** para que la URI utilizada para invocar la operación sea más flexible. Ver la explicación para la declaración de operaciones GET.
+
+Tomemos como ejemplo la siguiente definición de una operación DELETE:
+
+    <delete-operation http-path="/customers/{customerId}/{orderId}" name="deleteOrder">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </delete-operation>
 
 Con la definición anterior, Muki generará el siguiente método en el controller Java:
 
-    @GET
+    @DELETE
     @Path("/customers/{customerId}/{orderId}")
-    @Produces("application/json")
-    public OrderData getOrder(@PathParam("customerId") String customerId, @PathParam("orderId") String orderId) {
-        OrderData result = this.getDelegate().getOrder(customerId, orderId);
-        ...
+    public void deleteOrder(@PathParam("customerId") String customerId, @PathParam("orderId") String orderId) {
+        this.getDelegate().deleteOrder(customerId, orderId);
     }
 
 En la interface del stub en Objective-C, Muki declarará el siguiente método:
 
-	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
-
-
-
-
+	- (void)deleteOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
