@@ -496,9 +496,33 @@ Cuando invocamos el proceso de generación, Muki evalúa la definición del serv
 La sintaxis es: **muki.tool.MukiGenerator &lt;option&gt; &lt;path-to-definition.xml&gt; &lt;output-directory&gt;**
 
 donde:
-**&lt;option&gt;**:  debe ser **generate-java** o **generate-objc**, para indicar si Muki genera las clases del servidor Java o del cliente Cocoa, respectivamente.
 
-**&lt;path-to-definition.xml&gt;**: la ruta completa al fichero XML que tiene la definición del servicio
-**&lt;output-directory&gt;**: ruta completa del directorio donde Muki genera las clases. El directorio debe existir.
+*    **&lt;option&gt;**:  debe ser **generate-java** o **generate-objc**, para indicar si Muki genera las clases del servidor Java o del cliente Cocoa, respectivamente.
+*    **&lt;path-to-definition.xml&gt;**: la ruta completa al fichero XML que tiene la definición del servicio
+*    **&lt;output-directory&gt;**: ruta completa del directorio donde Muki genera las clases. El directorio debe existir.
 
 Ejemplo de una invocación para generar las clases en Java:
+
+	&gt;java -classpath ./lib/muki-generator-1.0.jar:./lib/commons-collections-3.2.1.jar:./lib/commons-lang-2.4.jar:./lib/velocity-1.6.1.jar <b>muki.tool.MukiGenerator</b> <b>generate-java</b> /Users/gabriel/temp/project/code-generation/muki-definitions.xml /Users/gabriel/temp/project/generated-java
+
+![Muki6](muki6_es.png)
+
+5.2 - Por un script de Ant
+--------------------------
+
+    <target name="generate-java-server">
+      <path id="tools.classpath">
+        <fileset dir="${basedir}/lib">
+          <include name="*.jar" />
+        </fileset>
+      </path>
+      <taskdef name="muki-generator" classpathref="tools.classpath" classname="muki.tool.AntTask"/>
+      <mkdir dir="${server.generation.dir}"/>
+      <muki-generator 
+        option="generate-java" 
+        projectFile="${basedir}/muki-definitions.xml" 
+        outputDirectory="${server.generation.dir}" />
+    </target>
+
+![Muki7](muki7_es.png)
+
