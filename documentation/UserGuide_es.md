@@ -1,12 +1,10 @@
 Índice
 ======
-This is [an example][id] reference-style link.
+<a href="#description">1 - ¿Qué es Muki?</a>
 
 
-1 -¿Qué es Muki?
+<a name="description">1 -¿Qué es Muki?</a>
 ================
-
-[id]: http://example.com/  "Optional Title Here"
 **Muki** es una herramienta que permite generar rápidamente el código que automatiza la comunicación entre los clientes iOS y el servidor JEE a través de un servicio RESTful. A partir de la descripción del servicio, Muki genera clases adicionales en Objective-C que pueden ser fácilmente integradas en las aplicaciones iOS y clases en Java que permiten implementar rápidamente un servicio RESTful siguiendo el estándar [JAX-RS](http://jax-rs-spec.java.net).
 
 Todo el proceso de comunicación por HTTP y la serialización y conversión de datos entre las aplicaciones es realizado automáticamente por las clases generadas. 
