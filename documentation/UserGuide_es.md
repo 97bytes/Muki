@@ -271,3 +271,8 @@ Y también:
 	    - (void)removeFromTracks: (TrackData *)anObject;
 	@end
 
+4.2 - Definiendo los controllers con las operaciones del servicio
+-----------------------------------------------------------------
+Los **controllers** describen las operaciones del servicio que tratan las peticiones para recuperar, agregar, actualizar y borrar web resources del servidor. Con la definición de los **controllers**, Muki genera clases que simplifican la comunicación entre los clientes iOS y el servidor. Así, la comunicación remota se convierte en una simple invocación de métodos entre objetos. Las clases generadas se encargan de establecer la comunicación entre los clientes iOS y el servidor siguiendo los principios RESTful de usar los siguientes métodos definidos en HTTP: **GET**, **POST**, **PUT** y **DELETE**.
+
+El siguiente fragmento muestra la definición de los controllers:
