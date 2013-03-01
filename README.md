@@ -7,5 +7,5 @@ Ver [Muki - Guía del usuario] (https://github.com/97bytes/Muki/blob/master/docu
 
 See [Muki - User guide] (https://github.com/97bytes/Muki/blob/master/documentation/UserGuide_es.md) (English)
 
-![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/Muki1_es.png)
+![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/muki1_es.png)
 
