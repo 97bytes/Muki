@@ -1,8 +1,8 @@
 Índice
 ======
 
-¿Qué es Muki?
-=============
+1 -¿Qué es Muki?
+================
 *Muki* es una herramienta que permite generar rápidamente el código que automatiza la comunicación entre los clientes iOS y el servidor JEE a través de un servicio RESTful. A partir de la descripción del servicio, Muki genera clases adicionales en Objective-C que pueden ser fácilmente integradas en las aplicaciones iOS y clases en Java que permiten implementar rápidamente un servicio RESTful siguiendo el estándar [JAX-RS](http://jax-rs-spec.java.net).
 
 Todo el proceso de comunicación por HTTP y la serialización y conversión de datos entre las aplicaciones es realizado automáticamente por las clases generadas. 
@@ -23,3 +23,13 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
     
     // Recuperar un objeto del servidor
     Customer *anotherCustomer = [service getCustomerId:@"12345667" error:&error];;
+
+
+2 - Requerimientos para utilizar Muki
+=====================================
+2.1 - Requerimientos para correr el proceso de generación de clases
+-------------------------------------------------------------------
+*   Instalación de **Java** (JRE 1.5+)
+*   muki-generator-1.0.jar
+*   [commons-collections-3.2.1.jar](http://commons.apache.org/collections/), [commons-lang-2.4.jar](http://commons.apache.org/lang/), [velocity-1.6.1.jar](http://velocity.apache.org)
+*   Nótese que otras versiones de las librerías posiblemente también funcionen, pero ésas son las versiones que hemos utilizado en nuestras pruebas.
