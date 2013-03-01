@@ -615,3 +615,36 @@ La implementación original es de <a href="http://cocoawithlove.com/2009/06/base
         <td>Se incluye el fuente de las clases del framework <a href="http://stig.github.com/json-framework/">SBJson</a> (no es una librería!)</td>
     </tr>
 </table>
+
+6.3 - Pasos para integrar las clases generadas en la aplicación cliente (iOS)
+-----------------------------------------------------------------------------
+En general todas las clases generadas son compatibles con el esquema [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) de gestión de memoria. La única excepción son las clases de los ***ParserDelegate.m**, que no soportan ARC y utilizan el modelo convencional e incluyen *[... autorelease]*.
+
+Esto significa que es necesario hacer algunas adaptaciones de forma manual para que las clases generadas funcionen correctamente.
+
+**PASO 1)** En el proyecto (Xcode) para la aplicación, usar el modelo ARC de gestión de memoria
+
+**PASO 2)** Agregar todas las clases generadas en el proyecto, con la opción **Add Files to ...**
+
+**PASO 3)** Indicar que las clases generadas cuyo nombre es ***ParserDelegate.m** no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las <b>Build phases</b> y agregar un flag de compilación: <code>**-fno-objc-arc**</code>
+
+![Muki3](muki3_es.png)
+
+**PASO 4)** Compilar. No deberían aparecer errores de compilación.
+
+**PASO 5)** En la aplicación, agregar instanciar los stubs y models para hacer las invocaciones al servicio. Por ejemplo:
+
+    TrackData <b>*newTrack</b> = [[TrackData alloc] init];
+    newTrack.title = @"New track";
+    newTrack.lengthInSeconds = 247;
+    newTrack.price = 1.25;
+    newTrack.newRelease = YES;
+    newTrack.catalogId = 0;
+    
+    TrackControllerStub  <b>*stub</b> = [[TrackControllerStub alloc] initControllerUrl: @"http://localhost:8080/demo-server/store"];
+    NSError <b>*error</b>;
+    TrackData *addedTrack = [stub <b>addTrack:newTrack error:&error</b>];
+
+    TrackData *myTrack = [stub <b>getTrackId:@"3" error:&error</b>];
+
+Nótese que ***error** es un parámetro de salida enviado por referencia para que podamos consultar si se ha producido un error en la invocación. Es forma la correcta de gestionar los errores en Cocoa. [Ver más detalles](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/CreateCustomizeNSError/CreateCustomizeNSError.html").
