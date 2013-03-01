@@ -7,7 +7,7 @@
 
 Todo el proceso de comunicación por HTTP y la serialización y conversión de datos entre las aplicaciones es realizado automáticamente por las clases generadas. 
 
-![Muki1](Muki1_es.png)
+![Muki1](muki1_es.png)
 
 Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado es 100% legible y limpio. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
 
@@ -52,7 +52,7 @@ La creación de un servicio con Muki se resume en 3 pasos:
 ** PASO 2:** Invocar el proceso de generación, desde Java.
 ** PASO 3:** Integrar las clases generadas en las aplicaciones.
 
-![Muki2](Muki2_es.png)
+![Muki2](muki2_es.png)
 
 
 4 - Definiendo un servicio
@@ -142,7 +142,7 @@ La siguiente tabla muestra los tipos básicos que utiliza Muki y sus corresponde
 
 Tomemos por ejemplo el siguiente diagrama con 2 *models*. Hay un model llamado **TrackData** que tiene atributos de tipos básicos (String, Long, Boolean, etc.) y también hay un model llamado **AlbumData** que tiene 2 atributos de tipo String, una referencia a **TrackData** y un atributo que es una lista de **TrackData**:
 
-![Muki4](Muki4_es.png)
+![Muki4](muki4_es.png)
 
 El siguiente fragmento corresponde a la descripción que Muki requiere para crear las clases en Java y Objetive-C para el modelo anterior: 
 
@@ -164,3 +164,72 @@ El siguiente fragmento corresponde a la descripción que Muki requiere para crea
     </model-definitions>
 
 Con la definición anterior, Muki genera las siguientes clases en Java. Las clases tienen anotaciones JAXB para la serialización en XML y JSON:
+
+	@XmlRootElement(name = "trackdata")
+	@XmlType(name = "TrackData", propOrder = {})
+	public class <b>TrackData</b> implements Serializable {
+	    private static final long serialVersionUID = 1L;
+	    private String title;
+	    private int lengthInSeconds;
+	    private long catalogId;
+	    private boolean newRelease;
+	    private double price;
+
+	    @XmlElement(name = "title")
+	    public String getTitle() {
+	        return this.title;  
+	    }
+	 
+	    public void setTitle(String newValue) {
+	        this.title = newValue;  
+	    }
+	            
+	    @XmlAttribute(name = "price")
+	    public double getPrice() {
+	        return this.price;  
+	    }
+
+	    ...
+	}
+
+	@XmlRootElement(name = "albumdata")
+	@XmlType(name = "AlbumData", propOrder = {})
+	public class <b>AlbumData</b> implements Serializable {
+	    private static final long serialVersionUID = 1L;
+	    private long catalogId;
+	    private String title;
+	    private String artist;
+	    private TrackData mainTrack;
+	    private List<TrackData> tracks = new ArrayList<TrackData>();
+
+	    @XmlElement(name = "title")
+	    public String getTitle() {
+	        return this.title;  
+	    }
+	 
+	    @XmlElement(name = "mainTrack")
+	    public TrackData getMainTrack() {
+	        return this.mainTrack;  
+	    }
+	 
+	    public void setMainTrack(TrackData newValue) {
+	        this.mainTrack = newValue;  
+	    }
+	    
+	    @XmlElementWrapper(name = "tracks")
+	    @XmlElement(name = "trackdata")
+	    public List<TrackData> getTracks() {
+	        return this.tracks;  
+	    }
+	 
+	    public void addToTracks(TrackData aValue) {
+	        this.tracks .add(aValue);   
+	    }
+	    
+	    public void removeFromTracks(TrackData aValue) {
+	        this.tracks .remove(aValue);   
+	    }
+
+	    ...
+	}
+
