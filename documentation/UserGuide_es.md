@@ -662,10 +662,10 @@ Nótese que ***error** es un parámetro de salida enviado por referencia para qu
 
 **PASO 5)** Declarar el nombre completo de la clase **MukiExceptionMapper** como parámetro en el fichero **web.xml** de la aplicación. El nombre del parámetro depende de la implementación de JAX-RS que usemos. En el caso de Resteasy, la declaración sería la siguiente:
 
-	&lt;context-param&gt;
-	   &lt;param-name&gt;resteasy.providers&lt;/param-name&gt;
-	   &lt;param-value&gt;package.name.MukiExceptionMapper&lt;/param-value&gt;        
-	&lt;/context-param&gt;
+	<context-param>
+	   <param-name>resteasy.providers</param-name>
+	   <param-value>package.name.MukiExceptionMapper</param-value>        
+	</context-param>
 
 7 - Un ejemplo completo
 =======================
