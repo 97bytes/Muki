@@ -139,3 +139,28 @@ La siguiente tabla muestra los tipos básicos que utiliza Muki y sus corresponde
         <td align="center">BOOL</td>
     </tr>
 </table>
+
+Tomemos por ejemplo el siguiente diagrama con 2 *models*. Hay un model llamado **TrackData** que tiene atributos de tipos básicos (String, Long, Boolean, etc.) y también hay un model llamado **AlbumData** que tiene 2 atributos de tipo String, una referencia a **TrackData** y un atributo que es una lista de **TrackData**:
+
+![Muki4](Muki4_es.png)
+
+El siguiente fragmento corresponde a la descripción que Muki requiere para crear las clases en Java y Objetive-C para el modelo anterior: 
+
+    <model-definitions java-package="demo.model">
+        <model name="TrackData">
+            <simple-attr type="STRING" name="title" />
+            <simple-attr type="INT" name="lengthInSeconds" />
+            <simple-attr type="LONG" name="catalogId" />
+            <simple-attr type="BOOLEAN" name="newRelease" />
+            <simple-attr type="DOUBLE" name="price" />
+        </model>
+        <model name="AlbumData">
+            <simple-attr type="LONG" name="catalogId" />
+            <simple-attr type="STRING" name="title" />
+            <simple-attr type="STRING" name="artist" />
+            <simple-attr type="TrackData" name="mainTrack" />
+            <list-attr items-type="TrackData" name="tracks" />
+        </model>
+    </model-definitions>
+
+Con la definición anterior, Muki genera las siguientes clases en Java. Las clases tienen anotaciones JAXB para la serialización en XML y JSON:
