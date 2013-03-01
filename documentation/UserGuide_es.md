@@ -618,7 +618,7 @@ La implementación original es de <a href="http://cocoawithlove.com/2009/06/base
 
 6.3 - Pasos para integrar las clases generadas en la aplicación cliente (iOS)
 -----------------------------------------------------------------------------
-En general todas las clases generadas son compatibles con el esquema [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) de gestión de memoria. La única excepción son las clases de los ***ParserDelegate.m**, que no soportan ARC y utilizan el modelo convencional e incluyen *[... autorelease]*.
+En general todas las clases generadas son compatibles con el esquema [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) de gestión de memoria. La única excepción son las clases de los ** *ParserDelegate.m**, que no soportan ARC y utilizan el modelo convencional e incluyen *[... autorelease]*.
 
 Esto significa que es necesario hacer algunas adaptaciones de forma manual para que las clases generadas funcionen correctamente.
 
@@ -626,7 +626,7 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual para 
 
 **PASO 2)** Agregar todas las clases generadas en el proyecto, con la opción **Add Files to ...**
 
-**PASO 3)** Indicar que las clases generadas cuyo nombre es ***ParserDelegate.m** no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las <b>Build phases</b> y agregar un flag de compilación: <code>**-fno-objc-arc**</code>
+**PASO 3)** Indicar que las clases generadas cuyo nombre es ***ParserDelegate.m** no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
 
 ![Muki3](muki3_es.png)
 
