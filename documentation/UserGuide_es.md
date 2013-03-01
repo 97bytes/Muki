@@ -109,9 +109,9 @@ La siguiente tabla muestra los tipos básicos que utiliza Muki y sus corresponde
 
 <table>
     <tr>
-        <th align="center">**Muki basic type**</th>
-        <th align="center">**Java type**</th>
-        <th align="center">**Objective-C type**</th>
+        <th align="center"><b>Muki basic type</b></th>
+        <th align="center"><b>Java type</b></th>
+        <th align="center"><b>Objective-C type</b></th>
     </tr>
     <tr>
         <td align="center">STRING</td>
