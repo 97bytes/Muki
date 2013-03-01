@@ -314,21 +314,45 @@ La siguiente tabla resume todos los atributos para definir una operación GET en
     </tr>
     <tr>
         <td align="center">name</td>
-        <td align="center">Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+        <td>Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td align="center">Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
     </tr>
     <tr>
         <td align="center">return-type</td>
-        <td align="center">Es el tipo del resultado. El valor puede ser STRING o el nombre de un model.</td>
+        <td>Es el tipo del resultado. El valor puede ser STRING o el nombre de un model.</td>
     </tr>
     <tr>
         <td align="center">serialization-type</td>
-        <td align="center">Toma el valor "json" o "xml". Indica el formato para serializar el resource (model) retornado por la operación. Es obligatorio si el valor de return-type es el nombre de un model.</td>
+        <td>Toma el valor "json" o "xml". Indica el formato para serializar el resource (model) retornado por la operación. Es obligatorio si el valor de return-type es el nombre de un model.</td>
     </tr>
 </table>
+
+En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** para que la URI utilizada para invocar la operación sea más flexible. Si se incluyen parámetros, entonces es necesario agregar sub-elementos &lt;path-param name="param1" /&gt; y &lt;query-param name="param2" /&gt; para que Muki pueda contruir los métodos correctamente. Los nombres de los parámetros que aparecen en http-path deben coincidir con los nombres declarados en los sub-elementos. 
+
+Tomemos como ejemplo la siguiente definición de una operación:
+
+    <get-operation http-path="/customers/{customerId}/{orderId}" return-type="OrderData" name="getOrder" serialization-type="json">
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+    </get-operation>
+
+Con la definición anterior, Muki generará el siguiente método en el controller Java:
+</p>
+
+    @GET
+    @Path("/customers/{customerId}/{orderId}")
+    @Produces("application/json")
+    public OrderData getOrder(@PathParam("customerId") String customerId, @PathParam("orderId") String orderId) {
+        OrderData result = this.getDelegate().getOrder(customerId, orderId);
+        ...
+    }
+
+En la interface del stub en Objective-C, Muki declarará el siguiente método:
+
+	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
 
 
