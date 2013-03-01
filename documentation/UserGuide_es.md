@@ -103,5 +103,39 @@ El siguiente fragmento muestra la definición de los *models*:
         ...
     </model-definitions>
 
-Las definiciones de los *models* van dentro de un elemento **&lt; model-definitions java-package = " ... " &gt;**. El valor del atributo **java-package** es el nombre del paquete donde se generarán las clases Java (beans). Cada model se define con un elemento **&lt;model name = " ... "&gt;**. El valor del atributo **name** es el nombre que se utiliza para generar la correspondiente clase en Java y en Objective-C. Cada model tiene uno o varios atributos, que pueden ser de tipo simple o bien representar listas. Los atributos simples pueden tener tipos básicos (boolean, integer, string, etc) o bien referencias a otro models. Los atributos para listas solo pueden tener referencias a otros models; no es posible tener listas de tipos básicos.
+Las definiciones de los *models* van dentro de un elemento **&lt;model-definitions java-package = " ... "&gt;**. El valor del atributo **java-package** es el nombre del paquete donde se generarán las clases Java (beans). Cada model se define con un elemento **&lt;model name = " ... "&gt;**. El valor del atributo **name** es el nombre que se utiliza para generar la correspondiente clase en Java y en Objective-C. Cada model tiene uno o varios atributos, que pueden ser de tipo simple o bien representar listas. Los atributos simples pueden tener tipos básicos (boolean, integer, string, etc) o bien referencias a otro models. Los atributos para listas solo pueden tener referencias a otros models; no es posible tener listas de tipos básicos.
 
+La siguiente tabla muestra los tipos básicos que utiliza Muki y sus correspondencias con tipos de Java y Objective-C cuando se generan las clases.
+
+<table>
+    <tr>
+        <th align="center">**Muki basic type**</th>
+        <th align="center">**Java type**</th>
+        <th align="center">**Objective-C type**</th>
+    </tr>
+    <tr>
+        <td align="center">STRING</td>
+        <td align="center">String</td>
+        <td align="center">NSString</td>
+    </tr>
+    <tr>
+        <td align="center">LONG</td>
+        <td align="center">long</td>
+        <td align="center">long long</td>
+    </tr>
+    <tr>
+        <td align="center">INT</td>
+        <td align="center">int</td>
+        <td align="center">NSInteger</td>
+    </tr>
+    <tr>
+        <td align="center">DOUBLE</td>
+        <td align="center">double</td>
+        <td align="center">double</td>
+    </tr>
+    <tr>
+        <td align="center">BOOLEAN</td>
+        <td align="center">boolean</td>
+        <td align="center">BOOL</td>
+    </tr>
+</table>
