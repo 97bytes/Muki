@@ -1,7 +1,9 @@
 Índice
 ======
+*  [1 - ¿Qué es Muki?][description]
 
-1 -¿Qué es Muki?
+
+[description]:1 -¿Qué es Muki?
 ================
 **Muki** es una herramienta que permite generar rápidamente el código que automatiza la comunicación entre los clientes iOS y el servidor JEE a través de un servicio RESTful. A partir de la descripción del servicio, Muki genera clases adicionales en Objective-C que pueden ser fácilmente integradas en las aplicaciones iOS y clases en Java que permiten implementar rápidamente un servicio RESTful siguiendo el estándar [JAX-RS](http://jax-rs-spec.java.net).
 
