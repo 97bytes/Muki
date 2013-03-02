@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="Muki" default="init" basedir=".">
+
+	<!--
+	  Init script with configuration read from the properties file
+	-->
+	<target name="init" depends="">
+		<property name="project.dir" value="${basedir}"/>
+		<property name="temp.dir" value="${basedir}/temp"/>
+		<property file="build.properties"/>
+		<echo message="* * * * * * * * * * CONFIGURATION: * * * * * * * * * *"/>
+		<echo message="*"/>
+		<echo message="*              basedir = ${basedir}"/>
+		<echo message="*          project.dir = ${project.dir}"/>
+		<echo message="*             temp.dir = ${temp.dir}"/>
+		<echo message="*"/>
+		<echo message="* * * * * * * * * * * * * * * * * * * * * * * * * * * *"/>
+		<mkdir dir="${temp.dir}"/>
+		<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+		  <classpath>
+		    <fileset dir="${project.dir}/lib" includes="*.jar" />
+		  </classpath>
+		</taskdef>
+	</target>
+
+	<target name="clean" depends="init" >
+		<delete dir="${temp.dir}"/>
+	</target>
+	
+	<!--
+	    Generate data beans using JAXB for XML serialization.
+	    Documentation: https://jaxb.dev.java.net/nonav/2.0.2/docs/xjcTask.html
+	-->
+	<target name="xjc-service-description" depends="init">
+		<delete dir="${project.dir}/generated"/>
+		<mkdir dir="${project.dir}/generated"/>
+		<xjc schema="${project.dir}/resources/muki-service-description-v01.xsd" 
+			package="muki.tool.model"
+			destdir="${project.dir}/generated"
+			extension="true">
+		</xjc>
+	</target>
+
+	<target name="jar" depends="init, version-class">
+		<property name="classes.dir" value="${temp.dir}/classes"/>
+		<mkdir dir="${classes.dir}"/>
+		<javac target="1.5" compiler="modern" destdir="${classes.dir}" debug="on" fork="true">
+			<src path="${project.dir}/generated"/>
+			<src path="${project.dir}/src"/>
+			<classpath>
+				<fileset dir="${project.dir}/lib">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+		<copy todir="${classes.dir}/">
+			<fileset dir="${project.dir}/resources/">
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.vm"/>
+				<include name="**/*.h"/>
+				<include name="**/*.TXT"/>
+				<include name="**/*.m"/>
+				<exclude name="tests/**"/>
+			</fileset>
+		</copy>
+		<jar destfile="${temp.dir}/${jar.name}" basedir="${temp.dir}/classes" />
+		<echo message="* * * * * * * * * GENERATED FILE: * * * * * * * * *" />
+		<echo message="*" />
+		<echo message="*   ${temp.dir}/${jar.name}" />
+		<echo message="*" />
+		<echo message="* * * * * * * * * * * * * * * * * * * * * * * * * *" />
+	</target>
+
+	<!-- 
+		Creates a Java class with the version number. This class is generated from a template, replacing the ID.
+	-->
+	<target name="version-class" depends="init">
+		<tstamp>
+		    <format property="date" pattern="yyyy-MM-dd"/>
+		</tstamp>
+		<property name="src.dir" value="${project.dir}/src/muki/tool"/>
+		<mkdir dir="${src.dir}"/>
+		<copy file="${basedir}/resources/templates/template_java_version.txt" tofile="${src.dir}/Version.java" overwrite="true"/>
+		<replace file="${src.dir}/Version.java" token="VERSION_NUMBER" value="${version.number}"/>
+		<replace file="${src.dir}/Version.java" token="DATE" value="${date}"/>
+	</target>
+</project>

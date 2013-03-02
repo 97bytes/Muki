@@ -1,0 +1,95 @@
+package store.controller;
+
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.SecurityContext;
+
+import store.model.Cd;
+import store.model.Track;
+
+/**
+ * This is a mock implementation of the delegate. We use it only for testing purposes!
+ */
+public class MockController2DelegateImpl implements Controller2Delegate {
+	
+	private Cd mockCd1;
+	private Cd mockCd2;
+	
+	public MockController2DelegateImpl() {
+		Track track1 = new Track();
+		track1.setTitle("My Track 1");
+		track1.setCatalogId(1);
+		track1.setDurationInSeconds(90);
+		track1.setNewRelease(true);
+		track1.setPrice(21.3);
+		
+		Track track2 = new Track();
+		track2.setTitle("My Track 2");
+		track2.setCatalogId(1);
+		track2.setDurationInSeconds(65);
+		track2.setNewRelease(true);
+		track2.setPrice(15.7);
+		
+		Cd cd = new Cd();
+		cd.setTitle("Compilation");
+		cd.setArtist("Mozart");
+		cd.setMainTrack(track1);
+		cd.addToTracks(track1);
+		cd.addToTracks(track2);
+		this.mockCd1 = cd;
+		
+		cd = new Cd();
+		cd.setTitle("Empty Cd");
+		cd.setArtist("No artist");
+		cd.setMainTrack(track1);
+		this.mockCd2 = cd;
+	}
+
+	public String getOperation2(String id) {
+		return id;
+	}
+
+	public String getOperation3(String id, String name) {
+		return id + "-" + name;
+	}
+
+	/**
+	 * Los siguientes metodos retornan todos null, pero corresponden a distintos
+	 * tipos de serializacion del skeleton: XML, String y JSON
+	 */
+	public String getOperationNull1() {
+		return null;
+	}
+
+	public Track getOperationNull2() {
+		return null;
+	}
+
+	public Track getOperationNull3() {
+		return null;
+	}
+
+	public String postOperationNull1() {
+		return null;
+	}
+
+	public Track postOperationNull2() {
+		return null;
+	}
+
+	public Track postOperationNull3() {
+		return null;
+	}
+
+	public String putOperationNull1() {
+		return null;
+	}
+
+	public Track putOperationNull2() {
+		return null;
+	}
+
+	public Track putOperationNull3() {
+		return null;
+	}
+
+}

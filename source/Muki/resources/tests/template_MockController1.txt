@@ -1,0 +1,9 @@
+package store.controller;
+
+public class MockController1 extends Controller1 {
+	
+    public Controller1Delegate getDelegate() {
+        return new MockController1DelegateImpl();
+    }
+
+}

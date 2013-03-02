@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:project name="MyProject" xmlns:ns2="http://muki/service-description/">
+	<model-definitions java-package="store.model">
+		<model name="Track">
+			<simple-attr type="STRING" name="title" />
+			<simple-attr type="INT" name="durationInSeconds" />
+			<simple-attr type="LONG" name="catalogId" />
+			<simple-attr type="BOOLEAN" name="newRelease" />
+			<simple-attr type="DOUBLE" name="price" />
+		</model>
+		<model name="Cd">
+			<simple-attr type="STRING" name="title" />
+			<simple-attr type="STRING" name="artist" />
+			<simple-attr type="Track" name="mainTrack" />
+			<list-attr items-type="Track" name="tracks" />
+		</model>
+	</model-definitions>
+	<controller-definitions java-package="store.controller">
+		<controller http-path="/controller1" name="Controller1">
+			<get-operation http-path="/pathGetOperation1"
+				return-type="STRING" name="getOperation1" />
+			<get-operation http-path="/pathGetOperation4"
+				return-type="STRING" name="getOperation4">
+				<query-param name="date" />
+			</get-operation>
+			<get-operation http-path="/pathGetOperation5"
+				return-type="STRING" name="getOperation5">
+				<query-param name="date" />
+				<query-param name="page" />
+			</get-operation>
+			<get-operation http-path="/pathGetOperation6/{id}"
+				return-type="STRING" name="getOperation6">
+				<path-param name="id" />
+				<query-param name="page" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation7Xml" return-type="Track" name="getOperation7Xml" />
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation7Json" return-type="Track" name="getOperation7Json" />
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation8Xml/{id}" return-type="Cd"
+				name="getOperation8Xml">
+				<path-param name="id" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation8Json/{id}" return-type="Cd"
+				name="getOperation8Json">
+				<path-param name="id" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation9Xml/{id}/{name}" return-type="Track"
+				name="getOperation9Xml">
+				<path-param name="id" />
+				<path-param name="name" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation9Json/{id}/{name}" return-type="Track"
+				name="getOperation9Json">
+				<path-param name="id" />
+				<path-param name="name" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation10Xml" return-type="Cd" name="getOperation10Xml">
+				<query-param name="date" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation10Json" return-type="Cd" name="getOperation10Json">
+				<query-param name="date" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation11Xml" return-type="Track" name="getOperation11Xml">
+				<query-param name="date" />
+				<query-param name="page" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation11Json" return-type="Track" name="getOperation11Json">
+				<query-param name="date" />
+				<query-param name="page" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation12Xml/{id}" return-type="Cd"
+				name="getOperation12Xml">
+				<path-param name="id" />
+				<query-param name="page" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation12Json/{id}" return-type="Cd"
+				name="getOperation12Json">
+				<path-param name="id" />
+				<query-param name="page" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation13Xml/{id}" return-type="Cd"
+				name="getOperation13Xml">
+				<path-param name="id" />
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation13Json/{id}" return-type="Cd"
+				name="getOperation13Json">
+				<path-param name="id" />
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperation14Xml/{id}" return-type="Cd"
+				name="getOperation14Xml">
+				<path-param name="id" />
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation14Json/{id}" return-type="Cd"
+				name="getOperation14Json">
+				<path-param name="id" />
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</get-operation>
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperation15Json/artists/{name}/tracks/{id}"
+				return-type="Track" name="getOperation15Json">
+				<path-param name="name" />
+				<path-param name="id" />
+			</get-operation>
+			<post-operation http-path="/pathPostOperation1" name="postOperation1" />
+			<post-operation param-type="STRING" http-path="/pathPostOperation2"
+				name="postOperation2" />
+			<post-operation http-path="/pathPostOperation3"
+				return-type="STRING" name="postOperation3" />
+			<post-operation param-type="STRING" http-path="/pathPostOperation4"
+				return-type="STRING" name="postOperation4" />
+			<post-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPostOperation5Xml" name="postOperation5Xml" />
+			<post-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPostOperation5Json" name="postOperation5Json" />
+			<post-operation serialization-type="xml"
+				http-path="/pathPostOperation6Xml" return-type="Cd" name="postOperation6Xml" />
+			<post-operation serialization-type="json"
+				http-path="/pathPostOperation6Json" return-type="Cd" name="postOperation6Json" />
+			<post-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPostOperation7Xml" return-type="Track" name="postOperation7Xml" />
+			<post-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPostOperation7Json" return-type="Track" name="postOperation7Json" />
+			<post-operation serialization-type="xml"
+				http-path="/pathPostOperation8Xml" return-type="Track" name="postOperation8Xml">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</post-operation>
+			<post-operation serialization-type="json"
+				http-path="/pathPostOperation8Json" return-type="Track" name="postOperation8Json">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</post-operation>
+			<post-operation serialization-type="xml"
+				http-path="/pathPostOperation9Xml" return-type="Track" name="postOperation9Xml">
+				<form-param name="name" />
+				<form-param name="date" />
+			</post-operation>
+			<post-operation serialization-type="json"
+				http-path="/pathPostOperation9Json" return-type="Track" name="postOperation9Json">
+				<form-param name="name" />
+				<form-param name="date" />
+			</post-operation>
+			<post-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPostOperation10Xml" return-type="Track" name="postOperation10Xml">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</post-operation>
+			<post-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPostOperation10Json" return-type="Track"
+				name="postOperation10Json">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</post-operation>
+			<post-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPostOperation11Xml/{id}" return-type="Track"
+				name="postOperation11Xml">
+				<path-param name="id" />
+				<query-param name="page" />
+			</post-operation>
+			<post-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPostOperation11Json/{id}" return-type="Track"
+				name="postOperation11Json">
+				<path-param name="id" />
+				<query-param name="page" />
+			</post-operation>
+			<post-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPostOperation12Xml" return-type="Cd" name="postOperation12Xml" />
+			<post-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPostOperation12Json" return-type="Cd"
+				name="postOperation12Json" />
+			<post-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPostOperation13Json/artists/{name}/tracks/{id}"
+				return-type="Track" name="postOperation13Json">
+				<path-param name="name" />
+				<path-param name="id" />
+			</post-operation>
+			<put-operation http-path="/pathPutOperation1" name="putOperation1" />
+			<put-operation param-type="STRING" http-path="/pathPutOperation2"
+				name="putOperation2" />
+			<put-operation http-path="/pathPutOperation3"
+				return-type="STRING" name="putOperation3" />
+			<put-operation param-type="STRING" http-path="/pathPutOperation4"
+				return-type="STRING" name="putOperation4" />
+			<put-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPutOperation5Xml" name="putOperation5Xml" />
+			<put-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPutOperation5Json" name="putOperation5Json" />
+			<put-operation serialization-type="xml"
+				http-path="/pathPutOperation6Xml" return-type="Cd" name="putOperation6Xml" />
+			<put-operation serialization-type="json"
+				http-path="/pathPutOperation6Json" return-type="Cd" name="putOperation6Json" />
+			<put-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPutOperation7Xml" return-type="Track" name="putOperation7Xml" />
+			<put-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPutOperation7Json" return-type="Track" name="putOperation7Json" />
+			<put-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPutOperation8Xml" return-type="Track" name="putOperation8Xml">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</put-operation>
+			<put-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPutOperation8Json" return-type="Track" name="putOperation8Json">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</put-operation>
+			<put-operation serialization-type="xml"
+				http-path="/pathPutOperation9Xml" return-type="Track" name="putOperation9Xml">
+				<form-param name="name" />
+				<form-param name="date" />
+			</put-operation>
+			<put-operation serialization-type="xml"
+				http-path="/pathPutOperation9Json" return-type="Track" name="putOperation9Json">
+				<form-param name="name" />
+				<form-param name="date" />
+			</put-operation>
+			<put-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPutOperation10Xml" return-type="Track" name="putOperation10Xml">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</put-operation>
+			<put-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPutOperation10Json" return-type="Track" name="putOperation10Json">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</put-operation>
+			<put-operation serialization-type="xml" param-type="Cd"
+				http-path="/pathPutOperation11Xml/{id}" return-type="Track"
+				name="putOperation11Xml">
+				<path-param name="id" />
+				<query-param name="page" />
+			</put-operation>
+			<put-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPutOperation11Json/{id}" return-type="Track"
+				name="putOperation11Json">
+				<path-param name="id" />
+				<query-param name="page" />
+			</put-operation>
+			<put-operation serialization-type="json" param-type="Cd"
+				http-path="/pathPutOperation12Json/artists/{name}/tracks/{id}"
+				return-type="Track" name="putOperation12Json">
+				<path-param name="name" />
+				<path-param name="id" />
+			</put-operation>
+			<delete-operation http-path="/pathDeleteOperation1"
+				name="deleteOperation1" />
+			<delete-operation http-path="/pathDeleteOperation2"
+				name="deleteOperation2">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+			</delete-operation>
+			<delete-operation http-path="/pathDeleteOperation3"
+				name="deleteOperation3">
+				<context-param javaClass="SecurityContext" name="securityInfo" />
+				<context-param javaClass="Request" name="request" />
+			</delete-operation>
+			<delete-operation http-path="/pathDeleteOperation4/{id}/{name}"
+				name="deleteOperation4">
+				<path-param name="id" />
+				<path-param name="name" />
+			</delete-operation>
+			<delete-operation http-path="/pathDeleteOperation5/{id}"
+				name="deleteOperation5">
+				<path-param name="id" />
+				<query-param name="date" />
+			</delete-operation>
+			<delete-operation http-path="/pathDeleteOperation6/artists/{name}/tracks/{id}"
+				name="deleteOperation6">
+				<path-param name="name" />
+				<path-param name="id" />
+			</delete-operation>
+		</controller>
+		<controller http-path="/controller2" name="Controller2">
+			<get-operation http-path="/pathGetOperationNull1"
+				return-type="STRING" name="getOperationNull1" />
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperationNull2" return-type="Track" name="getOperationNull2" />
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperationNull3" return-type="Track" name="getOperationNull3" />
+			<get-operation http-path="/pathGetOperation2/{id}"
+				return-type="STRING" name="getOperation2">
+				<path-param name="id" />
+			</get-operation>
+			<get-operation http-path="/pathGetOperation3/{id}/{name}"
+				return-type="STRING" name="getOperation3">
+				<path-param name="id" />
+				<path-param name="name" />
+			</get-operation>
+			<post-operation http-path="/pathPostOperationNull1"
+				return-type="STRING" name="postOperationNull1" />
+			<post-operation serialization-type="xml"
+				http-path="/pathPostOperationNull2" return-type="Track" name="postOperationNull2" />
+			<post-operation serialization-type="json"
+				http-path="/pathPostOperationNull3" return-type="Track" name="postOperationNull3" />
+			<put-operation http-path="/pathPutOperationNull1"
+				return-type="STRING" name="putOperationNull1" />
+			<put-operation serialization-type="json"
+				http-path="/pathPutOperationNull2" return-type="Track" name="putOperationNull2" />
+			<put-operation serialization-type="xml"
+				http-path="/pathPutOperationNull3" return-type="Track" name="putOperationNull3" />
+		</controller>
+	</controller-definitions>
+</ns2:project>

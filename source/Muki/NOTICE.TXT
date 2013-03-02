@@ -1,0 +1,71 @@
+   ============================================================================
+   == NOTICE file corresponding to section 4 d of the Apache License,        ==
+   == Version 2.0. and other software and libraries included in this product ==
+   ============================================================================
+
+   The end-user documentation included with a redistribution, if any,
+   must include the following acknowledgement:
+
+     "This product includes the Muki software developed by 
+     Gabriel Casarini
+
+   Alternatively, this acknowledgement may appear in the software itself,
+   if and wherever such third-party acknowledgements normally appear.
+
+   The names "Muki" must not be used to  endorse or promote products 
+   derived from this software without prior written permission. 
+
+   ============================================================================
+
+   This product includes software developed by
+   the Apache Software Foundation (http://www.apache.org).
+
+   This product also includes software developed by the RestEasy JBoss
+   Project (http://www.jboss.org/resteasy).
+
+   This product also includes schemas and specification developed by:
+   the W3C consortium (http://www.w3c.org)
+   (http://www.w3.org/XML/1998/namespace)
+
+   This product also includes software developed by the Javassist JBoss
+   sub project (http://www.jboss.org/javassist).
+
+   This product also includes the GHUnit framework created by:
+   Gabriel Handford
+   See the GHUnit.txt file for additional information
+
+   This product also includes the NSDataBase64 class extension created by:
+   Matt Gallagher
+   See the NSDataBase64.txt file for additional information
+
+   This product also includes the SBJson framework developed by:
+   Stig Brautaset
+   See the NSDataBase64.txt file for additional information
+
+   This product also includes the Jackson JSON processor.
+   See the Jackson.txt file for additional information
+
+   This product also includes the following libraries:
+
+   Java Architecture for XML Binding (JAXB API) (http://jaxb.java.net/jaxb-api) (jaxb-api-2.1.jar)
+   License: COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0  (http://www.sun.com/cddl/cddl.html)
+
+   Sun JAXB Reference Implementation Runtime (http://jaxb.java.net/jaxb-impl) (com.sun.xml.bind:jaxb-impl:jar)
+   License: COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0 (http://www.sun.com/cddl/cddl.html)
+
+   Sun JAXB Reference Implementation Tools (http://jaxb.java.net/jaxb-xjc) (jaxb-xjc-2.1.7.jar)
+   License: COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0  (http://www.sun.com/cddl/cddl.html)
+
+   javax.ws.rs-api (http://jax-rs-spec.java.net) jaxrs-api-2.2.0.GA.jar
+   License: CDDL 1.1  (http://glassfish.java.net/public/CDDL+GPL_1_1.html)
+
+   Scannotation Java library
+   Project (http://scannotation.sourceforge.net).
+
+   Stax2 API (http://woodstox.codehaus.org/StAX2) org.codehaus.woodstox:stax2-api:jar:3.1.1
+   License: The BSD License  (http://www.opensource.org/licenses/bsd-license.php)
+
+   Jetty Server 6.1.6 (http://docs.codehaus.org/display/JETTY/) jetty-6.1.16
+   License: Apache Software License - Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+
+

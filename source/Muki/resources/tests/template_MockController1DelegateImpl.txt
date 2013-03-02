@@ -1,0 +1,385 @@
+package store.controller;
+
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.SecurityContext;
+
+import store.model.Cd;
+import store.model.Track;
+
+/**
+ * This is a mock implementation of the delegate. We use it only for testing purposes!
+ */
+public class MockController1DelegateImpl implements Controller1Delegate {
+	
+	private Cd mockCd1;
+	private Cd mockCd2;
+	
+	public MockController1DelegateImpl() {
+		Track track1 = new Track();
+		track1.setTitle("My Track 1");
+		track1.setCatalogId(1);
+		track1.setDurationInSeconds(90);
+		track1.setNewRelease(true);
+		track1.setPrice(21.3);
+		
+		Track track2 = new Track();
+		track2.setTitle("My Track 2");
+		track2.setCatalogId(1);
+		track2.setDurationInSeconds(65);
+		track2.setNewRelease(true);
+		track2.setPrice(15.7);
+		
+		Cd cd = new Cd();
+		cd.setTitle("Compilation");
+		cd.setArtist("Mozart");
+		cd.setMainTrack(track1);
+		cd.addToTracks(track1);
+		cd.addToTracks(track2);
+		this.mockCd1 = cd;
+		
+		cd = new Cd();
+		cd.setTitle("Empty Cd");
+		cd.setArtist("No artist");
+		cd.setMainTrack(track1);
+		this.mockCd2 = cd;
+	}
+
+	public String getOperation1() {
+		return "getOperation1";
+	}
+
+	public String getOperation2(String id) {
+		return id;
+	}
+
+	public String getOperation3(String id, String name) {
+		return id + "-" + name;
+	}
+
+	public String getOperation4(String date) {
+		return date;
+	}
+
+	public String getOperation5(String date, String page) {
+		return date + "-" + page;
+	}
+
+	public String getOperation6(String id, String page) {
+		return id + "-" + page;
+	}
+
+	public Track getOperation7Xml() {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle("getOperation7");
+		return result;
+	}
+
+	public Track getOperation7Json() {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle("getOperation7");
+		return result;
+	}
+
+	public Cd getOperation8Xml(String id) {
+		if("emptyCD".equalsIgnoreCase(id)) {
+			return this.mockCd2;
+		}
+		Cd result = this.mockCd1;
+		result.setTitle(id);
+		return result;
+	}
+
+	public Cd getOperation8Json(String id) {
+		if("emptyCD".equalsIgnoreCase(id)) {
+			return this.mockCd2;
+		}
+		Cd result = this.mockCd1;
+		result.setTitle(id);
+		return result;
+	}
+
+	public Track getOperation9Xml(String id, String name) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(id + "-" + name);
+		return result;
+	}
+
+	public Track getOperation9Json(String id, String name) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(id + "-" + name);
+		return result;
+	}
+
+	public Cd getOperation10Xml(String date) {
+		Cd result = this.mockCd1;
+		result.setTitle(date);
+		return result;
+	}
+
+	public Cd getOperation10Json(String date) {
+		Cd result = this.mockCd1;
+		result.setTitle(date);
+		return result;
+	}
+
+	public Track getOperation11Xml(String date, String page) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(date + "-" + page);
+		return result;
+	}
+
+	public Track getOperation11Json(String date, String page) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(date + "-" + page);
+		return result;
+	}
+
+	public Cd getOperation12Xml(String id, String page) {
+		Cd result = this.mockCd1;
+		result.setTitle(id + "-" + page);
+		return result;
+	}
+
+	public Cd getOperation12Json(String id, String page) {
+		Cd result = this.mockCd1;
+		result.setTitle(id + "-" + page);
+		return result;
+	}
+
+	public Cd getOperation13Xml(String id, SecurityContext securityInfo) {
+		Cd result = this.mockCd1;
+		result.setTitle("getOperation13");
+		return result;
+	}
+
+	public Cd getOperation13Json(String id, SecurityContext securityInfo) {
+		Cd result = this.mockCd1;
+		result.setTitle("getOperation13");
+		return result;
+	}
+
+	public Cd getOperation14Xml(String id, SecurityContext securityInfo, Request request) {
+		Cd result = this.mockCd1;
+		result.setTitle("getOperation14");
+		return result;
+	}
+
+	public Cd getOperation14Json(String id, SecurityContext securityInfo, Request request) {
+		Cd result = this.mockCd1;
+		result.setTitle("getOperation14");
+		return result;
+	}
+
+	public Track getOperation15Json(String name, String id) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(name + "-" + id);
+		return result;
+	}
+
+	public void postOperation1() {
+	}
+
+	public void postOperation2(String param) {
+	}
+
+	public String postOperation3() {
+		return "postOperation3";
+	}
+
+	public String postOperation4(String param) {
+		return param;
+	}
+
+	public void postOperation5Xml(Cd param) {
+	}
+
+	public void postOperation5Json(Cd param) {
+	}
+
+	public Cd postOperation6Xml() {
+		Cd result = this.mockCd1;
+		result.setTitle("postOperation6");
+		return result;
+	}
+
+	public Cd postOperation6Json() {
+		Cd result = this.mockCd1;
+		result.setTitle("postOperation6");
+		return result;
+	}
+
+	public Track postOperation7Xml(Cd param) {
+		return param.getMainTrack();
+	}
+
+	public Track postOperation7Json(Cd param) {
+		return param.getMainTrack();
+	}
+
+	public Track postOperation8Xml(SecurityContext securityInfo) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("postOperation8");
+		return result.getMainTrack();
+	}
+
+	public Track postOperation8Json(SecurityContext securityInfo) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("postOperation8");
+		return result.getMainTrack();
+	}
+
+	public Track postOperation9Xml(String name, String date) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("postOperation9");
+		return result.getMainTrack();
+	}
+
+	public Track postOperation9Json(String name, String date) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("postOperation9");
+		return result.getMainTrack();
+	}
+
+	public Track postOperation10Xml(Cd param, SecurityContext securityInfo, Request request) {
+		return param.getMainTrack();
+	}
+
+	public Track postOperation10Json(Cd param, SecurityContext securityInfo, Request request) {
+		return param.getMainTrack();
+	}
+
+	public Track postOperation11Xml(String id, String page, Cd param) {
+		Track result = param.getMainTrack();
+		result.setTitle("postOperation11-" + id + "-" + page);
+		return result;
+	}
+
+	public Track postOperation11Json(String id, String page, Cd param) {
+		Track result = param.getMainTrack();
+		result.setTitle("postOperation11-" + id + "-" + page);
+		return result;
+	}
+
+	public Cd postOperation12Xml(Cd param) {
+		return param;
+	}
+
+	public Cd postOperation12Json(Cd param) {
+		return param;
+	}
+
+	public Track postOperation13Json(String name, String id, Cd param) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(name + "-" + id);
+		return result;
+	}
+
+	public void putOperation1() {
+	}
+
+	public void putOperation2(String param) {
+	}
+
+	public String putOperation3() {
+		return "putOperation3";
+	}
+
+	public String putOperation4(String param) {
+		return param;
+	}
+
+	public void putOperation5Xml(Cd param) {
+	}
+
+	public void putOperation5Json(Cd param) {
+	}
+
+	public Cd putOperation6Xml() {
+		Cd result = this.mockCd1;
+		result.setTitle("putOperation6");
+		return result;
+	}
+
+	public Cd putOperation6Json() {
+		Cd result = this.mockCd1;
+		result.setTitle("putOperation6");
+		return result;
+	}
+
+	public Track putOperation7Xml(Cd param) {
+		return param.getMainTrack();
+	}
+
+	public Track putOperation7Json(Cd param) {
+		return param.getMainTrack();
+	}
+
+	public Track putOperation8Xml(Cd param, SecurityContext securityInfo) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("putOperation8");
+		return result.getMainTrack();
+	}
+
+	public Track putOperation8Json(Cd param, SecurityContext securityInfo) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("putOperation8");
+		return result.getMainTrack();
+	}
+
+	public Track putOperation9Xml(String name, String date) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("putOperation9");
+		return result.getMainTrack();
+	}
+
+	public Track putOperation9Json(String name, String date) {
+		Cd result = this.mockCd1;
+		result.getMainTrack().setTitle("putOperation9");
+		return result.getMainTrack();
+	}
+
+	public Track putOperation10Xml(Cd param, SecurityContext securityInfo, Request request) {
+		return param.getMainTrack();
+	}
+
+	public Track putOperation10Json(Cd param, SecurityContext securityInfo, Request request) {
+		return param.getMainTrack();
+	}
+
+	public Track putOperation11Xml(String id, String page, Cd param) {
+		Track result = param.getMainTrack();
+		result.setTitle("putOperation11-" + id + "-" + page);
+		return result;
+	}
+
+	public Track putOperation11Json(String id, String page, Cd param) {
+		Track result = param.getMainTrack();
+		result.setTitle("putOperation11-" + id + "-" + page);
+		return result;
+	}
+
+	public Track putOperation12Json(String name, String id, Cd param) {
+		Track result = this.mockCd1.getMainTrack();
+		result.setTitle(name + "-" + id);
+		return result;
+	}
+
+	public void deleteOperation1() {
+	}
+
+	public void deleteOperation2(SecurityContext securityInfo) {
+	}
+
+	public void deleteOperation3(SecurityContext securityInfo, Request request) {
+	}
+
+	public void deleteOperation4(String id, String name) {
+	}
+
+	public void deleteOperation5(String id, String date) {
+	}
+
+	public void deleteOperation6(String name, String id) {
+	}
+
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:project name="MyProject" xmlns:ns2="http://muki/service-description/">
+	<model-definitions java-package="store.types">
+		<model name="Track">
+			<simple-attr type="boolean" name="newRelease" />
+			<simple-attr type="double" name="price" />
+			<list-attr items-type="long" name="idsSimilarTracks" />
+		</model>
+		<model name="Cd">
+			<simple-attr type="String" name="title" />
+			<simple-attr type="String" name="artist" />
+			<simple-attr type="Track" name="mainTrack" />
+			<list-attr items-type="Track" name="tracks" />
+		</model>
+	</model-definitions>
+	<controller-definitions java-package="store.controller">
+		<controller http-path="/store" name="MusicStoreService">
+			<get-operation http-path="" return-type="string" name="getOperation1" />
+			<get-operation http-path="/getOperation2" return-type="string" name="getOperation2">
+				<path-param name="id" />
+			</get-operation>
+			<get-operation http-path="/getOperation3" return-type="string" name="getOperation3">
+				<path-param name="id" />
+				<path-param name="name" />
+			</get-operation>
+			<get-operation http-path="/getOperation4" return-type="string" name="getOperation4">
+				<query-param>
+					<name>date</name>
+				</query-param>
+			</get-operation>
+			<get-operation http-path="/getOperation5" return-type="string" name="getOperation5">
+				<query-param>
+					<name>date</name>
+				</query-param>
+				<query-param>
+					<name>page</name>
+				</query-param>
+			</get-operation>
+			<get-operation http-path="/getOperation6" return-type="string" name="getOperation6">
+				<path-param name="id" />
+				<query-param>
+					<name>page</name>
+				</query-param>
+			</get-operation>
+			<get-operation http-path="/getOperation7" return-type="Track" name="getOperation7" />
+			<get-operation http-path="/getOperation8" return-type="" name="getOperation8">
+				<path-param name="id" />
+			</get-operation>
+			<get-operation http-path="/getOperation9" return-type="Track" name="getOperation9">
+				<path-param name="id" />
+				<path-param name="name" />
+			</get-operation>
+			<get-operation http-path="/getOperation10" return-type="Cd" name="getOperation10">
+				<query-param>
+					<name>date</name>
+				</query-param>
+			</get-operation>
+			<get-operation http-path="/getOperation11" return-type="Track" name="getOperation11">
+				<query-param>
+					<name>date</name>
+				</query-param>
+				<query-param>
+					<name>page</name>
+				</query-param>
+			</get-operation>
+			<get-operation http-path="/getOperation12" return-type="Cd" name="getOperation12">
+				<path-param name="id" />
+				<query-param>
+					<name>page</name>
+				</query-param>
+			</get-operation>
+			<post-operation http-path="/postOperation1" name="postOperation1" />
+			<post-operation param-type="string" http-path="/postOperation2" name="postOperation2" />
+			<post-operation http-path="/postOperation3" return-type="string" name="postOperation3" />
+			<post-operation param-type="string" http-path="/postOperation4" return-type="string" name="postOperation4" />
+			<post-operation param-type="Cd" http-path="/postOperation5" name="postOperation5" />
+			<post-operation http-path="/postOperation6" return-type="Cd" name="postOperation6" />
+			<post-operation param-type="Cd" http-path="/postOperation7" return-type="Track" name="postOperation7" />
+		</controller>
+	</controller-definitions>
+</ns2:project>

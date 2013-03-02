@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!--
+	This script is invoked from the JUnit test cases
+-->
+<project name="CodeGeneration Test" default="init" basedir=".">
+
+	<target name="init" depends="">
+		<echo message="* * * * * * * * * * CONFIGURATION * * * * * * * * * * *" />
+		<echo message="*" />
+		<echo message="*                 basedir = ${basedir}" />
+		<echo message="*             project.dir = ${project.dir}" />
+		<echo message="*                temp.dir = ${temp.dir}" />
+		<echo message="*              webapp.dir = ${webapp.dir}" />
+		<echo message="*" />
+		<echo message="* * * * * * * * * * * * * * * * * * * * * * * * * * * *" />
+		<fail unless="project.dir" message="*** Property ${project.dir} is not defined ***" />
+		<fail unless="temp.dir" message="*** Property ${temp.dir} is not defined ***" />
+		<path id="tools.classpath">
+			<fileset dir="${project.dir}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</path>
+		<property name="src" value="${temp.dir}/generated/src"/>
+		<property name="bin" value="${temp.dir}/generated/bin"/>
+	</target>
+
+	<target name="copy-mocks" depends="init">
+		<property name="templates" value="${project.dir}/controllers/tests"/>
+		<copy file="template_MockController1.txt" tofile="${src}/store/controller/MockController1.java"/>
+		<copy file="template_MockController2.txt" tofile="${src}/store/controller/MockController2.java"/>
+		<copy file="template_MockController1DelegateImpl.txt" tofile="${src}/store/controller/MockController1DelegateImpl.java"/>
+		<copy file="template_MockController2DelegateImpl.txt" tofile="${src}/store/controller/MockController2DelegateImpl.java"/>
+		<copy file="template_MockRestApplication.txt" tofile="${src}/store/controller/MockRestApplication.java"/>
+		<property name="copy-mocks.result" value="ok"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" 
+			classpathref="tools.classpath" 
+			debug="on"
+			fork="true"/>
+		<property name="compile.result" value="ok"/>
+	</target>
+	
+	<target name="generate-webapp" depends="init">
+		<property name="web.file" value="${project.dir}/controllers/tests/web.xml"/>
+		<delete dir="${webapp.dir}"/>
+		<mkdir dir="${webapp.dir}"/>
+		<mkdir dir="${webapp.dir}/WEB-INF"/>
+		<mkdir dir="${webapp.dir}/WEB-INF/lib"/>
+		<copy todir="${webapp.dir}/WEB-INF/classes">
+			<fileset dir="${bin}"/>
+		</copy>
+		<copy file="${web.file}" tofile="${webapp.dir}/WEB-INF/web.xml"/>
+		<copy todir="${webapp.dir}/WEB-INF/lib">
+			<fileset dir="${project.dir}/lib">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+		<property name="generate-webapp.result" value="ok"/>
+	</target>
+
+	<target name="test-ant-task">
+		<echo message="* * * * * * * * * * CONFIGURATION * * * * * * * * * * *" />
+		<echo message="*" />
+		<echo message="*                 basedir = ${basedir}" />
+		<echo message="*             project.dir = ${project.dir}" />
+		<echo message="*                  option = ${option}" />
+		<echo message="*         outputDirectory = ${outputDirectory}" />
+		<echo message="*             projectFile = ${projectFile}" />
+		<echo message="*" />
+		<echo message="* * * * * * * * * * * * * * * * * * * * * * * * * * * *" />
+		<fail unless="project.dir" message="*** Property ${project.dir} is not defined ***" />
+		<path id="tools.classpath">
+			<fileset dir="${project.dir}/lib">
+				<include name="*.jar" />
+			</fileset>
+			<fileset dir="${project.dir}/bin">
+				<include name="*.class" />
+			</fileset>			
+		</path>
+		<taskdef name="muki-generator" classpathref="tools.classpath" classname="muki.tool.AntTask"/>
+		<muki-generator option="${option}" projectFile="${projectFile}" outputDirectory="${outputDirectory}" />
+		<property name="test-ant-task.result" value="ok"/>
+
+	</target>
+	
+
+</project>

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Muki Demo</title>
+<link href="documentation/muki.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<img src="documentation/logo_muki.png"/>
+
+<h2>Índice</h2>
+<a href="#requerimientos">1 - Requerimientos para poner en marcha la demo</a><br>
+<a href="#servidor">2 - Arrancando el servidor</a><br>
+<a href="#cliente">3 - Arrancando el cliente iOS</a><br>
+
+
+<h2><a name="requerimientos">1 - Requerimientos para poner en marcha la demo</a></h2>
+<p>Para poner en marcha la demo de Muki es necesario tener instalado el siguiente software:
+</p>
+<ul>
+<li>Java JDK +1.6</li>
+<li>Eclipse Indigo o Juno, distribución JEE</li>
+<li>Servidor Tomcat 7.x</li>
+<li>Xcode +4.5</li>
+</ul>
+
+<h2><a name="servidor">2 - Arrancando el servidor</a></h2>
+<p>El servidor es una aplicación web que despliega un servicio RESTful creado con Muki. El proyecto Eclipse incluye todas las librerías necesarias para poner en marcha el servicio. El documento XML con la definición del servicio está dentro del proyecto: <b>/Muki-demo-server/code-generation/muki-definitions.xml</b>. El servicio utiliza la implementación JAX-RS de <a href="http://www.jboss.org/resteasy/">Resteasy</a> y también usa <a href="http://www.springsource.org/spring-framework">Spring Framework</a> para la inyección de las dependencias. 
+</p>
+<p>
+<b>PASO 1:</b> Importar el proyecto <b>Muki-demo-server</b> en Eclipse. Comprobar que Tomcat 7 está asociado al proyecto (Project properties) y que no hay errores de compilación.
+</p>
+<br>
+<img src="documentation/demo1.png"/><br>
+<br>
+<br>
+<img src="documentation/demo4.png"/><br>
+<br>
+<br>
+<img src="documentation/demo6.png"/><br>
+<br>
+<p>
+<b>PASO 2:</b> Asociar el proyecto al servidor Tomcat
+</p>
+<br>
+<img src="documentation/demo2.png"/><br>
+<br>
+<p>
+<b>PASO 3:</b> Generar las clases Java y Objective-C. Para ello, en Eclipse abrir el script <b>/Muki-demo-server/code-generation/build.xml</b> en la vista de Ant. Y luego, ejecutar las 2 tareas definidas en el script: <b>&lt;generate-java-server&gt;</b> y <b>&lt;generate-objc-client&gt;</b>. 
+</p>
+<p>
+Estos targets generan las clases para la definición del servicio (Muki-demo-server/code-generation/muki-definitions.xml) en los directorios de salida correctos.
+</p>
+<br>
+<img src="documentation/demo3.png"/><br>
+<br>
+<br>
+<img src="documentation/demo5.png"/><br>
+<br>
+<p>
+<b>PASO 4:</b> Arrancar el servidor Tomcat. La aplicación debería arrancar sin errores. Abrir en el navegador la siguiente URL para comprobar que retorna un resultado.
+</p>
+<br>
+<a href="http://localhost:8080/Muki-demo-server/store/track/2">http://localhost:8080/Muki-demo-server/store/track/2</a><br>
+<p>
+Debería aparecer el siguiente resultado:
+</p>
+<pre>
+{"newRelease":false,"catalogId":2,"lengthInSeconds":350,"title":"Amore Muki","price":2.99}
+</pre>
+
+<h2><a name="cliente">3 - Arrancando el cliente iOS</a></h2>
+<p>
+La aplicación cliente (iOS) realmente es un conjunto de pruebas unitarias que corren en <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. El proyecto se abre en Xcode y contiene todas las clases y librerías necesarias para ejecutar sin errores. En este caso, ejecutamos la aplicación cliente en el simulador de Xcode.
+</p>
+<p>
+<b>PASO 1:</b> Abrir el proyecto <b>Muki-demo-client</b> en Xcode. 
+</p>
+<br>
+<img src="documentation/demo7.png"/><br>
+<br>
+<p>
+<b>PASO 2:</b> Verificar que el target de compilación es <b>Muki-demo-client</b> y elegir la opción <b>iPhone 6 Simulator</b>.
+</p>
+<br>
+<img src="documentation/demo9.png"/><br>
+<br>
+<p>
+<b>PASO 3:</b> Compilar el proyecto (<b>CMD + b</b>). Y lanzar la aplicación (<b>CMD + r</b>)
+</p>
+<br>
+<img src="documentation/demo8.png"/><br>
+<br>
+<p>
+<b>PASO 4:</b> En el simulador aparecen los tests para correr en <a href="https://github.com/gabriel/gh-unit">GHUnit</a>. Presionar el botón de <b>Run</b>. Los tests están configurados para invocar el stub y éste a su vez se conecta con el servicio desplegado en Tomcat (local).
+</p>
+<p>
+Si las pruebas se ejecutaron correctamente significa que los tests se han comunicado con el servidor remoto exitosamente. Los tests utilizan las clases generadas por Muki.
+</p>
+<br>
+<img src="documentation/demo10.png"/><br>
+<br>
+
+</body>
+</html>

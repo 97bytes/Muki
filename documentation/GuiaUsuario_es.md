@@ -684,5 +684,5 @@ Hemos construído un ejemplo completo para mostrar cómo Muki genera las clases 
 
 El servicio utiliza la implementación JAX-RS de [Resteasy](http://www.jboss.org/resteasy/) y también usa [Spring Framework](http://www.springsource.org/spring-framework) para la inyeccción de las dependencias.
 
-Para ver el ejemplo, hay que descargar el fichero zip, descomprimirlo y seguir las instrucciones del fichero demo_muki.html que viene adentro. El ejemplo ya incluye todas las librerías necesarias para ponerlo en marcha rápidamente!
+Para ver el ejemplo, hay que descargar el fichero zip, descomprimirlo y seguir las instrucciones del fichero **instructions_es.html** que viene adentro. El ejemplo ya incluye todas las librerías necesarias para ponerlo en marcha rápidamente!
 
