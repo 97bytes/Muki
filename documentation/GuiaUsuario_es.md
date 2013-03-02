@@ -349,8 +349,7 @@ Tomemos como ejemplo la siguiente definición de una operación:
         <path-param name="orderId" />
     </get-operation>
 
-Con la definición anterior, Muki generará el siguiente método en el controller Java:
-</p>
+Con la definición anterior, Muki genera el siguiente método en el controller Java:
 
     @GET
     @Path("/customers/{customerId}/{orderId}")
@@ -364,7 +363,7 @@ En la interface del stub en Objective-C, Muki declarará el siguiente método:
 
 	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
-4.2.2 - Operaciones PUT y POST
+4.2.2 - Operaciones POST y PUT
 ------------------------------
 En general, las operaciones de POST se usan para agregar recursos nuevos y las operaciones de PUT para actualizar las propiedades de recursos ya existentes en el servidor. El siguiente fragmento muestra todos los atributos y sub-elementos para definir operaciones de POST y PUT en Muki. Su estructura es similar.
 
@@ -423,7 +422,7 @@ Y también:
         <path-param name="orderId" />
     </put-operation>
 
-Con la definición anterior, Muki generará los siguientes métodos en el controller Java:
+Con la definición anterior, Muki genera los siguientes métodos en el controller Java:
 
     @POST
     @Path("/customers/{customerId}/{orderId}")
@@ -441,7 +440,7 @@ Con la definición anterior, Muki generará los siguientes métodos en el contro
         return this.getDelegate().updateOrder(customerId, orderId, param);
     }
 
-En la interface del stub en Objective-C, Muki declarará los siguientes métodos:
+En la interface del stub en Objective-C, Muki declara los siguientes métodos:
 
 	- (OrderData*)addOrder: (OrderData *)anObject customerId: (NSString *)aString2 orderId: (NSString *)aString3 error: (NSError **)error;    
 	- (OrderData*)updateOrder: (OrderData *)anObject customerId: (NSString *)aString2 orderId: (NSString *)aString3 error: (NSError **)error;    
@@ -481,7 +480,7 @@ Tomemos como ejemplo la siguiente definición de una operación DELETE:
         <path-param name="orderId" />
     </delete-operation>
 
-Con la definición anterior, Muki generará el siguiente método en el controller Java:
+Con la definición anterior, Muki genera el siguiente método en el controller Java:
 
     @DELETE
     @Path("/customers/{customerId}/{orderId}")
@@ -489,7 +488,7 @@ Con la definición anterior, Muki generará el siguiente método en el controlle
         this.getDelegate().deleteOrder(customerId, orderId);
     }
 
-En la interface del stub en Objective-C, Muki declarará el siguiente método:
+En la interface del stub en Objective-C, Muki declara el siguiente método:
 
 	- (void)deleteOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 

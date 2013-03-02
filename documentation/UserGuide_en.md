@@ -282,11 +282,11 @@ And also:
 	    - (void)removeFromTracks: (TrackData *)anObject;
 	@end
 
-4.2 - Definiendo los controllers con las operaciones del servicio
------------------------------------------------------------------
-Los **controllers** describen las operaciones del servicio que tratan las peticiones para recuperar, agregar, actualizar y borrar web resources del servidor. Con la definición de los **controllers**, Muki genera clases que simplifican la comunicación entre los clientes iOS y el servidor. Así, la comunicación remota se convierte en una simple invocación de métodos entre objetos. Las clases generadas se encargan de establecer la comunicación entre los clientes iOS y el servidor siguiendo los principios RESTful de usar los siguientes métodos definidos en HTTP: **GET**, **POST**, **PUT** y **DELETE**.
+4.2 - Defining controllers with the service operations
+------------------------------------------------------
+The **controllers** described the service operations that deal with requests to get, add, update and delete server web resources. With the definition of the controllers, Muki generates classes that simplify the communication between iOS clients and the server. Thus, the remote communication becomes simple method invocations between objects. The generated classes are responsible for establishing the communication between iOS clients and server following RESTful principles using the following methods defined in HTTP: **GET**, **POST**, **PUT** and **DELETE**.
 
-El siguiente fragmento muestra la definición de los controllers:
+The following snippet shows the definition of the controllers:
 
     <controller-definitions java-package="...">
         <controller http-path="..." name="Controller1" >
@@ -305,53 +305,52 @@ El siguiente fragmento muestra la definición de los controllers:
         </controller>
     </controller-definitions>
 
-Como el objetivo es crear un servicio RESTful, las operaciones se mapean directamente a invocaciones con métodos HTTP. Para enviar invocaciones desde iOS, Muki utiliza la definición de los controllers para generar **stubs** que preparan y envían las invocaciones por HTTP.  Para procesar las peticiones en el servidor JEE, Muki usa la definición de los controllers para crear clases con anotaciones que adhieren a la especificación [JAX-RS](http://jax-rs-spec.java.net">JAX-RS).
+As our goal is to create a RESTful service, the service operations are mapped directly to HTTP methods invocations. So, to send invocations from iOS, Muki uses the definition of the controllers to generate stubs that prepare and send HTTP invocations. To process the requests in the JEE server, Muki uses the definition of the controllers to create classes with annotations that follow the [JAX-RS](http://jax-rs-spec.java.net">JAX-RS) specification.
 
-4.2.1 - Operaciones GET
+4.2.1 - GET Operations
 -----------------------
-Las operaciones GET retornan resources. El siguiente fragmento muestra todos los atributos y sub-elementos para definir una operación de GET en Muki.
+GET operations return resources. The following snippet shows all attributes and sub​​-elements to define a GET operation with Muki.
 
     <get-operation http-path="/customers/{customerId}/{orderId}" return-type="OrderData" name="getOrder" serialization-type="json">
         <path-param name="customerId" />
         <path-param name="orderId" />
     </get-operation>
 
-La siguiente tabla resume todos los atributos para definir una operación GET en Muki:
+The following table summarizes all the attributes to define a GET operation with Muki:
 
 <table>
     <tr>
-        <th align="center"><b>Atributo</b></th>
-        <th align="center"><b>Comentarios</b></th>
+        <th align="center"><b>Attributes</b></th>
+        <th align="center"><b>Comments</b></th>
     </tr>
     <tr>
         <td align="center">name</td>
-        <td>Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+        <td>This is the name of the operation and must be unique. In Java, this value is used as the name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td>Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
     </tr>
     <tr>
         <td align="center">return-type</td>
-        <td>Es el tipo del resultado. El valor puede ser STRING o el nombre de un model.</td>
+        <td>It the result type. The value can be STRING or the name of a model.</td>
     </tr>
     <tr>
         <td align="center">serialization-type</td>
-        <td>Toma el valor "json" o "xml". Indica el formato para serializar el resource (model) retornado por la operación. Es obligatorio si el valor de return-type es el nombre de un model.</td>
+        <td>It takes the value "json" or "xml". It indicates the format to serialize the resource (model) returned by the operation. Required if the value of return-type is the name of a model.</td>
     </tr>
 </table>
 
-En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** para que la URI utilizada para invocar la operación sea más flexible. Si se incluyen parámetros, entonces es necesario agregar sub-elementos &lt;path-param name="param1" /&gt; y &lt;query-param name="param2" /&gt; para que Muki pueda contruir los métodos correctamente. Los nombres de los parámetros que aparecen en http-path deben coincidir con los nombres declarados en los sub-elementos. 
+The value of **http-path** may include parameters **{param}** to make the URI used to invoke the operation more flexible. If parameters are included, you need to add sub​​-elements &lt;path-param name="param1" /&gt; and &lt;query-param name="param2" /&gt; so that Muki can build the methods correctly. The names of the parameters that appear in http-path must match the names declared in the sub-elements.
 
-Tomemos como ejemplo la siguiente definición de una operación:
+Take for example the following definition of an operation:
 
     <get-operation http-path="/customers/{customerId}/{orderId}" return-type="OrderData" name="getOrder" serialization-type="json">
         <path-param name="customerId" />
         <path-param name="orderId" />
     </get-operation>
 
-Con la definición anterior, Muki generará el siguiente método en el controller Java:
-</p>
+With the above definition, Muki generates the following Java method in the controller:
 
     @GET
     @Path("/customers/{customerId}/{orderId}")
@@ -361,13 +360,13 @@ Con la definición anterior, Muki generará el siguiente método en el controlle
         ...
     }
 
-En la interface del stub en Objective-C, Muki declarará el siguiente método:
+In the stub interface in Objective-C, Muki declares the following method:
 
 	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
-4.2.2 - Operaciones PUT y POST
+4.2.2 - POST and PUT operations
 ------------------------------
-En general, las operaciones de POST se usan para agregar recursos nuevos y las operaciones de PUT para actualizar las propiedades de recursos ya existentes en el servidor. El siguiente fragmento muestra todos los atributos y sub-elementos para definir operaciones de POST y PUT en Muki. Su estructura es similar.
+In general, POST operations are used to add new resources and PUT operations to update the properties of existing resources on the server. The following snippet shows all attributes and sub​​-elements to define POST and PUT operations in Muki. Its structure is similar.
 
     <post-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="addOrder" serialization-type="json">
         <path-param name="customerId" />
@@ -379,52 +378,52 @@ En general, las operaciones de POST se usan para agregar recursos nuevos y las o
         <path-param name="orderId" />
     </put-operation>
 
-La siguiente tabla resume todos los atributos para definir una operación POST/PUT en Muki:
+The following table summarizes all the attributes to define POST / PUT operations with Muki:
 
 <table>
     <tr>
-        <th align="center"><b>Atributo</b></th>
-        <th align="center"><b>Comentarios</b></th>
+        <th align="center"><b>Attributes</b></th>
+        <th align="center"><b>Comments</b></th>
     </tr>
     <tr>
         <td align="center">name</td>
-        <td>Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+        <td>This is the name of the operation and must be unique. In Java, this value is used as the name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td>Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
     </tr>
     <tr>
         <td align="center">param-type</td>
-        <td>En las operaciones de PUT y POST es posible enviar un objeto (model) como parámetro de entrada. El valor de param-type indica el tipo del parámetro y puede ser STRING o el nombre de un model. Si este atributo no está definido, significa que la operación no tiene parámetro de entrada.</td>
+        <td>PUT and POST operations can send an object (model) as a parameter. The param-value type indicates the type of the parameter and can be STRING or the name of a model. If this attribute is not set, it means that the operation has no input parameter.</td>
     </tr>
     <tr>
         <td align="center">return-type</td>
-        <td>Es el tipo del resultado. El valor puede ser STRING o el nombre de un model. Si este atributo no está definido, significa que la operación no retorna resultado.</td>
+        <td>It the result type. The value can be STRING or the name of a model.</td>
     </tr>
     <tr>
         <td align="center">serialization-type</td>
-        <td>Toma el valor "json" o "xml". Indica el formato para serializar el parámetro de entrada y el resultado retornado por la operación.</td>
+        <td>It takes the value "json" or "xml". It indicates the format to serialize the resource (model) returned by the operation. Required if the value of return-type is the name of a model.</td>
     </tr>
 </table>
 
-En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** para que la URI utilizada para invocar la operación sea más flexible. Ver la explicación para la declaración de operaciones GET.
+The value of **http-path** may include parameters **{param}** to make the URI used to invoke the operation more flexible. See the explanation in the GET operations section.
 
-Tomemos como ejemplo la siguiente definición de una operación POST y otra PUT:
+Take for example the following definition of a POST operation and another PUT:
 
 	<post-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="addOrder" serialization-type="json">
 	        <path-param name="customerId" />
 	        <path-param name="orderId" />
 	    </post-operation>
 
-Y también:
+And also:
 
     <put-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="updateOrder" serialization-type="json">
         <path-param name="customerId" />
         <path-param name="orderId" />
     </put-operation>
 
-Con la definición anterior, Muki generará los siguientes métodos en el controller Java:
+With the above definition, Muki generates the following Java methods in the controller:
 
     @POST
     @Path("/customers/{customerId}/{orderId}")
@@ -442,47 +441,47 @@ Con la definición anterior, Muki generará los siguientes métodos en el contro
         return this.getDelegate().updateOrder(customerId, orderId, param);
     }
 
-En la interface del stub en Objective-C, Muki declarará los siguientes métodos:
+In the stub interface in Objective-C, Muki declares the following methods:
 
 	- (OrderData*)addOrder: (OrderData *)anObject customerId: (NSString *)aString2 orderId: (NSString *)aString3 error: (NSError **)error;    
 	- (OrderData*)updateOrder: (OrderData *)anObject customerId: (NSString *)aString2 orderId: (NSString *)aString3 error: (NSError **)error;    
 
-4.2.3 - Operaciones DELETE
---------------------------
-Las operaciones de DELETE permiten borrar recursos del servidor. El siguiente fragmento muestra todos los atributos y sub-elementos para definir operaciones de DELETE en Muki:
+4.2.3 - DELETE operations
+-------------------------
+DELETE operations can erase server resources. The following snippet shows all attributes and sub​​-elements to define DELETE operations with Muki:
 
     <delete-operation http-path="/customers/{customerId}/{orderId}" name="deleteOrder">
         <path-param name="customerId" />
         <path-param name="orderId" />
     </delete-operation>
 
-La siguiente tabla resume todos los atributos para definir una operación DELETE en Muki:
+The following table summarizes all the attributes to define a DELETE operation with Muki:
 
 <table>
     <tr>
-        <th align="center"><b>Atributo</b></th>
-        <th align="center"><b>Comentarios</b></th>
+        <th align="center"><b>Attributes</b></th>
+        <th align="center"><b>Comments</b></th>
     </tr>
     <tr>
         <td align="center">name</td>
-        <td>Es el nombre de la operación y debe ser único. En Java, el valor se usa como nombre del método correspondiente en el controller. En Objective-C se usa como primera keyword del método del stub. </td>
+        <td>This is the name of the operation and must be unique. In Java, this value is used as the name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td>Es la ruta para invocar la operación. Puede ser una expresión formada con parámetros. Por ejemplo: "/customers/{id}/{orderId}". Si la ruta contiene parámetros, es necesario declararlos con sub-elementos &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
     </tr>
 </table>
 
-En el valor de **http-path** se pueden incluir parámetros de tipo **{param}** para que la URI utilizada para invocar la operación sea más flexible. Ver la explicación para la declaración de operaciones GET.
+The value of **http-path** may include parameters **{param}** to make the URI used to invoke the operation more flexible. See the explanation in the GET operations section.
 
-Tomemos como ejemplo la siguiente definición de una operación DELETE:
+Take for example the following definition of a DELETE operation:
 
     <delete-operation http-path="/customers/{customerId}/{orderId}" name="deleteOrder">
         <path-param name="customerId" />
         <path-param name="orderId" />
     </delete-operation>
 
-Con la definición anterior, Muki generará el siguiente método en el controller Java:
+With the above definition, Muki generates the following Java method in the controller:
 
     @DELETE
     @Path("/customers/{customerId}/{orderId}")
@@ -490,7 +489,7 @@ Con la definición anterior, Muki generará el siguiente método en el controlle
         this.getDelegate().deleteOrder(customerId, orderId);
     }
 
-En la interface del stub en Objective-C, Muki declarará el siguiente método:
+In the stub interface in Objective-C, Muki declare the following method:
 
 	- (void)deleteOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
