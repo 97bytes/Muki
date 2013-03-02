@@ -52,7 +52,7 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 2.3 - Requerimientos de la aplicación JEE
 -----------------------------------------
 *   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros</li>
-*   Opcional: es posible integrar las clases generadas con [Spring Framework<](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/) utilizando las librerías de RESTEasy v2.0.1.
+*   Opcional: es posible integrar las clases generadas con [Spring Framework](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/) utilizando las librerías de RESTEasy v2.0.1.
 
 <a name="use"></a>
 3 - ¿Cómo se utiliza Muki?
