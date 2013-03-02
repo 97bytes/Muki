@@ -1,4 +1,4 @@
-![Muki](resources/logo_muki.png)
+![Muki](https://raw.github.com/97bytes/Muki/master/documentation/resources/logo_muki.png)
 
 Introducing Muki
 ================
