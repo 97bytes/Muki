@@ -9,7 +9,7 @@
 5 - <a href="#codeGeneration">Generando el código</a><br>
 6 - <a href="#integration">Integrando las clases generadas en la aplicación</a><br>
 7 - <a href="#example">Un ejemplo completo</a><br>
-
+ 
 <a name="description"></a>
 1 - ¿Qué es Muki?
 ================
@@ -17,7 +17,7 @@
 
 Todo el proceso de comunicación por HTTP y la serialización y conversión de datos entre las aplicaciones es realizado automáticamente por las clases generadas. 
 
-![Muki1](muki1_es.png)
+![Muki1](resources/muki1_es.png)
 
 Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado es 100% legible y limpio. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
 
@@ -62,7 +62,7 @@ La creación de un servicio con Muki se resume en 3 pasos:
 ** PASO 2:** Invocar el proceso de generación, desde Java.
 ** PASO 3:** Integrar las clases generadas en las aplicaciones.
 
-![Muki2](muki2_es.png)
+![Muki2](resources/muki2_es.png)
 
 <a name="definition"></a>
 4 - Definiendo un servicio
@@ -71,7 +71,7 @@ Los servicios creados por Muki comienzan con una descripción de las estructuras
 
 La descripción del servicio tiene 2 partes: por un lado está la definición de los **models**, que son las estructuras de datos que representan los parámetros de entrada y salida (resources); por otro lado están los **controllers** que procesan las peticiones HTTP y sirven los web resources del servicio.
 
-El siguiente fragmento muestra la estructura de definición de un servicio en Muki. El esquema completo del documento XML está disponible en: [muki-service-description-v01.xsd](muki-service-description-v01.xsd).
+El siguiente fragmento muestra la estructura de definición de un servicio en Muki. El esquema completo del documento XML está disponible en: [muki-service-description-v01.xsd](resources/muki-service-description-v01.xsd).
 
 	<ns2:project name="MukiDemo" xmlns:ns2="http://muki/service-description/">
 	    <b><model-definitions ... ></b>
@@ -152,7 +152,7 @@ La siguiente tabla muestra los tipos básicos que utiliza Muki y sus corresponde
 
 Tomemos por ejemplo el siguiente diagrama con 2 *models*. Hay un model llamado **TrackData** que tiene atributos de tipos básicos (String, Long, Boolean, etc.) y también hay un model llamado **AlbumData** que tiene 2 atributos de tipo String, una referencia a **TrackData** y un atributo que es una lista de **TrackData**:
 
-![Muki4](muki4_es.png)
+![Muki4](resources/muki4_es.png)
 
 El siguiente fragmento corresponde a la descripción que Muki requiere para crear las clases en Java y Objetive-C para el modelo anterior: 
 
@@ -515,7 +515,7 @@ Ejemplo de una invocación para generar las clases en Java:
 
 	>java -classpath ./lib/muki-generator-1.0.jar:./lib/commons-collections-3.2.1.jar:./lib/commons-lang-2.4.jar:./lib/velocity-1.6.1.jar <b>muki.tool.MukiGenerator</b> <b>generate-java</b> /Users/gabriel/temp/project/code-generation/muki-definitions.xml /Users/gabriel/temp/project/generated-java
 
-![Muki6](muki6_es.png)
+![Muki6](resources/muki6_es.png)
 
 5.2 - Usando un script de Ant
 -----------------------------
@@ -534,7 +534,7 @@ Ejemplo de una invocación para generar las clases en Java:
         outputDirectory="${server.generation.dir}" />
     </target>
 
-![Muki7](muki7_es.png)
+![Muki7](resources/muki7_es.png)
 
 <a name="integration"></a>
 6 - Integrando las clases generadas en la aplicación
@@ -543,7 +543,7 @@ Ejemplo de una invocación para generar las clases en Java:
 
 El siguiente diagrama muestra la secuencia de invocaciones para obtener recursos del servidor. La aplicación iOS invoca un método de stub generado por Muki en Objective-C. El stub se encarga de procesar la llamada y enviar la petición HTTP (GET) al servidor. La petición HTTP llega al servidor, es procesada y se convierte en la invocación del método de la clase del controller generado por Muki en Java. El controller a su vez invoca al delegate que implementa la funcionalidad del servicio. El delegate implementa una interface Java también generada por Muki.
 
-![Muki5](muki5_es.png)
+![Muki5](resources/muki5_es.png)
 
 6.1 - Código generado para integrar en la aplicación JEE (servidor)
 -------------------------------------------------------------------
@@ -637,7 +637,7 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual para 
 
 **PASO 3)** Indicar que las clases generadas cuyo nombre es <b>*ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
 
-![Muki3](muki3_es.png)
+![Muki3](resources/muki3_es.png)
 
 **PASO 4)** Compilar. No deberían aparecer errores de compilación.
 

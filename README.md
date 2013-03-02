@@ -1,3 +1,5 @@
+![Muki](resources/logo_muki.png)
+
 Introducing Muki
 ================
 
@@ -7,5 +9,5 @@ Ver [Muki - Guía del usuario] (https://github.com/97bytes/Muki/blob/master/docu
 
 See [Muki - User guide] (https://github.com/97bytes/Muki/blob/master/documentation/UserGuide_en.md) (in English)
 
-![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/muki1_es.png)
+![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/resources/muki1_es.png)
 
