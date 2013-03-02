@@ -40,7 +40,7 @@ So with Muki, applications written for iOS can easily connect with RESTful servi
 2.1 - Requirements to run the class generation process
 ------------------------------------------------------
 *   **Java** installation (JRE 1.5+) 
-*   muki-generator-1.0.jar
+*   [muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.0.jar)
 *   [commons-collections-3.2.1.jar](http://commons.apache.org/collections/), [commons-lang-2.4.jar](http://commons.apache.org/lang/), [velocity-1.6.1.jar](http://velocity.apache.org)
 *   Note that other versions of the libraries might also work, but those are the versions that we used in our tests.
 
@@ -496,7 +496,7 @@ In the stub interface in Objective-C, Muki declare the following method:
 <a name="codeGeneration"></a>
 5 - Generating code
 ===================
-The process that generates the code (Java and Objective-C classes) is a program written in Java, that is invoked from the command-line interface or using an Ant script. In both cases, in addition to the library of Muki (**muki-generator-1.0.jar**), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
+The process that generates the code (Java and Objective-C classes) is a program written in Java, that is invoked from the command-line interface or using an Ant script. In both cases, in addition to the Muki library [muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.0.jar), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
 
 Indeed, you must do two invocations of the process: one to generate Java classes and other classes to generate Objective-C.
 
