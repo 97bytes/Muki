@@ -12,7 +12,7 @@ Index
 
 <a name="description"></a>
 1 - What is Muki?
-================
+=================
 **Muki** is a tool for rapidly generating code that automates the communication between iOS clients and a JEE server application through RESTful services. Starting from the description of the service, Muki generates additional classes in Objective-C that can be easily integrated into iOS applications and Java classes that allow to quickly implement a RESTful service following the standard [JAX-RS](http://jax-rs-spec.java.net).
 
 The entire HTTP communication process and data serialization and conversion between the server and client applications is done automatically by the generated classes.
@@ -680,9 +680,9 @@ Note that <b>*error</b> is an output parameter sent by reference so we can see i
 <a name="example"></a>
 7 - A full example
 ==================
-We provide a complete example that shows how Muki generates the classes for an iOS client that connects to a RESTful service implemented in JEE.
+We provide a complete demo that shows how Muki generates the classes for an iOS client that connects to a RESTful service implemented in JEE.
 
 The service uses the [Resteasy](http://www.jboss.org/resteasy/) implementation of JAX-RS and it also uses [Spring Framework](http://www.springsource.org/spring-framework) for inyecting dependencies.
 
-To run the example apps, download the zip file, unzip it and follow the instructions coming in demo_muki.html file. The example already includes all necessary libraries to get started quickly!
+To run the demo: download the zip file, unzip it and follow the instructions available in the demo_muki.html file. The example already includes all necessary libraries to get started quickly!
 
