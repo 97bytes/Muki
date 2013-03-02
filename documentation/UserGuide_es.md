@@ -1,6 +1,12 @@
 Índice
 ======
-*    1 - <a href="#description">¿Qué es Muki?</a>
+1 - <a href="#description">¿Qué es Muki?</a>
+2 - <a href="#requirements">Requerimientos para utilizar Muki</a><br>
+3 - <a href="#use">¿Cómo se utiliza Muki?</a><br>
+4 - <a href="#definition">Definiendo un servicio</a><br>
+5 - <a href="#codeGeneration">Invocando la generación de código</a><br>
+6 - <a href="#integration">Integrando las clases generadas en la aplicación</a><br>
+7 - <a href="#example">Un ejemplo completo</a><br>
 
 <a name="description"></a>
 1 -¿Qué es Muki?
@@ -26,7 +32,7 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
     // Recuperar un objeto del servidor
     Customer *anotherCustomer = [service getCustomerId:@"12345667" error:&error];;
 
-
+<a name="requirements"></a>
 2 - Requerimientos para utilizar Muki
 =====================================
 2.1 - Requerimientos para correr el proceso de generación de clases
@@ -46,7 +52,7 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 *   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros</li>
 *   Opcional: es posible integrar las clases generadas con [Spring Framework<](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/)utilizando las librerías de RESTEasy v2.0.1.
 
-
+<a name="use"></a>
 3 - ¿Cómo se utiliza Muki?
 ==========================
 La creación de un servicio con Muki se resume en 3 pasos:
@@ -56,7 +62,7 @@ La creación de un servicio con Muki se resume en 3 pasos:
 
 ![Muki2](muki2_es.png)
 
-
+<a name="definition"></a>
 4 - Definiendo un servicio
 ==========================
 Los servicios creados por Muki comienzan con una descripción de las estructuras de datos y las operaciones para servir las peticiones de los clientes. La descripción del servicio debe estar disponible en un documento XML.
@@ -485,6 +491,7 @@ En la interface del stub en Objective-C, Muki declarará el siguiente método:
 
 	- (void)deleteOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
+<a name="codeGeneration"></a>
 5 - Invocando la generación de código
 =====================================
 El proceso de generación de las clases Java y Objective-C es un programa escrito en Java y se puede invocar desde una consola de comandos o bien desde un script de Ant. En ambos casos, además de la librería de Muki (muki-generator-1.0.jar), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
@@ -528,6 +535,7 @@ Ejemplo de una invocación para generar las clases en Java:
 
 ![Muki7](muki7_es.png)
 
+<a name="integration"></a>
 6 - Integrando las clases generadas en la aplicación
 ====================================================
 Es importante señalar que ninguna de las clases generadas por Muki debe modificarse manualmente. Si se requieren cambios, hay que modificar la definición del servicio (XML) y volver a lanzar el proceso de generación.
@@ -669,6 +677,7 @@ Nótese que ***error** es un parámetro de salida enviado por referencia para qu
 	   <param-value>package.name.MukiExceptionMapper</param-value>        
 	</context-param>
 
+<a name="example"></a>
 7 - Un ejemplo completo
 =======================
 Hemos construído un ejemplo completo para mostrar cómo Muki genera las clases para que un cliente iOS se conecte con un servicio RESTful implementado en JEE.
