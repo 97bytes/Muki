@@ -40,7 +40,7 @@ So with Muki, applications written for iOS can easily connect with RESTful servi
 2.1 - Requirements to run the class generation process
 ------------------------------------------------------
 *   **Java** installation (JRE 1.5+) 
-*   [muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.0.jar)
+*   [muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/) (Muki distribution)
 *   [commons-collections-3.2.1.jar](http://commons.apache.org/collections/), [commons-lang-2.4.jar](http://commons.apache.org/lang/), [velocity-1.6.1.jar](http://velocity.apache.org)
 *   Note that other versions of the libraries might also work, but those are the versions that we used in our tests.
 
