@@ -40,7 +40,7 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 2.1 - Requerimientos para correr el proceso de generación de clases
 -------------------------------------------------------------------
 *   Instalación de **Java** (JRE 1.5+)
-*   muki-generator-1.0.jar
+*   [muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/) (Librería de Muki)
 *   [commons-collections-3.2.1.jar](http://commons.apache.org/collections/), [commons-lang-2.4.jar](http://commons.apache.org/lang/), [velocity-1.6.1.jar](http://velocity.apache.org)
 *   Nótese que otras versiones de las librerías posiblemente también funcionan, pero ésas son las versiones que hemos utilizado en nuestras pruebas.
 
@@ -495,7 +495,7 @@ En la interface del stub en Objective-C, Muki declara el siguiente método:
 <a name="codeGeneration"></a>
 5 - Generando el código
 =======================
-El proceso de generación de las clases Java y Objective-C es un programa escrito en Java qe se invoca desde la consola de comandos o usando un script de Ant. En ambos casos, además de la librería de Muki (**muki-generator-1.0.jar**), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
+El proceso de generación de las clases Java y Objective-C es un programa escrito en Java qe se invoca desde la consola de comandos o usando un script de Ant. En ambos casos, además de la librería de Muki ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
 
 En realidad, hay que hacer 2 invocaciones del proceso: una para generar las clases en Java y otra para generar las clases en Objective-C.
 

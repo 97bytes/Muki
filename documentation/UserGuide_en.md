@@ -496,7 +496,7 @@ In the stub interface in Objective-C, Muki declare the following method:
 <a name="codeGeneration"></a>
 5 - Generating code
 ===================
-The process that generates the code (Java and Objective-C classes) is a program written in Java, that is invoked from the command-line interface or using an Ant script. In both cases, in addition to the Muki library [muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.0.jar), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
+The process that generates the code (Java and Objective-C classes) is a program written in Java, that is invoked from the command-line interface or using an Ant script. In both cases, in addition to the Muki library ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
 
 Indeed, you must do two invocations of the process: one to generate Java classes and other classes to generate Objective-C.
 
