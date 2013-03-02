@@ -448,7 +448,7 @@ In the stub interface in Objective-C, Muki declares the following methods:
 
 4.2.3 - DELETE operations
 -------------------------
-DELETE operations can erase server resources. The following snippet shows all attributes and sub​​-elements to define DELETE operations with Muki:
+DELETE operations remove resources from the server. The following snippet shows all attributes and sub​​-elements to define DELETE operations with Muki:
 
     <delete-operation http-path="/customers/{customerId}/{orderId}" name="deleteOrder">
         <path-param name="customerId" />
@@ -496,30 +496,30 @@ In the stub interface in Objective-C, Muki declare the following method:
 <a name="codeGeneration"></a>
 5 - Invocando la generación de código
 =====================================
-El proceso de generación de las clases Java y Objective-C es un programa escrito en Java y se puede invocar desde una consola de comandos o bien desde un script de Ant. En ambos casos, además de la librería de Muki (muki-generator-1.0.jar), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
+The process that generates the code (Java and Objective-C classes) is a program written in Java, that is invoked from the command-line interface or using an Ant script. In both cases, in addition to the library of Muki (**muki-generator-1.0.jar**), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
 
-Es necesario hacer una invocación para generar las clases Java y otra para generar las clases Objective-C.
+Indeed, you must do two invocations of the process: one to generate Java classes and other classes to generate Objective-C.
 
-Cuando invocamos el proceso de generación, Muki evalúa la definición del servicio (XML). Si la definición no tiene errores, Muki genera las clases en el directorio de salida. Si la definición tiene errores, Muki lista los problemas encontrados. En este caso, debemos corregir los errores y volver a invocar el proceso de generación.
+When you invoke the code generation process, Muki first evaluates the service definition (XML). If the definition has no errors, Muki generates the classes in the output directory. If the definition has errors, Muki lists the problems encountered. In this case, we must fix the issues and re-invoke the code generation process.
 
-5.1 - Por línea de comandos
----------------------------
-La sintaxis es: **muki.tool.MukiGenerator &lt;option&gt; &lt;path-to-definition.xml&gt; &lt;output-directory&gt;**
+5.1 - Command-line interface
+----------------------------
+The syntax is: **muki.tool.MukiGenerator &lt;option&gt; &lt;path-to-definition.xml&gt; &lt;output-directory&gt;**
 
-donde:
+where:
 
-*    **&lt;option&gt;**:  debe ser **generate-java** o **generate-objc**, para indicar si Muki genera las clases del servidor Java o del cliente Cocoa, respectivamente.
-*    **&lt;path-to-definition.xml&gt;**: la ruta completa al fichero XML que tiene la definición del servicio
-*    **&lt;output-directory&gt;**: ruta completa del directorio donde Muki genera las clases. El directorio debe existir.
+*    **&lt;option&gt;**:  must be **generate-java** or **generate-objc**, to indicate whether Muki generates Java server classes or the classes for the Cocoa client, respectively.
+*    **&lt;path-to-definition.xml&gt;**: the full path to the XML file that has the service definition
+*    **&lt;output-directory&gt;**: full path to the directory where Muki generates the classes. The directory must exist.
 
-Ejemplo de una invocación para generar las clases en Java:
+Example of an invocation to generate Java classes:
 
 	>java -classpath ./lib/muki-generator-1.0.jar:./lib/commons-collections-3.2.1.jar:./lib/commons-lang-2.4.jar:./lib/velocity-1.6.1.jar <b>muki.tool.MukiGenerator</b> <b>generate-java</b> /Users/gabriel/temp/project/code-generation/muki-definitions.xml /Users/gabriel/temp/project/generated-java
 
 ![Muki6](muki6_es.png)
 
-5.2 - Por un script de Ant
---------------------------
+5.2 - Using an Ant script
+-------------------------
 
     <target name="generate-java-server">
       <path id="tools.classpath">

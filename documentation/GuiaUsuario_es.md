@@ -495,11 +495,11 @@ En la interface del stub en Objective-C, Muki declara el siguiente método:
 <a name="codeGeneration"></a>
 5 - Generando el código
 =====================================
-El proceso de generación de las clases Java y Objective-C es un programa escrito en Java y se puede invocar desde una consola de comandos o bien desde un script de Ant. En ambos casos, además de la librería de Muki (muki-generator-1.0.jar), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
+El proceso de generación de las clases Java y Objective-C es un programa escrito en Java qe se invoca desde la consola de comandos o usando un script de Ant. En ambos casos, además de la librería de Muki (**muki-generator-1.0.jar**), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
 
-Es necesario hacer una invocación para generar las clases Java y otra para generar las clases Objective-C.
+En realidad, hay que hacer 2 invocaciones del proceso: una para generar las clases en Java y otra para generar las clases en Objective-C.
 
-Cuando invocamos el proceso de generación, Muki evalúa la definición del servicio (XML). Si la definición no tiene errores, Muki genera las clases en el directorio de salida. Si la definición tiene errores, Muki lista los problemas encontrados. En este caso, debemos corregir los errores y volver a invocar el proceso de generación.
+Cuando invocamos el proceso de generación de código, Muki evalúa la definición del servicio (XML). Si la definición no tiene errores, Muki genera las clases en el directorio de salida. Si la definición tiene errores, Muki lista los problemas encontrados. En este caso, debemos corregir los errores y volver a invocar el proceso de generación.
 
 5.1 - Por línea de comandos
 ---------------------------
@@ -517,8 +517,8 @@ Ejemplo de una invocación para generar las clases en Java:
 
 ![Muki6](muki6_es.png)
 
-5.2 - Por un script de Ant
---------------------------
+5.2 - Usando un script de Ant
+-----------------------------
 
     <target name="generate-java-server">
       <path id="tools.classpath">
