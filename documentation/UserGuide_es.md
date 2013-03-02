@@ -1,6 +1,8 @@
+![Muki](logo_muki.png)
+
 Índice
 ======
-1 - <a href="#description">¿Qué es Muki?</a>
+1 - <a href="#description">¿Qué es Muki?</a><br>
 2 - <a href="#requirements">Requerimientos para utilizar Muki</a><br>
 3 - <a href="#use">¿Cómo se utiliza Muki?</a><br>
 4 - <a href="#definition">Definiendo un servicio</a><br>
