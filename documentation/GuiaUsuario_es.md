@@ -494,7 +494,7 @@ En la interface del stub en Objective-C, Muki declara el siguiente método:
 
 <a name="codeGeneration"></a>
 5 - Generando el código
-=====================================
+=======================
 El proceso de generación de las clases Java y Objective-C es un programa escrito en Java qe se invoca desde la consola de comandos o usando un script de Ant. En ambos casos, además de la librería de Muki (**muki-generator-1.0.jar**), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
 
 En realidad, hay que hacer 2 invocaciones del proceso: una para generar las clases en Java y otra para generar las clases en Objective-C.
@@ -539,7 +539,7 @@ Ejemplo de una invocación para generar las clases en Java:
 <a name="integration"></a>
 6 - Integrando las clases generadas en la aplicación
 ====================================================
-Es importante señalar que ninguna de las clases generadas por Muki debe modificarse manualmente. Si se requieren cambios, hay que modificar la definición del servicio (XML) y volver a lanzar el proceso de generación.
+**Aviso importante: ninguna de las clases generadas por Muki debería modificarse manualmente. Si se requieren cambios, hay que modificar la definición del servicio (XML) y volver a lanzar el proceso de generación de código.**
 
 El siguiente diagrama muestra la secuencia de invocaciones para obtener recursos del servidor. La aplicación iOS invoca un método de stub generado por Muki en Objective-C. El stub se encarga de procesar la llamada y enviar la petición HTTP (GET) al servidor. La petición HTTP llega al servidor, es procesada y se convierte en la invocación del método de la clase del controller generado por Muki en Java. El controller a su vez invoca al delegate que implementa la funcionalidad del servicio. El delegate implementa una interface Java también generada por Muki.
 
@@ -556,27 +556,27 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en Java
     </tr>
     <tr>
         <td align="center">RestApplication</td>
-        <td>Es la clase que gestiona la integración con Resteasy. Retorna la instancia del servicio que atenderá las peticiones. Esta clase no debe modificarse!</td>
+        <td>Es la clase que gestiona la integración con JAX-RS. Retorna la instancia del servicio que atenderá las peticiones. Esta clase no debe modificarse manualmente!</td>
     </tr>
     <tr>
         <td align="center">Model</td>
-        <td>Por cada definición de <b>&lt;model ... &gt;</b>, Muki genera una clase con anotaciones JAXB para la serialización en XML y JSON. Estas clases son los beans de datos que viajan entre los clientes iOS y el servidor. Estas clases no deben modificarse!</td> 
+        <td>Por cada definición de <b>&lt;model ... &gt;</b>, Muki genera una clase con anotaciones JAXB para la serialización en XML y JSON. Estas clases son los beans de datos que viajan entre los clientes iOS y el servidor. Estas clases no deben modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">Controllers</td>
-        <td>Por cada definición de <b>&lt;controller ... &gt;</b>, Muki genera una clase con anotaciones JAX-RS. Estos controllers reciben y procesan las peticiones HTTP enviadas por los clientes. Los controllers tienen métodos para las operaciones declaradas en los elementos: <b>&lt;get-operation ... &gt;</b>, <b>&lt;post-operation ... &gt;</b>, <b>&lt;put-operation ... &gt;</b> y <b>&lt;delete-operation ... &gt;</b>. Los controllers invocan a otras clases llamadas <b>Delegated</b>. Allí es donde se implementa la lógica del servicio. Las clases de los controllers no deben modificarse!</td> 
+        <td>Por cada definición de <b>&lt;controller ... &gt;</b>, Muki genera una clase con anotaciones JAX-RS. Estos controllers reciben y procesan las peticiones HTTP enviadas por los clientes. Los controllers tienen métodos para las operaciones declaradas en los elementos: <b>&lt;get-operation ... &gt;</b>, <b>&lt;post-operation ... &gt;</b>, <b>&lt;put-operation ... &gt;</b> y <b>&lt;delete-operation ... &gt;</b>. Los controllers invocan a otras clases llamadas <b>Delegates</b>. Allí es donde se implementa la lógica del servicio. Las clases de los controllers no deben modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">ControllerDelegates</td>
-        <td>Estas interfaces contienen todas las operaciones que de los controllers del servicio. El desarrollador debe implementar estas interfaces con el comportamiento concreto del servicio y además integrar los delegates en los controllers. Cuando llega una petición a un controller, éste invoca al delegate que tiene asociado. Muki genera una interface de delegate para cada controller. La definición de los delegates no debe modificarse!</td> 
+        <td>Estas interfaces contienen todas las operaciones que de los controllers del servicio. El desarrollador debe implementar estas interfaces con el comportamiento concreto del servicio y además integrar los delegates en los controllers. Cuando llega una petición a un controller, éste invoca al delegate que tiene asociado. Muki genera una interface de delegate para cada controller. La definición de los delegates no debe modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">MukiExceptionMapper</td>
-        <td>Es una clase de soporte que implementa un mapper para gestionar las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse!</td> 
+        <td>Es una clase de soporte que implementa un mapper que gestiona las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">MukiResourceNotFoundException</td>
-        <td>Es la clase de soporte para modelar las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse!</td> 
+        <td>Es una clase de soporte para representar las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse manualmente!</td> 
     </tr>
 </table>
 
@@ -597,8 +597,7 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en iOS 
     </tr>
     <tr>
         <td align="center">Model parser delegates</td>
-        <td>Clases auxiliares que gestionan la serialización en XML. Se genera un delegate para cada model. Estas clases implementan el protocolo <a href="http://developer.apple.com/library/ios/#documentation/cocoa/reference/NSXMLParserDelegate_Protocol/Reference/Reference.html">
-NSXMLParserDelegate</a></td>
+        <td>Clases auxiliares que gestionan la serialización en XML. Se genera un delegate para cada model. Estas clases implementan el protocolo <a href="http://developer.apple.com/library/ios/#documentation/cocoa/reference/NSXMLParserDelegate_Protocol/Reference/Reference.html">NSXMLParserDelegate</a></td>
     </tr>
     <tr>
         <td align="center">MukiControllerStub</td>
@@ -618,8 +617,7 @@ NSXMLParserDelegate</a></td>
     </tr>
     <tr>
         <td align="center">NSDataBase64</td>
-        <td>Implementa una extensión de NSData que permite codificar y decodificar en Base64.
-La implementación original es de <a href="http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html">Matt Gallagher (Cocoa with love)</a></td>
+        <td>Implementa una extensión de NSData que permite codificar y decodificar en Base64. La implementación original es de <a href="http://cocoawithlove.com/2009/06/base64-encoding-options-on-mac-and.html">Matt Gallagher (Cocoa with love)</a></td>
     </tr>
     <tr>
         <td align="center">Clases de SBJson</td>
@@ -643,7 +641,7 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual para 
 
 **PASO 4)** Compilar. No deberían aparecer errores de compilación.
 
-**PASO 5)** En la aplicación, agregar instanciar los stubs y models para hacer las invocaciones al servicio. Por ejemplo:
+**PASO 5)** En el código de la aplicación, instanciar los stubs y models y para hacer las invocaciones al servicio. Por ejemplo:
 
     TrackData *newTrack = [[TrackData alloc] init];
     newTrack.title = @"New track";
@@ -658,20 +656,21 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual para 
 
     TrackData *myTrack = [stub getTrackId:@"3" error:&error];
 
-Nótese que ***error** es un parámetro de salida enviado por referencia para que podamos consultar si se ha producido un error en la invocación. Es forma la correcta de gestionar los errores en Cocoa. [Ver más detalles](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/CreateCustomizeNSError/CreateCustomizeNSError.html").
+Nótese que <b>*error</b> es un parámetro de salida enviado por referencia para poder consultar si se ha producido un error en la invocación al servidor remoto. Esta es forma la correcta de gestionar los errores en Cocoa. [Ver más detalles](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ErrorHandlingCocoa/CreateCustomizeNSError/CreateCustomizeNSError.html").
+
 
 6.4 - Pasos para integrar las clases generadas en la aplicación del servidor (JEE)
 ----------------------------------------------------------------------------------
 
-**PASO 1)** Agregar a la aplicación las librerías un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros.
+**PASO 1)** Agregar a la aplicación, las librerías de un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) u otro.
 
-**PASO 2)** Agregar a la aplicación las clases Java que generó Muki
+**PASO 2)** Agregar a la aplicación, las clases Java que generó Muki
 
 **PASO 3)** Crear la clase para implementar las interfaces <b>*Delegate</b>. Estas interfaces tienen todos los métodos de los controllers del servicio
 
-**PASO 4)** Integrar las clases que implementan las interfaces <b>*Delegate</b> con los **controllers**. Esto puede hacerse directamente instanciando las clases desde los controllers, pero en una aplicación basada en [Spring Framework](http://www.springsource.org/spring-framework) es más recomendable usar la [inyección de dependencias](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
+**PASO 4)** Integrate the classes that implement the <b>*Delegate</b> interfaces with the controllers. This can be done by directly instantiating the classes in the controllers, but you may use the [Spring Framework](http://www.springsource.org/spring-framework) and its [dependency injection mechanism](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
 
-**PASO 5)** Declarar el nombre completo de la clase **MukiExceptionMapper** como parámetro en el fichero **web.xml** de la aplicación. El nombre del parámetro depende de la implementación de JAX-RS que usemos. En el caso de Resteasy, la declaración sería la siguiente:
+**PASO 5)** Declare the full name of the class **MukiExceptionMapper** as a parameter in the **web.xml** configuration file of the application. The name of the parameter depends on the implementation of JAX-RS you use. The following is the declaration required by Resteasy:
 
 	<context-param>
 	   <param-name>resteasy.providers</param-name>
