@@ -6,7 +6,7 @@
 2 - <a href="#requirements">Requerimientos para utilizar Muki</a><br>
 3 - <a href="#use">¿Cómo se utiliza Muki?</a><br>
 4 - <a href="#definition">Definiendo un servicio</a><br>
-5 - <a href="#codeGeneration">Invocando la generación de código</a><br>
+5 - <a href="#codeGeneration">Generando el código</a><br>
 6 - <a href="#integration">Integrando las clases generadas en la aplicación</a><br>
 7 - <a href="#example">Un ejemplo completo</a><br>
 
@@ -21,7 +21,7 @@ Todo el proceso de comunicación por HTTP y la serialización y conversión de d
 
 Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado es 100% legible y limpio. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
 
-    // Instanciar el proxy para aceeder al servicio
+    // Instanciar el proxy para acceder al servicio
     CustomerControllerStub  *service = [[CustomerControllerStub alloc] initControllerUrl: @"http://localhost:8080/demo-server/store"];
     
     // Enviar un objeto al servidor
@@ -42,17 +42,17 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 *   Instalación de **Java** (JRE 1.5+)
 *   muki-generator-1.0.jar
 *   [commons-collections-3.2.1.jar](http://commons.apache.org/collections/), [commons-lang-2.4.jar](http://commons.apache.org/lang/), [velocity-1.6.1.jar](http://velocity.apache.org)
-*   Nótese que otras versiones de las librerías posiblemente también funcionen, pero ésas son las versiones que hemos utilizado en nuestras pruebas.
+*   Nótese que otras versiones de las librerías posiblemente también funcionan, pero ésas son las versiones que hemos utilizado en nuestras pruebas.
 
 
 2.2 - Requerimientos del cliente iOS
--------------------------------------------------------------------------
+------------------------------------
 *   Es necesario tener una instalación de Xcode 4.5.x
 
 2.3 - Requerimientos de la aplicación JEE
-----------------------------------------------------------------------------
+-----------------------------------------
 *   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros</li>
-*   Opcional: es posible integrar las clases generadas con [Spring Framework<](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/)utilizando las librerías de RESTEasy v2.0.1.
+*   Opcional: es posible integrar las clases generadas con [Spring Framework<](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/) utilizando las librerías de RESTEasy v2.0.1.
 
 <a name="use"></a>
 3 - ¿Cómo se utiliza Muki?
@@ -494,7 +494,7 @@ En la interface del stub en Objective-C, Muki declarará el siguiente método:
 	- (void)deleteOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
 <a name="codeGeneration"></a>
-5 - Invocando la generación de código
+5 - Generando el código
 =====================================
 El proceso de generación de las clases Java y Objective-C es un programa escrito en Java y se puede invocar desde una consola de comandos o bien desde un script de Ant. En ambos casos, además de la librería de Muki (muki-generator-1.0.jar), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
 
