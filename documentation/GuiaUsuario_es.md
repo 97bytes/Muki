@@ -668,9 +668,9 @@ Nótese que <b>*error</b> es un parámetro de salida enviado por referencia para
 
 **PASO 3)** Crear la clase para implementar las interfaces <b>*Delegate</b>. Estas interfaces tienen todos los métodos de los controllers del servicio
 
-**PASO 4)** Integrate the classes that implement the <b>*Delegate</b> interfaces with the controllers. This can be done by directly instantiating the classes in the controllers, but you may use the [Spring Framework](http://www.springsource.org/spring-framework) and its [dependency injection mechanism](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
+**PASO 4)** Integrar las clases que implementan las interfaces <b>*Delegate</b> con los **controllers**. Esto puede hacerse directamente instanciando las clases desde los controllers, pero en una aplicación basada en [Spring Framework](http://www.springsource.org/spring-framework) es más recomendable usar la [inyección de dependencias](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
 
-**PASO 5)** Declare the full name of the class **MukiExceptionMapper** as a parameter in the **web.xml** configuration file of the application. The name of the parameter depends on the implementation of JAX-RS you use. The following is the declaration required by Resteasy:
+**PASO 5)** Declarar el nombre completo de la clase **MukiExceptionMapper** como parámetro en el fichero **web.xml** de la aplicación. El nombre del parámetro depende de la implementación de JAX-RS que usemos. En el caso de Resteasy, la declaración sería la siguiente:
 
 	<context-param>
 	   <param-name>resteasy.providers</param-name>
