@@ -682,7 +682,7 @@ Nótese que <b>*error</b> es un parámetro de salida enviado por referencia para
 =======================
 Hemos construído un ejemplo completo para mostrar cómo Muki genera las clases para que un cliente iOS se conecte con un servicio RESTful implementado en JEE.
 
-El servicio utiliza la implementación JAX-RS de [Resteasy](http://www.jboss.org/resteasy/) y también usa [Spring Framework](http://www.springsource.org/spring-framework) para la inyeccción de las dependencias.
+El servicio del ejemplo utiliza la implementación JAX-RS de [Resteasy](http://www.jboss.org/resteasy/) y también usa [Spring Framework](http://www.springsource.org/spring-framework) para la inyeccción de las dependencias.
 
-Para ver el ejemplo, hay que descargar el fichero zip, descomprimirlo y seguir las instrucciones del fichero **instructions_es.html** que viene adentro. El ejemplo ya incluye todas las librerías necesarias para ponerlo en marcha rápidamente!
+Para ver el ejemplo, hay que descargar el fichero [Muki_demo.zip](https://github.com/97bytes/Muki/tree/master/example), descomprimirlo y seguir las instrucciones del fichero **instructions_es.html** que viene adentro. El ejemplo ya incluye todas las librerías necesarias para ponerlo en marcha rápidamente!
 
