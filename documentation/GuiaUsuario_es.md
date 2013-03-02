@@ -1,4 +1,4 @@
-![Muki](logo_muki.png)
+![Muki](resources/logo_muki.png)
 
 Índice
 ======
