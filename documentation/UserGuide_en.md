@@ -115,9 +115,9 @@ The following snippet shows the definition of **models**:
         ...
     </model-definitions>
 
-The definitions of the models must be inside an **&lt;model-definitions java-package = " ... "&gt;** element. The value of **java-package** attribute is the name of the Java package where Muki generates the Java classes (beans). Each model is defined with an **&lt;model name = " ... "&gt;** element. The value of the **name** attribute is the name used to generate the corresponding class in Java and Objective-C. Each model has one or more attributes, which can be either simple or represent list types. Simple attributes can be basic types (boolean, integer, string, etc.) or references to other models. List attributes can only have references to other models, it is not possible to have lists of basic types.
+The definitions of the models must be inside an **&lt;model-definitions java-package = " ... "&gt;** element. The value of **java-package** attribute is the name of the Java package where Muki generates the Java classes (beans). Each model is defined with a **&lt;model name = " ... "&gt;** element. The value of the **name** attribute is the name used to generate the corresponding class in Java and Objective-C. Each model has one or more attributes, which can be either simple or represent list types. Simple attributes can be basic types (boolean, integer, string, etc.) or references to other models. List attributes can only have references to other models, it is not possible to have lists of basic types.
 
-The following table shows the basic types used by Muki and their correspondence with Java and Objective-C types when generating classes.
+The following table shows the basic types used by Muki and their correspondence with Java and Objective-C data types when generating classes.
 
 <table>
     <tr>
@@ -285,7 +285,7 @@ And also:
 
 4.2 - Defining controllers with the service operations
 ------------------------------------------------------
-The **controllers** described the service operations that deal with requests to get, add, update and delete server web resources. With the definition of the controllers, Muki generates classes that simplify the communication between iOS clients and the server. Thus, the remote communication becomes simple method invocations between objects. The generated classes are responsible for establishing the communication between iOS clients and server following RESTful principles using the following methods defined in HTTP: **GET**, **POST**, **PUT** and **DELETE**.
+The **controllers** described the service operations that deal with incoming requests to get, add, update and delete server web resources. With the definition of the controllers, Muki generates classes that simplify the communication between iOS clients and the server. Thus, the remote communication becomes simple method invocations between objects. The generated classes are responsible for establishing the communication between iOS clients and the server following RESTful principles by using the following HTTP methods: **GET**, **POST**, **PUT** and **DELETE**.
 
 The following snippet shows the definition of the controllers:
 
@@ -306,7 +306,7 @@ The following snippet shows the definition of the controllers:
         </controller>
     </controller-definitions>
 
-As our goal is to create a RESTful service, the service operations are mapped directly to HTTP methods invocations. So, to send invocations from iOS, Muki uses the definition of the controllers to generate stubs that prepare and send HTTP invocations. To process the requests in the JEE server, Muki uses the definition of the controllers to create classes with annotations that follow the [JAX-RS](http://jax-rs-spec.java.net">JAX-RS) specification.
+As our goal is to create a RESTful service, the service operations are mapped directly to HTTP methods invocations. So, to send invocations from iOS, Muki uses the definition of the controllers to generate stubs that prepare and send HTTP invocations. To process the requests on the JEE server, Muki uses the definition of the controllers to create classes with annotations that follow the [JAX-RS](http://jax-rs-spec.java.net">JAX-RS) specification.
 
 4.2.1 - GET Operations
 -----------------------
@@ -326,15 +326,15 @@ The following table summarizes all the attributes to define a GET operation with
     </tr>
     <tr>
         <td align="center">name</td>
-        <td>This is the name of the operation and must be unique. In Java, this value is used as the name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
+        <td>This is the name of the operation and must be unique. In Java, this value is used to name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; and &lt;query-param ... /&gt;.</td> 
     </tr>
     <tr>
         <td align="center">return-type</td>
-        <td>It the result type. The value can be STRING or the name of a model.</td>
+        <td>It's the result type. The value can be STRING or the name of a model.</td>
     </tr>
     <tr>
         <td align="center">serialization-type</td>
@@ -388,11 +388,11 @@ The following table summarizes all the attributes to define POST / PUT operation
     </tr>
     <tr>
         <td align="center">name</td>
-        <td>This is the name of the operation and must be unique. In Java, this value is used as the name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
+        <td>This is the name of the operation and must be unique. In Java, this value is used to name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; and &lt;query-param ... /&gt;.</td> 
     </tr>
     <tr>
         <td align="center">param-type</td>
@@ -413,11 +413,9 @@ The value of **http-path** may include parameters **{param}** to make the URI us
 Take for example the following definition of a POST operation and another PUT:
 
 	<post-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="addOrder" serialization-type="json">
-	        <path-param name="customerId" />
-	        <path-param name="orderId" />
-	    </post-operation>
-
-And also:
+        <path-param name="customerId" />
+        <path-param name="orderId" />
+	</post-operation>
 
     <put-operation http-path="/customers/{customerId}/{orderId}" param-type="OrderData" return-type="OrderData" name="updateOrder" serialization-type="json">
         <path-param name="customerId" />
