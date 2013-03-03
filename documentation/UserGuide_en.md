@@ -60,7 +60,7 @@ Creating a service with Muki is summarized in three steps:
 
 **STEP 1:** Create the service definition using an XML document. The definition declares the operations exposed by the service and the data structures representing the parameters and resources.
 
-**STEP 2:** Calling the build process from Java.
+**STEP 2:** Calling the code generation process from Java.
 
 **STEP 3:** Integrating generated classes in your applications.
 
@@ -115,7 +115,7 @@ The following snippet shows the definition of **models**:
         ...
     </model-definitions>
 
-The definitions of the models must be within an element <model-definitions java-package = "... ">. The attribute value is the java-package package name where generated Java classes (beans). Each model is defined with a <model element name = "... ">. The value of the attribute "name" is the name used to generate the corresponding class in Java and Objective-C.  Attributes can be simple types (boolean, integer, string, etc.) or references to other models. The attributes for lists can only have references to other models, it is not possible to have lists of basic types.
+The definitions of the models must be within an element &lt;model-definitions java-package = "... "&gt;. The attribute value is the java-package package name where generated Java classes (beans). Each model is defined with a &lt;model element name = "... "&gt;. The value of the attribute "name" is the name used to generate the corresponding class in Java and Objective-C.  Attributes can be simple types (boolean, integer, string, etc.) or references to other models. The attributes for lists can only have references to other models, it is not possible to have lists of basic types.
 
 The definitions of the models must be inside an **&lt;model-definitions java-package = " ... "&gt;** element. The value of **java-package** attribute is the name of the Java package where Muki generates the Java classes (beans). Cada model se define con un elemento **&lt;model name = " ... "&gt;**. The value of the **name** attribute is the name used to generate the corresponding class in Java and Objective-C. Each model has one or more attributes, which can be either simple or represent list types. Simple attributes can be basic types (boolean, integer, string, etc.) or references to other models. List attributes can only have references to other models, it is not possible to have lists of basic types.
 
