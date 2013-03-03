@@ -463,11 +463,11 @@ The following table summarizes all the attributes to define a DELETE operation w
     </tr>
     <tr>
         <td align="center">name</td>
-        <td>This is the name of the operation and must be unique. In Java, this value is used as the name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
+        <td>This is the name of the operation and must be unique. In Java, this value is used to name of the corresponding method in the controller. In Objective-C it is used as the first keyword of the method defined in the stub.</td>
     </tr>
     <tr>
         <td align="center">http-path</td>
-        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; y &lt;query-param ... /&gt;.</td> 
+        <td>The path to invoke the operation. It can be an expression formed with parameters. For example: "/customers/{id}/{orderId}". If the path contains parameters, you must declare them with sub-elements &lt;path-param ... /&gt; and &lt;query-param ... /&gt;.</td> 
     </tr>
 </table>
 
@@ -495,7 +495,7 @@ In the stub interface in Objective-C, Muki declare the following method:
 <a name="codeGeneration"></a>
 5 - Generating code
 ===================
-The process that generates the code (Java and Objective-C classes) is a program written in Java, that is invoked from the command-line interface or using an Ant script. In both cases, in addition to the Muki library ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
+Once the service description is finished, you run the code generation process. This is a program written in Java that is invoked from the command-line interface or by using an Ant script. In both cases, in addition to the Muki library ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
 
 Indeed, you must do two invocations of the process: one to generate Java classes and other classes to generate Objective-C.
 
