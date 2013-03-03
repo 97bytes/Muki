@@ -59,7 +59,9 @@ So with Muki, applications written for iOS can easily connect with RESTful servi
 Creating a service with Muki is summarized in three steps:
 
 **STEP 1:** Create the service definition using an XML document. The definition declares the operations exposed by the service and the data structures representing the parameters and resources.
+
 **STEP 2:** Calling the build process from Java.
+
 **STEP 3:** Integrating generated classes in your applications.
 
 ![Muki2](resources/muki2_en.png)
