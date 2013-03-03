@@ -497,23 +497,23 @@ In the stub interface in Objective-C, Muki declare the following method:
 ===================
 Once the service description is finished, you run the code generation process. This is a program written in Java that is invoked from the command-line interface or by using an Ant script. In both cases, in addition to the Muki library ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), you must add the following libraries to the classpath: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Note that other versions of the libraries might also work.
 
-Indeed, you must do two invocations of the process: one to generate Java classes and other classes to generate Objective-C.
+Indeed, you must do two invocations of the process: one to generate Java classes and the another to generate Objective-C classes.
 
-When you invoke the code generation process, Muki first evaluates the service definition (XML). If the definition has no errors, Muki generates the classes in the output directory. If the definition has errors, Muki lists the problems encountered. In this case, we must fix the issues and re-invoke the code generation process.
+When you invoke the code generation process, Muki first evaluates the service definition (XML). If the definition has no errors, Muki generates the classes in the output directory. If the definition has errors, Muki lists the problems encountered. In this case, you must fix the issues and re-invoke the code generation process.
 
 5.1 - Command-line interface
 ----------------------------
-The syntax is: **muki.tool.MukiGenerator &lt;option&gt; &lt;path-to-definition.xml&gt; &lt;output-directory&gt;**
+Command syntax: **muki.tool.MukiGenerator &lt;option&gt; &lt;path-to-definition.xml&gt; &lt;output-directory&gt;**
 
 where:
 
-*    **&lt;option&gt;**:  must be **generate-java** or **generate-objc**, to indicate whether Muki generates Java server classes or the classes for the Cocoa client, respectively.
+*    **&lt;option&gt;**:  must be **generate-java** or **generate-objc**, to indicate whether Muki generates Java server classes or the classes for the iOS Cocoa client, respectively.
 *    **&lt;path-to-definition.xml&gt;**: the full path to the XML file that has the service definition
 *    **&lt;output-directory&gt;**: full path to the directory where Muki generates the classes. The directory must exist.
 
 Example of an invocation to generate Java classes:
 
-	>java -classpath ./lib/muki-generator-1.0.jar:./lib/commons-collections-3.2.1.jar:./lib/commons-lang-2.4.jar:./lib/velocity-1.6.1.jar <b>muki.tool.MukiGenerator</b> <b>generate-java</b> /Users/gabriel/temp/project/code-generation/muki-definitions.xml /Users/gabriel/temp/project/generated-java
+	>java -classpath ./lib/muki-generator-1.0.jar:./lib/commons-collections-3.2.1.jar:./lib/commons-lang-2.4.jar:./lib/velocity-1.6.1.jar muki.tool.MukiGenerator generate-java /Users/gabriel/temp/project/code-generation/muki-definitions.xml /Users/gabriel/temp/project/generated-java
 
 ![Muki6](resources/muki6_en.png)
 
