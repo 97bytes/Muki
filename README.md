@@ -10,5 +10,5 @@ See ["Muki: User guide"] (https://github.com/97bytes/Muki/blob/master/documentat
 Ver ["Muki: Guía del usuario"] (https://github.com/97bytes/Muki/blob/master/documentation/GuiaUsuario_es.md) (en Español)
 
 
-![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/resources/muki1_es.png)
+![Muki1](https://raw.github.com/97bytes/Muki/master/documentation/resources/muki1_en.png)
 
