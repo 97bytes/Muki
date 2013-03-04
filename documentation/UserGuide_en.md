@@ -683,5 +683,6 @@ We provide a complete demo that shows how Muki generates the classes for an iOS 
 
 The service in the example uses the [Resteasy](http://www.jboss.org/resteasy/) implementation of JAX-RS and [Spring Framework](http://www.springsource.org/spring-framework) for inyecting dependencies.
 
-To run the demo: download the [Muki_demo.zip](https://github.com/97bytes/Muki/tree/master/example) file, unzip it and follow the instructions available in the **instructions_en.html** file. All the necessary libraries are included, so you can have the example up and running quickly.
+To run the demo: download the [Muki_demo.zip](https://github.com/97bytes/Muki/tree/master/example) file, unzip it and follow the instructions available in the **instructions_en.html** file. The demo includes all necessary libraries so you can have it up and running quickly.
+
 
