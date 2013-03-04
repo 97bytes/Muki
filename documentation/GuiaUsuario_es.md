@@ -116,7 +116,7 @@ El siguiente fragmento muestra la definición de los *models*:
         ...
     </model-definitions>
 
-Las definiciones de los *models* van dentro de un elemento **&lt;model-definitions java-package = " ... "&gt;**. El valor del atributo **java-package** es el nombre del paquete donde se generarán las clases Java (beans). Cada model se define con un elemento **&lt;model name = " ... "&gt;**. El valor del atributo **name** es el nombre que se utiliza para generar la correspondiente clase en Java y en Objective-C. Cada model tiene uno o varios atributos, que pueden ser de tipo simple o bien representar listas. Los atributos simples pueden tener tipos básicos (boolean, integer, string, etc) o bien referencias a otro models. Los atributos para listas solo pueden tener referencias a otros models; no es posible tener listas de tipos básicos.
+Las definiciones de los *models* van dentro de un elemento **&lt;model-definitions java-package = " ... "&gt;**. El valor del atributo **java-package** es el nombre del paquete donde se generan las clases Java (beans). Cada model se define con un elemento **&lt;model name = " ... "&gt;**. El valor del atributo **name** es el nombre que se utiliza para generar la correspondiente clase en Java y en Objective-C. Cada model tiene uno o varios atributos, que pueden ser de tipo simple o bien representar listas. Los atributos simples pueden tener tipos básicos (boolean, integer, string, etc) o bien referencias a otro models. Los atributos para listas solo pueden tener referencias a otros models; no es posible tener listas de tipos básicos.
 
 La siguiente tabla muestra los tipos básicos que utiliza Muki y sus correspondencias con tipos de Java y Objective-C cuando se generan las clases.
 
@@ -286,7 +286,7 @@ Y también:
 
 4.2 - Definiendo los controllers con las operaciones del servicio
 -----------------------------------------------------------------
-Los **controllers** describen las operaciones del servicio que tratan las peticiones para recuperar, agregar, actualizar y borrar web resources del servidor. Con la definición de los **controllers**, Muki genera clases que simplifican la comunicación entre los clientes iOS y el servidor. Así, la comunicación remota se convierte en una simple invocación de métodos entre objetos. Las clases generadas se encargan de establecer la comunicación entre los clientes iOS y el servidor siguiendo los principios RESTful de usar los siguientes métodos definidos en HTTP: **GET**, **POST**, **PUT** y **DELETE**.
+Los **controllers** describen las operaciones del servicio que tratan las peticiones para recuperar, agregar, actualizar y borrar web resources del servidor. Con la definición de los **controllers**, Muki genera clases que simplifican la comunicación entre los clientes iOS y el servidor. Así, la comunicación remota se convierte en una simple invocación de métodos entre objetos. Las clases generadas se encargan de establecer la comunicación entre los clientes iOS y el servidor siguiendo los principios RESTful y usan los siguientes métodos HTTP: **GET**, **POST**, **PUT** y **DELETE**.
 
 El siguiente fragmento muestra la definición de los controllers:
 
@@ -362,7 +362,7 @@ Con la definición anterior, Muki genera el siguiente método en el controller J
         ...
     }
 
-En la interface del stub en Objective-C, Muki declarará el siguiente método:
+En la interface del stub en Objective-C, Muki declara el siguiente método:
 
 	- (OrderData*)getOrderCustomerId: (NSString *)aString1 orderId: (NSString *)aString2 error: (NSError **)error;    
 
@@ -498,7 +498,7 @@ En la interface del stub en Objective-C, Muki declara el siguiente método:
 <a name="codeGeneration"></a>
 5 - Generando el código
 =======================
-El proceso de generación de las clases Java y Objective-C es un programa escrito en Java qe se invoca desde la consola de comandos o usando un script de Ant. En ambos casos, además de la librería de Muki ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
+Una vez que tenemos la descripción en XML, podemos correr el proceso de generación del código. Para hacerlo, debemos ejecutar un programa escrito en que se invoca desde la consola de comandos o desde un script de Ant. En ambos casos, además de la librería de Muki ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
 
 En realidad, hay que hacer 2 invocaciones del proceso: una para generar las clases en Java y otra para generar las clases en Objective-C.
 
