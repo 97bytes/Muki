@@ -59,7 +59,7 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 ==========================
 La creación de un servicio con Muki se resume en 3 pasos:
 
-**PASO 1:** Crear la definición del servicio usando un documento XML. La definición contiene las operaciones que expone el servicio y las estructuras de datos que representan los parámetros y resources.
+**PASO 1:** Crear la definición del servicio usando un documento XML. La definición contiene las operaciones que expone el servicio y las estructuras de datos que representan los parámetros y *resources*.
 
 **PASO 2:** Invocar el proceso de generación, desde Java.
 
@@ -98,7 +98,7 @@ El siguiente fragmento muestra la estructura de definición de un servicio en Mu
 
 4.1 - Definiendo los modelos para representar los resources
 -----------------------------------------------------------
-En Muki, un **model** es un objeto que representa datos en la aplicación y que se usa enviar y recibir información entre los clientes iOS y el servidor. Un model puede verse como una clase que representan un web resource. Con la descripción de los *models*, Muki genera clases que automatizan el proceso de serializar y deserializar los objetos en formato JSON y XML. Para la serialización en Java, Muki genera las clases de los *models* con anotaciones JAXB. Para la serialización en iOS, Muki genera las clases de los *models* y además clases de soporte en Objective-C.
+En Muki, un **model** es un objeto que representa datos en la aplicación y que se usa enviar y recibir información entre los clientes iOS y el servidor. Un model puede verse como una clase que representan un web resource. Con la descripción de los *models*, Muki genera clases que automatizan el proceso de serializar y deserializar los objetos en formato JSON y XML. Para la serialización en Java, Muki genera las clases de los *models* con anotaciones JAXB. Para la serialización en iOS, Muki genera además clases de soporte en Objective-C.
 
 El siguiente fragmento muestra la definición de los *models*:
 
