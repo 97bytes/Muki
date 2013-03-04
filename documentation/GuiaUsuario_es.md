@@ -638,7 +638,7 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual. Para
 
 **PASO 2)** Agregar todas las clases generadas en el proyecto, con la opción **Add Files to ...**
 
-**PASO 3)** Indicar que las clases cuyo nombre es <b>*ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
+**PASO 3)** Indicar que las clases cuyo nombre es <b>ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
 
 ![Muki3](resources/muki3_es.png)
 
