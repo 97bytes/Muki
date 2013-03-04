@@ -19,10 +19,10 @@ Todo el proceso de comunicación por HTTP y la serialización y conversión de d
 
 ![Muki1](resources/muki1_es.png)
 
-Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado es 100% legible y limpio. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
+Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse con servicios RESTful implementados en Java. El código generado **es 100% legible y limpio**. Las clases generadas por Muki abstraen la comunicación entre los clientes y el servidor y ocultan los detalles de la comunicación que se realiza en HTTP (métodos GET, POST, PUT y DELETE) y de la serialización de los objetos que viajan en XML y JSON. El siguiente fragmento de código muestra las invocaciones que realiza una aplicación iOS para comunicarse con un servidor remoto, utilizando las clases generadas por Muki.
 
     // Instanciar el proxy para acceder al servicio
-    CustomerControllerStub  *service = [[CustomerControllerStub alloc] initControllerUrl: @"http://localhost:8080/demo-server/store"];
+    CustomerControllerStub  *service = [[CustomerControllerStub alloc] initControllerUrl: @"http://muki/demo-server/store"];
     
     // Enviar un objeto al servidor
     NSError *error;
@@ -51,16 +51,19 @@ Así, con Muki las aplicaciones escritas para iOS pueden fácilmente conectarse 
 
 2.3 - Requerimientos de la aplicación JEE
 -----------------------------------------
-*   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) y otros</li>
-*   Opcional: es posible integrar las clases generadas con [Spring Framework](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servidor en [Google App Engine](https://developers.google.com/appengine/) utilizando las librerías de RESTEasy v2.0.1.
+*   Un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) u otro</li>
+*   Opcional: es posible integrar las clases generadas con [Spring Framework](http://www.springsource.org/spring-framework) y cualquier otro framework. En nuestras pruebas, hemos desplegado el servicio en [Google App Engine](https://developers.google.com/appengine/) utilizando las librerías de RESTEasy v2.0.1.
 
 <a name="use"></a>
 3 - ¿Cómo se utiliza Muki?
 ==========================
 La creación de un servicio con Muki se resume en 3 pasos:
+
 **PASO 1:** Crear la definición del servicio usando un documento XML. La definición contiene las operaciones que expone el servicio y las estructuras de datos que representan los parámetros y resources.
-** PASO 2:** Invocar el proceso de generación, desde Java.
-** PASO 3:** Integrar las clases generadas en las aplicaciones.
+
+**PASO 2:** Invocar el proceso de generación, desde Java.
+
+**PASO 3:** Integrar las clases generadas en las aplicaciones.
 
 ![Muki2](resources/muki2_es.png)
 
