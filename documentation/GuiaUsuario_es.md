@@ -498,7 +498,7 @@ En la interface del stub en Objective-C, Muki declara el siguiente método:
 <a name="codeGeneration"></a>
 5 - Generando el código
 =======================
-Una vez que tenemos la descripción en XML, podemos correr el proceso de generación del código. Para hacerlo, debemos ejecutar un programa escrito en que se invoca desde la consola de comandos o desde un script de Ant. En ambos casos, además de la librería de Muki ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
+Una vez que tenemos la descripción del servicio en XML, podemos correr el proceso de generación del código. Para hacerlo, debemos ejecutar un programa escrito en Java y que se puede invocar desde la consola de comandos o desde un script de Ant. En ambos casos, además de la librería de Muki ([muki-generator-1.0.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/)), es necesario agregar al classpath las siguientes librerías: **commons-collections-3.2.1.jar**, **commons-lang-2.4.jar**, **velocity-1.6.1.jar**. Nótese que posiblemente otras versiones de las librerías también funcionen. 
 
 En realidad, hay que hacer 2 invocaciones del proceso: una para generar las clases en Java y otra para generar las clases en Objective-C.
 
@@ -544,7 +544,7 @@ Ejemplo de una invocación para generar las clases en Java:
 ====================================================
 **Aviso importante: ninguna de las clases generadas por Muki debería modificarse manualmente. Si se requieren cambios, hay que modificar la definición del servicio (XML) y volver a lanzar el proceso de generación de código.**
 
-El siguiente diagrama muestra la secuencia de invocaciones para obtener recursos del servidor. La aplicación iOS invoca un método de stub generado por Muki en Objective-C. El stub se encarga de procesar la llamada y enviar la petición HTTP (GET) al servidor. La petición HTTP llega al servidor, es procesada y se convierte en la invocación del método de la clase del controller generado por Muki en Java. El controller a su vez invoca al delegate que implementa la funcionalidad del servicio. El delegate implementa una interface Java también generada por Muki.
+El siguiente diagrama muestra la secuencia de invocaciones para obtener recursos del servidor. La aplicación iOS invoca un método de stub generado por Muki en Objective-C. El stub se encarga de procesar la llamada y enviar la petición HTTP (GET) al servidor. La petición HTTP llega al servidor, es procesada y se convierte en la invocación del método del controller generado por Muki en Java. El controller a su vez invoca al delegate que implementa la funcionalidad del servicio. El delegate implementa una interface Java también generada por Muki.
 
 ![Muki5](resources/muki5_es.png)
 
@@ -571,11 +571,11 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en Java
     </tr>
     <tr>
         <td align="center">ControllerDelegates</td>
-        <td>Estas interfaces contienen todas las operaciones que de los controllers del servicio. El desarrollador debe implementar estas interfaces con el comportamiento concreto del servicio y además integrar los delegates en los controllers. Cuando llega una petición a un controller, éste invoca al delegate que tiene asociado. Muki genera una interface de delegate para cada controller. La definición de los delegates no debe modificarse manualmente!</td> 
+        <td>Estas interfaces declaran todas las operaciones de los controllers del servicio. El desarrollador debe implementar estas interfaces con el comportamiento concreto del servicio y además integrar los delegates en los controllers. Cuando llega una petición a un controller, éste invoca al delegate que tiene asociado. Muki genera una interface de delegate para cada controller. La definición de los delegates no debe modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">MukiExceptionMapper</td>
-        <td>Es una clase de soporte que implementa un mapper que gestiona las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse manualmente!</td> 
+        <td>Es una clase de soporte que implementa un *mapper* que gestiona las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">MukiResourceNotFoundException</td>
