@@ -638,7 +638,7 @@ Esto significa que es necesario hacer algunas adaptaciones de forma manual. Para
 
 **PASO 2)** Agregar todas las clases generadas en el proyecto, con la opción **Add Files to ...**
 
-**PASO 3)** Indicar que las clases cuyo nombre es <b>ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
+**PASO 3)** Indicar que las clases cuyo nombre es <b>ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a la pestaña de **Build Phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
 
 ![Muki3](resources/muki3_es.png)
 
@@ -665,13 +665,13 @@ Nótese que <b>*error</b> es un parámetro de salida enviado por referencia para
 6.4 - Pasos para integrar las clases generadas en la aplicación del servidor (JEE)
 ----------------------------------------------------------------------------------
 
-**PASO 1)** Agregar a la aplicación, las librerías de un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) u otro.
+**PASO 1)** Agregar las librerías de un framework que implemente la especificación [JAX-RS](http://jax-rs-spec.java.net), como [RESTEasy](http://www.jboss.org/resteasy) u otro.
 
-**PASO 2)** Agregar a la aplicación, las clases Java que generó Muki
+**PASO 2)** Agregar las clases Java generadas por Muki
 
-**PASO 3)** Crear la clase para implementar las interfaces <b>*Delegate</b>. Estas interfaces tienen todos los métodos de los controllers del servicio
+**PASO 3)** Crear la clase para implementar las interfaces <b>Delegate</b>. Estas interfaces tienen todos los métodos de los controllers del servicio
 
-**PASO 4)** Integrar las clases que implementan las interfaces <b>*Delegate</b> con los **controllers**. Esto puede hacerse directamente instanciando las clases desde los controllers, pero en una aplicación basada en [Spring Framework](http://www.springsource.org/spring-framework) es más recomendable usar la [inyección de dependencias](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
+**PASO 4)** Integrar las clases que implementan las interfaces <b>Delegate</b> con los **controllers**. Esto puede hacerse directamente instanciando las clases desde los controllers, pero en una aplicación basada en [Spring Framework](http://www.springsource.org/spring-framework) es más recomendable usar la [inyección de dependencias](http://static.springsource.org/spring/docs/3.2.x/spring-framework-reference/html/beans.html).
 
 **PASO 5)** Declarar el nombre completo de la clase **MukiExceptionMapper** como parámetro en el fichero **web.xml** de la aplicación. El nombre del parámetro depende de la implementación de JAX-RS que usemos. En el caso de Resteasy, la declaración sería la siguiente:
 
