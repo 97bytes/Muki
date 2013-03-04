@@ -575,7 +575,7 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en Java
     </tr>
     <tr>
         <td align="center">MukiExceptionMapper</td>
-        <td>Es una clase de soporte que implementa un *mapper* que gestiona las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse manualmente!</td> 
+        <td>Es una clase de soporte que implementa un <i>mapper</i> que gestiona las excepciones que se lanzan cuando un recurso no se encuentra en el servidor. Esta clase no debe modificarse manualmente!</td> 
     </tr>
     <tr>
         <td align="center">MukiResourceNotFoundException</td>
@@ -596,7 +596,7 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en iOS 
     </tr>
     <tr>
         <td align="center">Model</td>
-        <td>Por cada definición de <b>&lt;model ... &gt;</b>, Muki genera una clase que representa los resources y objetos que viajan entre los clientes iOS y el servidor. Estos objetos son serializados en XML y JSON.</td>
+        <td>Por cada definición de <b>&lt;model ... &gt;</b>, Muki genera una clase que representa un resource u objeto que viaja entre los clientes iOS y el servidor. Estos objetos son serializados en XML y JSON.</td>
     </tr>
     <tr>
         <td align="center">Model parser delegates</td>
@@ -608,7 +608,7 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en iOS 
     </tr>
     <tr>
         <td align="center">Controller Stubs</td>
-        <td>Representan a los controllers, del lado de los clientes iOS. Las aplicaciones invocan las operaciones de los stubs y éstos codifican y envían las peticiiones HTTP a los controllers del servidor. Muki crea un stub para cada controller del servidor</td>
+        <td>Representan a los controllers, del lado de los clientes iOS. Las aplicaciones invocan las operaciones de los stubs y éstos codifican y envían las peticiones HTTP a los controllers del servidor. Muki crea un stub para cada controller del servidor</td>
     </tr>
     <tr>
         <td align="center">XmlSerializer XmlAttribute ObjectParserDelegate</td>
@@ -630,15 +630,15 @@ La siguiente tabla resume las clases que Muki genera para la aplicación en iOS 
 
 6.3 - Pasos para integrar las clases generadas en la aplicación cliente (iOS)
 -----------------------------------------------------------------------------
-En general todas las clases generadas son compatibles con el esquema [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) de gestión de memoria. La única excepción son las clases de los <b>*ParserDelegate.m</b>, que no soportan ARC y utilizan el modelo convencional e incluyen *[... autorelease]*.
+En general todas las clases generadas son compatibles con el esquema [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) de gestión de la memoria. La única excepción son las clases de los <b>ParserDelegate.m</b>, que no soportan ARC y utilizan el modelo convencional e incluyen [... autorelease].
 
-Esto significa que es necesario hacer algunas adaptaciones de forma manual para que las clases generadas funcionen correctamente.
+Esto significa que es necesario hacer algunas adaptaciones de forma manual. Para integrar las clases generadas por Muki en la aplicación iOS, hacer lo siguiente:
 
 **PASO 1)** En el proyecto (Xcode) para la aplicación, usar el modelo ARC de gestión de memoria
 
 **PASO 2)** Agregar todas las clases generadas en el proyecto, con la opción **Add Files to ...**
 
-**PASO 3)** Indicar que las clases generadas cuyo nombre es <b>*ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
+**PASO 3)** Indicar que las clases cuyo nombre es <b>*ParserDelegate.m</b> no utilizan ARC (Ej: CdParserDelegate.m).  Para hacerlo, ir al target del proyecto, ir a las **Build phases** y agregar un flag de compilación: <code>-fno-objc-arc</code>
 
 ![Muki3](resources/muki3_es.png)
 
