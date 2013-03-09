@@ -35,7 +35,7 @@ import muki.tool.model.ControllerType;
 
 public class ObjCGeneratorTestCase {
 
-	public static String TEMP_DIR = "/Users/gabriel/projects/Java/Muki-Modules/Muki-Cocoa/Muki-Cocoa/generated";
+	public static String TEMP_DIR = "/Users/gabriel/projects/Java/Muki/private/Muki-Cocoa/Muki-Cocoa/generated/";
 	//public static String TEMP_DIR = "c:/temp/objc/generated";
 	private ObjcGenerator generator;
 	private IOUtility io;
