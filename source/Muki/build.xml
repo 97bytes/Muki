@@ -74,7 +74,7 @@
 	</target>
 
 	<!-- 
-		Creates a Java class with the version number. This class is generated from a template, replacing the ID.
+		Creates a Java class with the version number of the app. This class is generated from a template, replacing the ID.
 	-->
 	<target name="version-class" depends="init">
 		<tstamp>
