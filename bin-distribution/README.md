@@ -15,11 +15,11 @@ History
     </tr>
     <tr>
         <td align="center">1.0</td>
-        <td align="center">First version :)</td>
+        <td align="left">First version :)</td>
     </tr>
     <tr>
         <td align="center">1.1</td>
-        <td align="center">Fixed a problem that occurred in ObjC generated classes when serializing objects to XML that contain string attributes with invalid XML characters<br>
+        <td align="left">Fixed a problem that occurred in ObjC generated classes when serializing objects to XML that contain string attributes with invalid XML characters<br>
         	Fixed an error when validating project before generating clases<br>
         	Extra test cases
          </td>
