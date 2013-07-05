@@ -300,12 +300,24 @@
 				<path-param name="id" />
 				<path-param name="name" />
 			</get-operation>
+			<get-operation serialization-type="xml"
+				http-path="/pathGetOperationInvalidCharsXml" return-type="Track"
+				name="getOperationInvalidCharsXml" />
+			<get-operation serialization-type="json"
+				http-path="/pathGetOperationInvalidCharsJson" return-type="Track"
+				name="getOperationInvalidCharsJson" />
 			<post-operation http-path="/pathPostOperationNull1"
 				return-type="STRING" name="postOperationNull1" />
 			<post-operation serialization-type="xml"
 				http-path="/pathPostOperationNull2" return-type="Track" name="postOperationNull2" />
 			<post-operation serialization-type="json"
 				http-path="/pathPostOperationNull3" return-type="Track" name="postOperationNull3" />
+			<post-operation serialization-type="xml" param-type="Track"
+				http-path="/pathPostOperationInvalidCharsXml" return-type="Track"
+				name="postOperationInvalidCharsXml" />
+			<post-operation serialization-type="json" param-type="Track"
+				http-path="/pathPostOperationInvalidCharsJson" return-type="Track"
+				name="postOperationInvalidCharsJson" />
 			<put-operation http-path="/pathPutOperationNull1"
 				return-type="STRING" name="putOperationNull1" />
 			<put-operation serialization-type="json"

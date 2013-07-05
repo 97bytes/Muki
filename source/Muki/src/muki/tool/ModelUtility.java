@@ -344,6 +344,7 @@ public class ModelUtility {
 			result.setOk(false);
 		} else if (!this.isPrimitiveType(attribute.getType()) && !this.existsComplexType(attribute.getType())) {
 				result.append("The type of the simple attribute (" + index + ") must be a basic type (STRING, LONG, etc) or another model defined in the project");
+				result.setOk(false);
 		}
 	}
 	

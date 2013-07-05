@@ -298,6 +298,18 @@ public class TestHelper {
 		getOperation15Json.getPathParam().add(nameParam);
 		getOperation15Json.getPathParam().add(idParam);
 
+		GetOperationType getOperationInvalidCharsXml = new GetOperationType();
+		getOperationInvalidCharsXml.setName("getOperationInvalidCharsXml");
+		getOperationInvalidCharsXml.setHttpPath("/pathGetOperationInvalidCharsXml");
+		getOperationInvalidCharsXml.setReturnType("Track");
+		getOperationInvalidCharsXml.setSerializationType("xml");
+
+		GetOperationType getOperationInvalidCharsJson = new GetOperationType();
+		getOperationInvalidCharsJson.setName("getOperationInvalidCharsJson");
+		getOperationInvalidCharsJson.setHttpPath("/pathGetOperationInvalidCharsJson");
+		getOperationInvalidCharsJson.setReturnType("Track");
+		getOperationInvalidCharsJson.setSerializationType("json");
+
 		PostOperationType postOperationNull1 = new PostOperationType();
 		postOperationNull1.setName("postOperationNull1");
 		postOperationNull1.setHttpPath("/pathPostOperationNull1");
@@ -462,6 +474,20 @@ public class TestHelper {
 		postOperation13Json.getPathParam().add(nameParam);
 		postOperation13Json.getPathParam().add(idParam);
 
+		PostOperationType postOperationInvalidCharsXml = new PostOperationType();
+		postOperationInvalidCharsXml.setName("postOperationInvalidCharsXml");
+		postOperationInvalidCharsXml.setHttpPath("/pathPostOperationInvalidCharsXml");
+		postOperationInvalidCharsXml.setParamType("Track");
+		postOperationInvalidCharsXml.setReturnType("Track");
+		postOperationInvalidCharsXml.setSerializationType("xml");
+		
+		PostOperationType postOperationInvalidCharsJson = new PostOperationType();
+		postOperationInvalidCharsJson.setName("postOperationInvalidCharsJson");
+		postOperationInvalidCharsJson.setHttpPath("/pathPostOperationInvalidCharsJson");
+		postOperationInvalidCharsJson.setParamType("Track");
+		postOperationInvalidCharsJson.setReturnType("Track");
+		postOperationInvalidCharsJson.setSerializationType("json");
+		
 		PutOperationType putOperationNull1 = new PutOperationType();
 		putOperationNull1.setName("putOperationNull1");
 		putOperationNull1.setHttpPath("/pathPutOperationNull1");
@@ -726,9 +752,13 @@ public class TestHelper {
 		r2.getGetOperation().add(getOperationNull3);
 		r2.getGetOperation().add(getOperation2);
 		r2.getGetOperation().add(getOperation3);
+		r2.getGetOperation().add(getOperationInvalidCharsXml);
+		r2.getGetOperation().add(getOperationInvalidCharsJson);
 		r2.getPostOperation().add(postOperationNull1);
 		r2.getPostOperation().add(postOperationNull2);
 		r2.getPostOperation().add(postOperationNull3);
+		r2.getPostOperation().add(postOperationInvalidCharsXml);
+		r2.getPostOperation().add(postOperationInvalidCharsJson);
 		r2.getPutOperation().add(putOperationNull1);
 		r2.getPutOperation().add(putOperationNull2);
 		r2.getPutOperation().add(putOperationNull3);

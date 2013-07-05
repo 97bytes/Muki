@@ -51,4 +51,21 @@ $helper.getXmlSerializerSerializeElementMethodDeclaration( $type ) {
 	[self.xmlOutput appendString: [NSString stringWithFormat: @"</%@>", elementName]];
 }
 
+/**
+ * Returns a copy of the input string, where the invalid XML chars are escaped (encoded).
+ * Invalid XML chars are: '<', '>', '"', ''', '&'.
+ * This is necessary to prevent parsing errors later on.
+ */
+- (NSString*)encodeString:(NSString*)input {
+    if (input == nil) {
+        return nil;
+    }
+    NSString *result = [input stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];
+    result = [result stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
+    result = [result stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
+    result = [result stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"];
+    result = [result stringByReplacingOccurrencesOfString:@"'" withString:@"&apos;"];
+    return result;
+}
+
 @end

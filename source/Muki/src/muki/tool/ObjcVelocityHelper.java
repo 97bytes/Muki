@@ -409,7 +409,7 @@ public class ObjcVelocityHelper extends VelocityHelper {
 		for (SimpleAttrType attribute : type.getSimpleAttr()) {
 			if(this.isStringType(attribute.getType())) {
 				result.append("    [self openElement: @\"").append(attribute.getName()).append("\"];").append("\r");
-				result.append("    [self.xmlOutput appendString: anObject.").append(attribute.getName()).append("];").append("\r");
+				result.append("    [self.xmlOutput appendString: [self encodeString:anObject.").append(attribute.getName()).append("]];").append("\r");
 				result.append("    [self closeElement: @\"").append(attribute.getName()).append("\"];").append("\r");
 			}
 		}

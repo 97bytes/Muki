@@ -201,7 +201,7 @@ public class ModelUtilityTestCase {
 		artist.setType("STRING");
 		SimpleAttrType durationInSeconds = new SimpleAttrType();
 		durationInSeconds.setName("durationInSeconds");
-		durationInSeconds.setType("int");
+		durationInSeconds.setType("INT");
 		SimpleAttrType catalogId = new SimpleAttrType();
 		catalogId.setName("catalogId");
 		catalogId.setType("LONG");

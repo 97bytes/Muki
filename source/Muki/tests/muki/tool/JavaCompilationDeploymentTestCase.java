@@ -1251,71 +1251,6 @@ public class JavaCompilationDeploymentTestCase {
 		assertNull(responseBody);
 	}
 
-	private String getXmlCd() {
-		String xml = 
-			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-			"<cd>" +
-				"<artist>Mozart</artist>" +
-				"<mainTrack>" +
-					"<catalogId>1</catalogId>" +
-					"<durationInSeconds>90</durationInSeconds>" +
-					"<idsSimilarTracks>" +
-						"<long>2</long>" +
-						"<long>4</long>" +
-					"</idsSimilarTracks>" +
-					"<newRelease>true</newRelease>" +
-					"<price>21.3</price>" +
-					"<title>My Track 1</title>" +
-				"</mainTrack>" +
-				"<title>Compilation</title>" +
-				"<tracks>" +
-					"<track>" +
-						"<catalogId>1</catalogId>" +
-						"<durationInSeconds>90</durationInSeconds>" +
-						"<idsSimilarTracks>" +
-							"<long>2</long>" +
-							"<long>4</long>" +
-						"</idsSimilarTracks>" +
-						"<newRelease>true</newRelease>" +
-						"<price>21.3</price>" +
-						"<title>My Track 1</title>" +
-					"</track>" +
-					"<track>" +
-						"<catalogId>1</catalogId>" +
-						"<durationInSeconds>65</durationInSeconds>" +
-						"<idsSimilarTracks>" +
-							"<long>1</long>" +
-							"<long>4</long>" +
-						"</idsSimilarTracks>" +
-						"<newRelease>true</newRelease>" +
-						"<price>15.7</price>" +
-						"<title>My Track 2</title>" +
-					"</track>" +
-				"</tracks>" +
-			"</cd>";
-		return xml;
-	}
-	
-	private String getJsonCd() {
-		String json = 
-			"{" +
-				"\"title\":\"getOperation14\"," +
-				"\"artist\":\"Mozart\"," +
-				"\"mainTrack\":{" +
-					"\"title\":\"My Track 1\"," +
-					"\"durationInSeconds\":90," +
-					"\"catalogId\":1," +
-					"\"newRelease\":true," +
-					"\"price\":21.3" +
-				"}," +
-				"\"tracks\":[" +
-					"{\"title\":\"My Track 1\",\"durationInSeconds\":90,\"catalogId\":1,\"newRelease\":true,\"price\":21.3}," +
-					"{\"title\":\"My Track 2\",\"durationInSeconds\":65,\"catalogId\":1,\"newRelease\":true,\"price\":15.7}" +
-				"]" +
-			"}";
-		return json;
-	}
-
 	/**
 	 * Verifies that a 404 status code is returned when the operation returns null.
 	 * Note that the response body is not empty: it contains the HTML error that is usually
@@ -1370,6 +1305,172 @@ public class JavaCompilationDeploymentTestCase {
 		assertNotNull(htmlResponse);
 	}
 	
+	/**
+	 * Verifies the XML serialization of invalid XML characters: '<', '>', '&', ''', '"'.
+	 * These characteres must be encoded properly.
+	 */
+	@Test
+	public void testGetOperationInvalidCharsXml() throws Exception {		
+		String url = URL_RESOURCE2 + "/pathGetOperationInvalidCharsXml";
+		GetMethod method = new GetMethod(url);
+		
+		int statusCode = this.getHttpClient().executeMethod(method);
+		assertTrue("Method failed: " + method.getStatusLine(), statusCode == HttpStatus.SC_OK);
+		byte[] responseBody = method.getResponseBody();
+		assertNotNull(responseBody);
+		String xmlResponse = new String(responseBody);
+		assertTrue(xmlResponse.indexOf("<title>&lt;My Track 1/&gt; &amp; 'My Track' &quot;2&quot;</title>") > -1);
+	}
+	
+	@Test
+	public void testPostOperationInvalidCharsXml() throws Exception {		
+		String url = URL_RESOURCE2 + "/pathPostOperationInvalidCharsXml";
+		PostMethod method = new PostMethod(url);
+		String param = this.getXmlTrackInvalidChars();
+		method.setRequestEntity(new StringRequestEntity(param, "application/xml", null));
+		
+		int statusCode = this.getHttpClient().executeMethod(method);
+		assertTrue("Method failed: " + method.getStatusLine(), statusCode == HttpStatus.SC_OK);
+		byte[] responseBody = method.getResponseBody();
+		String xmlResponse = new String(responseBody);
+		assertTrue(xmlResponse.indexOf("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>") > -1);
+		assertTrue(xmlResponse.indexOf("<title>&lt;My Track 1/&gt; &amp; 'My Track' &quot;2&quot;</title>") > -1);
+	}
+	
+	@Test
+	public void testGetOperationInvalidCharsJson() throws Exception {	
+		String url = URL_RESOURCE2 + "/pathGetOperationInvalidCharsJson";
+		GetMethod method = new GetMethod(url);
+		
+		int statusCode = this.getHttpClient().executeMethod(method);
+		assertTrue("Method failed: " + method.getStatusLine(), statusCode == HttpStatus.SC_OK);
+		byte[] responseBody = method.getResponseBody();
+		assertNotNull(responseBody);
+		String jsonResponse = new String(responseBody);
+		System.out.println(jsonResponse);
+		// The JSON string is: {"catalogId":1,"newRelease":true,"price":21.3,"title":"{My {\"Track} 1 & {'My Track' ","durationInSeconds":90}
+		assertTrue(jsonResponse.indexOf("{My {\\\"Track} 1 & {'My Track' ") > -1);
+	}
+	
+	/**
+	 * The JSON string contains special chars in the values: '{', '}', '"' that must
+	 * be enconded and arrive correctly on the server.
+	 */
+	@Test
+	public void testPostOperationInvalidCharsJson() throws Exception {		
+		String url = URL_RESOURCE2 + "/pathPostOperationInvalidCharsJson";
+		PostMethod method = new PostMethod(url);
+		String param = this.getJsonTrackInvalidChars();
+		method.setRequestEntity(new StringRequestEntity(param, "application/json", null));
+		
+		int statusCode = this.getHttpClient().executeMethod(method);
+		assertTrue("Method failed: " + method.getStatusLine(), statusCode == HttpStatus.SC_OK);
+		byte[] responseBody = method.getResponseBody();
+		String jsonResponse = new String(responseBody);
+		assertTrue(jsonResponse.indexOf("{My {\\\"Track} 1 & {'My Track' ") > -1);
+	}
+	
+	private String getXmlCd() {
+		String xml = 
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+			"<cd>" +
+				"<artist>Mozart</artist>" +
+				"<mainTrack>" +
+					"<catalogId>1</catalogId>" +
+					"<durationInSeconds>90</durationInSeconds>" +
+					"<idsSimilarTracks>" +
+						"<long>2</long>" +
+						"<long>4</long>" +
+					"</idsSimilarTracks>" +
+					"<newRelease>true</newRelease>" +
+					"<price>21.3</price>" +
+					"<title>My Track 1</title>" +
+				"</mainTrack>" +
+				"<title>Compilation</title>" +
+				"<tracks>" +
+					"<track>" +
+						"<catalogId>1</catalogId>" +
+						"<durationInSeconds>90</durationInSeconds>" +
+						"<idsSimilarTracks>" +
+							"<long>2</long>" +
+							"<long>4</long>" +
+						"</idsSimilarTracks>" +
+						"<newRelease>true</newRelease>" +
+						"<price>21.3</price>" +
+						"<title>My Track 1</title>" +
+					"</track>" +
+					"<track>" +
+						"<catalogId>1</catalogId>" +
+						"<durationInSeconds>65</durationInSeconds>" +
+						"<idsSimilarTracks>" +
+							"<long>1</long>" +
+							"<long>4</long>" +
+						"</idsSimilarTracks>" +
+						"<newRelease>true</newRelease>" +
+						"<price>15.7</price>" +
+						"<title>My Track 2</title>" +
+					"</track>" +
+				"</tracks>" +
+			"</cd>";
+		return xml;
+	}
+	
+	/**
+	 * El título del track tiene caracteres inválidos en XML que están codificados con los
+	 * caracteres de escape correspondientes.
+	 */
+	private String getXmlTrackInvalidChars() {
+		String xml = 
+			"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+				"<track>" +
+					"<catalogId>1</catalogId>" +
+					"<durationInSeconds>90</durationInSeconds>" +
+					"<idsSimilarTracks>" +
+						"<long>2</long>" +
+						"<long>4</long>" +
+					"</idsSimilarTracks>" +
+					"<newRelease>true</newRelease>" +
+					"<price>21.3</price>" +
+					"<title>&lt;My Track 1/&gt; &amp; 'My Track' &quot;2&quot;</title>" +
+				"</track>";
+		return xml;
+	}
+
+	private String getJsonCd() {
+		String json = 
+			"{" +
+				"\"title\":\"getOperation14\"," +
+				"\"artist\":\"Mozart\"," +
+				"\"mainTrack\":{" +
+					"\"title\":\"My Track 1\"," +
+					"\"durationInSeconds\":90," +
+					"\"catalogId\":1," +
+					"\"newRelease\":true," +
+					"\"price\":21.3" +
+				"}," +
+				"\"tracks\":[" +
+					"{\"title\":\"My Track 1\",\"durationInSeconds\":90,\"catalogId\":1,\"newRelease\":true,\"price\":21.3}," +
+					"{\"title\":\"My Track 2\",\"durationInSeconds\":65,\"catalogId\":1,\"newRelease\":true,\"price\":15.7}" +
+				"]" +
+			"}";
+		return json;
+	}
+
+	/**
+	 * The title is: {My {\"Track} 1 & {'My Track' 
+	 */
+	private String getJsonTrackInvalidChars() {
+		String json = 
+			"{" +
+				"\"catalogId\":1," +
+				"\"newRelease\":true," +
+				"\"price\":21.3," +
+				"\"title\":\"{My {\\\"Track} 1 & {'My Track' \"," +
+				"\"durationInSeconds\":90" +
+			"}";
+		return json;
+	}
+
 	private HttpClient getHttpClient() {
 		return httpClient;
 	}

@@ -53,5 +53,15 @@ public class ExecutionResult {
 	public void setOk(boolean ok) {
 		this.ok = ok;
 	}
+
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ExecutionResult [ok=");
+		builder.append(ok);
+		builder.append(", buffer=");
+		builder.append(buffer);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 }

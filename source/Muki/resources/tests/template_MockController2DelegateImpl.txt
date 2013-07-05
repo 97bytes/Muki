@@ -91,5 +91,58 @@ public class MockController2DelegateImpl implements Controller2Delegate {
 	public Track putOperationNull3() {
 		return null;
 	}
+	
+	/**
+	 * Los siguientes metodos sirven para comprobar la serializacion de
+	 * strings que tienen caracteres invalidos de XML.
+	 * Los caracteres invalidos son: '<', '>', '&', ''', '"' y deben codificarse durante
+	 * la serializacion.
+	 */
+	public Track getOperationInvalidCharsXml() {
+		Track track1 = new Track();
+		track1.setTitle("<My Track 1/> & 'My Track' \"2\"");
+		track1.setCatalogId(1);
+		track1.setDurationInSeconds(90);
+		track1.setNewRelease(true);
+		track1.setPrice(21.3);
+		return track1;
+	}
+	
+   /**
+	* The XML serialized and sent by the client contains the value: "&lt;My Track 1/&gt; &amp; 'My Track' &quot;2&quot;"
+	* in the title. We verify that the encoded XML chars have been decoded properly.
+	*/
+	public Track postOperationInvalidCharsXml(Track param) {
+		if (param.getTitle().equals("<My Track 1/> & 'My Track' \"2\"")) {
+			return param;
+		}
+		return null;
+	}
 
+	/**
+	 * Los siguientes metodos sirven para comprobar la serializacion de
+	 * strings que tienen caracteres invalidos de JSON.
+	 */
+	public Track getOperationInvalidCharsJson() {
+		Track track1 = new Track();
+	    // The value is: {My {"Track} 1 & {'My Track' 
+		track1.setTitle("{My {\"Track} 1 & {'My Track' ");
+		track1.setCatalogId(1);
+		track1.setDurationInSeconds(90);
+		track1.setNewRelease(true);
+		track1.setPrice(21.3);
+		return track1;
+	}
+	
+   /**
+	* The XML serialized and sent by the client contains the value: {My {"Track} 1 & {'My Track'
+	* in the title. We verify that the encoded JSON chars have been decoded properly.
+	*/
+	public Track postOperationInvalidCharsJson(Track param) {
+	    // The value is: {My {"Track} 1 & {'My Track' 
+		if (param.getTitle().equals("{My {\"Track} 1 & {'My Track' ")) {
+			return param;
+		}
+		return null;
+	}
 }

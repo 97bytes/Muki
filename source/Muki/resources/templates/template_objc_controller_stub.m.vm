@@ -47,6 +47,9 @@ $helper.getControllerStubInterfaceMethodDeclaration( $operation ) {
 	NSXMLParser *parser = [[NSXMLParser alloc] initWithData: xmlData];
     parser.delegate = delegate;
 	BOOL success = [parser parse];
+    if (success == NO) {
+        return nil;
+    }
 	$type.name *object = delegate.object;
 	return object;
 }
