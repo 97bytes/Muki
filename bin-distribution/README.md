@@ -20,8 +20,8 @@ History
     <tr>
         <td align="center">1.1</td>
         <td align="left">- Fixed a problem that occurred in ObjC generated classes when serializing objects with string attributes with invalid XML characters<br>
-        	- Fixed an error when validating project before generating clases<br>
-        	- Extra test cases
+        	- Fixed an error when validating projects before generating clases<br>
+        	- More test cases
          </td>
     </tr>
 </table>
