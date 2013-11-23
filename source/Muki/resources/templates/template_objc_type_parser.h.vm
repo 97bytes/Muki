@@ -8,11 +8,7 @@
 #import "ObjectParserDelegate.h"
 $helper.getParserInterfaceImportDeclarations( $type )
 
-@interface $helper.getParserInterfaceName( $type) : ObjectParserDelegate {
-
-    $type.name *object;
-    NSMutableString *currentStringValue;
-}
+@interface $helper.getParserInterfaceName( $type) : ObjectParserDelegate
 
 @property (nonatomic, strong) $type.name *object;
 @property (nonatomic, strong) NSMutableString *currentStringValue;

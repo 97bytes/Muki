@@ -3,7 +3,7 @@
 Muki distribution
 =================
 
-Download the [muki-generator-1.1.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.1.jar?raw=true) file above and follow the instructions available [in the documentation](https://github.com/97bytes/Muki/wiki)
+Download the [muki-generator-1.2.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.2.jar?raw=true) file above and follow the instructions available [in the documentation](https://github.com/97bytes/Muki/wiki)
 
 History
 =======
@@ -20,8 +20,13 @@ History
     <tr>
         <td align="center">1.1</td>
         <td align="left">- Fixed a problem that occurred in ObjC generated classes when serializing objects with string attributes with invalid XML characters<br>
-        	- Fixed an error when validating projects before generating clases<br>
-        	- More test cases
+            - Fixed an error when validating projects before generating clases<br>
+            - More test cases
+         </td>
+    </tr>
+    <tr>
+        <td align="center">1.2</td>
+        <td align="left">- Objective-C generated classes are fully compatible with the [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) memory management scheme.
          </td>
     </tr>
 </table>

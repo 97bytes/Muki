@@ -15,11 +15,6 @@
 #define STATUS_NOT_FOUND  404
 #define STATUS_NO_CONTENT 204
 
-@synthesize controllerUrl;
-@synthesize userName;
-@synthesize password;
-@synthesize authorizationHeader;
-
 - (id)initControllerUrl: (NSString *)aUrl {
     self = [super init];
 	self.controllerUrl = aUrl;

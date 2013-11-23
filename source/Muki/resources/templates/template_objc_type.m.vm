@@ -8,13 +8,6 @@ $helper.getTypeImplImportDeclarations( $type )
 
 @implementation $type.name
 
-#foreach( $attribute in $type.simpleAttr )
-@synthesize $attribute.name;
-#end
-#foreach( $attribute in $type.listAttr )
-@synthesize $attribute.name;
-#end
-
 - (id)init {
     self = [super init];
 #foreach( $attribute in $type.listAttr )

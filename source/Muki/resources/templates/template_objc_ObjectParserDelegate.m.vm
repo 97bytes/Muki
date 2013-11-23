@@ -8,9 +8,6 @@
 
 @implementation ObjectParserDelegate
 
-@synthesize parent;
-@synthesize callbackSelector;
-
 - (id)initWithParent: (ObjectParserDelegate*)aParent parser: (NSXMLParser*)aParser {
 	self = [super init];
 	self.parent = aParent;

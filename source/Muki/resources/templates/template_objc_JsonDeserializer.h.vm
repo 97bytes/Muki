@@ -8,9 +8,7 @@
 #import "SBJson.h"
 $helper.getJsonDeserializerImportDeclarations( $definitions )
 
-@interface JsonDeserializer : NSObject {
-    
-}
+@interface JsonDeserializer : NSObject
 
 - (id)init;
 #foreach( $type in $definitions.model )

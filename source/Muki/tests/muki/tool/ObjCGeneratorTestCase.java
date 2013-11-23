@@ -81,7 +81,7 @@ public class ObjCGeneratorTestCase {
 		assertTrue(this.getIo().existsFile(fileName));
 		String fileContents = this.getIo().readTextFile(fileName);
 		assertTrue(fileContents.indexOf("#import <Foundation/Foundation.h>") > -1);
-		assertTrue(fileContents.indexOf("@interface Track : NSObject {") > -1);
+		assertTrue(fileContents.indexOf("@interface Track : NSObject") > -1);
 		assertTrue(fileContents.indexOf("NSString *title;") > -1);
 		assertTrue(fileContents.indexOf("NSInteger durationInSeconds;") > -1);
 		assertTrue(fileContents.indexOf("long long catalogId;") > -1);
@@ -112,7 +112,7 @@ public class ObjCGeneratorTestCase {
 		String fileContents = this.getIo().readTextFile(fileName);
 		assertTrue(fileContents.indexOf("#import <Foundation/Foundation.h>") > -1);
 		assertTrue(fileContents.indexOf("#import \"Track.h\"") > -1);
-		assertTrue(fileContents.indexOf("@interface Cd : NSObject {") > -1);
+		assertTrue(fileContents.indexOf("@interface Cd : NSObject") > -1);
 		assertTrue(fileContents.indexOf("NSString *title;") > -1);
 		assertTrue(fileContents.indexOf("NSString *artist;") > -1);
 		assertTrue(fileContents.indexOf("Track *mainTrack;") > -1);
@@ -357,7 +357,7 @@ public class ObjCGeneratorTestCase {
 		assertTrue(fileContents.indexOf("#import \"SBJson.h\"") > -1);
 		assertTrue(fileContents.indexOf("#import \"Track.h\"") > -1);
 		assertTrue(fileContents.indexOf("#import \"Cd.h\"") > -1);
-		assertTrue(fileContents.indexOf("@interface JsonDeserializer : NSObject {") > -1);
+		assertTrue(fileContents.indexOf("@interface JsonDeserializer : NSObject") > -1);
 		assertTrue(fileContents.indexOf("- (Track *)deserializeTrack:(NSString*)jsonString;") > -1);
 		assertTrue(fileContents.indexOf("- (Cd *)deserializeCd:(NSString*)jsonString;") > -1);
 	}	
@@ -406,7 +406,7 @@ public class ObjCGeneratorTestCase {
 		assertTrue(fileContents.indexOf("#import \"SBJson.h\"") > -1);
 		assertTrue(fileContents.indexOf("#import \"Track.h\"") > -1);
 		assertTrue(fileContents.indexOf("#import \"Cd.h\"") > -1);
-		assertTrue(fileContents.indexOf("@interface JsonSerializer : NSObject {") > -1);
+		assertTrue(fileContents.indexOf("@interface JsonSerializer : NSObject") > -1);
 		assertTrue(fileContents.indexOf("- (NSString*)serializeTrack:(Track*)anObject;") > -1);
 		assertTrue(fileContents.indexOf("- (NSString*)serializeCd:(Cd*)anObject;") > -1);
 	}	

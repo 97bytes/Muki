@@ -6,14 +6,12 @@
  */
 #import <Foundation/Foundation.h>
 
-@interface ObjectParserDelegate : NSObject <NSXMLParserDelegate> {
+@interface ObjectParserDelegate : NSObject <NSXMLParserDelegate> 
 
-	ObjectParserDelegate *parent;
-	SEL callbackSelector;
-	
-}
-
-@property (nonatomic, strong) ObjectParserDelegate *parent;
+// To avoid a retain cycle where two objects retain each other so neither 
+// will ever be deallocated, the reference to the parent is weak.
+@property (nonatomic, weak) ObjectParserDelegate *parent;
+@property (nonatomic, strong) ObjectParserDelegate *child;
 @property SEL callbackSelector;
 
 - (id)initWithParent: (ObjectParserDelegate*)aParent parser: (NSXMLParser*)aParser;

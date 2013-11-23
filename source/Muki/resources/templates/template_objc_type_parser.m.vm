@@ -9,18 +9,9 @@ $helper.getParserImplementationImportDeclarations( $type )
 
 @implementation $helper.getParserInterfaceName( $type)
 
-@synthesize object;
-@synthesize currentStringValue;
-
 - (id)init {
     self = [super init];
     return self;
-}
-
-- (void)dealloc {
-    self.object = nil;
-    self.currentStringValue = nil;
-    [super dealloc];
 }
 
 - (void)initObject {
@@ -72,7 +63,8 @@ $helper.getParserInjectMethodDeclaration( $attribute ) {
 #foreach( $attribute in $type.simpleAttr )
 #if( $helper.isComplexType( $attribute.type ) )
     if ( [elementName isEqualToString: @"$attribute.name"] ) {
-    	$helper.getParserInterfaceName( $attribute ) *delegate = [[[$helper.getParserInterfaceName( $attribute ) alloc] initWithParent: self selector: @selector($helper.getParserInjectSelectorNameFor( $attribute )) parser: parser] autorelease];
+    	$helper.getParserInterfaceName( $attribute ) *delegate = [[$helper.getParserInterfaceName( $attribute ) alloc] initWithParent: self selector: @selector($helper.getParserInjectSelectorNameFor( $attribute )) parser: parser];
+    	self.child = delegate; // Keep reference to avoid the object to be deallocated before processing
         [delegate parser: parser didStartElement: @"$helper.toLowerCase( $attribute.type )" namespaceURI: namespaceURI qualifiedName: qName attributes: attributeDict];
         return;
     }
@@ -80,7 +72,8 @@ $helper.getParserInjectMethodDeclaration( $attribute ) {
 #end
 #foreach( $attribute in $type.listAttr )
     if ( [elementName isEqualToString: @"$attribute.name"] ) {
-        [[[$helper.getParserInterfaceName( $attribute ) alloc] initWithParent: self selector: @selector($helper.getParserInjectSelectorNameFor( $attribute )) parser: parser] autorelease];
+        $helper.getParserInterfaceName( $attribute ) *delegate = [[$helper.getParserInterfaceName( $attribute ) alloc] initWithParent: self selector: @selector($helper.getParserInjectSelectorNameFor( $attribute )) parser: parser];
+    	self.child = delegate; // Keep reference to avoid the object to be deallocated before processing
         return;
     }
 #end

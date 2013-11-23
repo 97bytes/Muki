@@ -8,8 +8,7 @@
 #import "MukiControllerStub.h"
 $helper.getControllerStubInterfaceImportDeclarations( $modelDefinitions )
 
-@interface $helper.getControllerStubInterfaceName( $controller ) : MukiControllerStub {
-}
+@interface $helper.getControllerStubInterfaceName( $controller ) : MukiControllerStub
 
 #foreach( $operation in $controller.getOperation )
 $helper.getControllerStubInterfaceMethodDeclaration( $operation );    

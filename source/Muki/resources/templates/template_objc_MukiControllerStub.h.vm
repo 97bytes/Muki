@@ -6,12 +6,7 @@
  */
 #import <Foundation/Foundation.h>
 
-@interface MukiControllerStub : NSObject {
-    NSString *controllerUrl;
-    NSString *userName;
-    NSString *password;
-    NSString *authorizationHeader;
-}
+@interface MukiControllerStub : NSObject
 
 @property (nonatomic, strong) NSString *controllerUrl;
 @property (nonatomic, strong) NSString *userName;
