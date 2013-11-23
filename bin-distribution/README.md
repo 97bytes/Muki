@@ -26,7 +26,7 @@ History
     </tr>
     <tr>
         <td align="center">1.2</td>
-        <td align="left">- Objective-C generated classes are fully compatible with the [ARC (Automatic Reference Counting)](http://developer.apple.com/library/ios/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html) memory management scheme.
+        <td align="left">- Objective-C generated classes are fully compatible with the <a href="https://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html">ARC (Automatic Reference Counting)</a> memory management scheme.
          </td>
     </tr>
 </table>
