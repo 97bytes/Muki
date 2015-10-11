@@ -1,5 +1,5 @@
 /**
- *  Copyright 2013 Gabriel Casarini
+ *  Copyright 2015 Gabriel Casarini
  *  
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,7 +26,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	ModelUtilityTestCase.class,
 	ObjCGeneratorTestCase.class,
 	ProjectDescriptionTestCase.class, 
-	RestProjectGeneratorTestCase.class })
+	RestProjectGeneratorTestCase.class,
+	SwiftGeneratorTestCase.class })
 public class AllTests {
 
 }

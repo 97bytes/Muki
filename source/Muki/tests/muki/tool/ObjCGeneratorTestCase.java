@@ -1,5 +1,5 @@
 /**
- *  Copyright 2013 Gabriel Casarini
+ *  Copyright 2015 Gabriel Casarini
  *  
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import muki.tool.model.ControllerType;
 
 public class ObjCGeneratorTestCase {
 
-	public static String TEMP_DIR = "/Users/gabriel/projects/Java/Muki/private/Muki-Cocoa/Muki-Cocoa/generated/";
+	public static String TEMP_DIR = "/Users/gabriel/projects/Java/Muki/private/Muki-ObjC/Muki-ObjC/generated/";
 	//public static String TEMP_DIR = "c:/temp/objc/generated";
 	private ObjcGenerator generator;
 	private IOUtility io;
@@ -232,9 +232,9 @@ public class ObjCGeneratorTestCase {
 		this.getIo().createDirectory(outputDirectory);
 
 		Project project = TestHelper.getFullValidProject();
-		ModelType cd = project.getModelDefinitions().getModel().get(0);
+		ModelType track = project.getModelDefinitions().getModel().get(0);
 		
-		this.getGenerator().generateParserDelegateImpl(cd, outputDirectory);
+		this.getGenerator().generateParserDelegateImpl(track, outputDirectory);
 		
 		String fileName = outputDirectory + "/TrackParserDelegate.m";
 		assertTrue(this.getIo().existsFile(fileName));

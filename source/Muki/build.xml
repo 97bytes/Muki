@@ -62,6 +62,7 @@
 				<include name="**/*.h"/>
 				<include name="**/*.TXT"/>
 				<include name="**/*.m"/>
+				<include name="**/*.swift"/>
 				<exclude name="tests/**"/>
 			</fileset>
 		</copy>

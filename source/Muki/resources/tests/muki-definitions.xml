@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:project name="MukiDemo" xmlns:ns2="http://muki/service-description/">
+	<model-definitions java-package="demo.model">
+		<model name="TrackData">
+			<simple-attr type="STRING" name="title" />
+			<simple-attr type="INT" name="lengthInSeconds" />
+			<simple-attr type="LONG" name="catalogId" />
+			<simple-attr type="BOOLEAN" name="newRelease" />
+			<simple-attr type="DOUBLE" name="price" />
+		</model>
+		<model name="AlbumData">
+			<simple-attr type="LONG" name="catalogId" />
+			<simple-attr type="STRING" name="title" />
+			<simple-attr type="STRING" name="artist" />
+			<simple-attr type="TrackData" name="mainTrack" />
+			<list-attr items-type="TrackData" name="tracks" />
+		</model>
+	</model-definitions>
+	<controller-definitions java-package="demo.controller">
+		<controller http-path="/store" name="TrackController" >
+			<get-operation http-path="/track/{id}" return-type="TrackData" name="getTrack" serialization-type="json">
+				<path-param name="id" />
+			</get-operation>
+			<get-operation serialization-type="json" http-path="/track" return-type="TrackData" name="findTrackByTitle">
+				<query-param name="title" />
+			</get-operation>
+			<post-operation serialization-type="json" http-path="/track" param-type="TrackData" return-type="TrackData" name="addTrack" />
+			<put-operation serialization-type="json" http-path="/track" param-type="TrackData" name="updateTrack" />
+			<delete-operation http-path="/track/{id}" name="deleteTrack">
+				<path-param name="id" />
+			</delete-operation>
+		</controller>
+		<controller http-path="/store" name="AlbumController" >
+			<get-operation http-path="/album/{id}" return-type="AlbumData" name="getAlbum" serialization-type="json">
+				<path-param name="id" />
+			</get-operation>
+		</controller>
+	</controller-definitions>
+</ns2:project>

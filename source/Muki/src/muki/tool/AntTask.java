@@ -1,5 +1,5 @@
 /**
- *  Copyright 2013 Gabriel Casarini
+ *  Copyright 2015 Gabriel Casarini
  *  
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,6 +51,7 @@ public class AntTask extends Task {
 		try {
 			generator.run(this.getOption(), this.getProjectFile(), this.getOutputDirectory(), result);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new BuildException(e);
 		}
 		System.out.println(result.getLog());

@@ -1,5 +1,5 @@
 /**
- *  Copyright 2013 Gabriel Casarini
+ *  Copyright 2015 Gabriel Casarini
  *  
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -42,7 +42,8 @@ public class MukiGenerator {
 	
 	public static String GENERATE_JAVA = "generate-java";
 	public static String GENERATE_OBJC = "generate-objc";
-	public static String COMMAND_HELP = "MukiGenerator <generate-java|generate-objc> <path-to-project.xml> <output directory>";
+	public static String GENERATE_SWIFT = "generate-swift";
+	public static String COMMAND_HELP = "MukiGenerator <generate-java|generate-objc|generate-swift> <path-to-project.xml> <output directory>";
 	private Project project;
 	private String outputDirectory;
 	private IOUtility io;
@@ -81,7 +82,7 @@ public class MukiGenerator {
 	}
 	
 	public void run(String option, String projectFile, String outputDirectory, ExecutionResult result) throws Exception {
-		if (option == null || (!option.equals(GENERATE_JAVA) && !option.equals(GENERATE_OBJC))) {
+		if (option == null || (!option.equals(GENERATE_JAVA) && !option.equals(GENERATE_OBJC) && !option.equals(GENERATE_SWIFT))) {
 			result.append("-> Invalid option! The command line is:");
 			result.append(COMMAND_HELP);
 			result.setOk(false);
@@ -107,6 +108,10 @@ public class MukiGenerator {
 		}
 		if(option.equals(GENERATE_OBJC)) {
 			this.generateObjC(result);
+			return;
+		}
+		if(option.equals(GENERATE_SWIFT)) {
+			this.generateSwift(result);
 			return;
 		}
 	}
@@ -139,6 +144,23 @@ public class MukiGenerator {
 			generator.generateAll(this.getProject(), this.getOutputDirectory());
 			result.append("-> *** Code generation OK ***");
 		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void generateSwift(ExecutionResult result) throws Exception {
+		this.validateModel(result);
+		if(!result.isOk()) {
+			return;
+		}
+		this.getIo().deleteDirectory(this.getOutputDirectory());
+		result.append("-> Generating Swift classes...");
+		try {
+			SwiftGenerator generator = new SwiftGenerator();
+			generator.generateAll(this.getProject(), this.getOutputDirectory());
+			result.append("-> *** Code generation OK ***");
+		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}

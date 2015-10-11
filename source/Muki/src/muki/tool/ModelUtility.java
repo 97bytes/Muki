@@ -1,5 +1,5 @@
 /**
- *  Copyright 2013 Gabriel Casarini
+ *  Copyright 2015 Gabriel Casarini
  *  
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ public class ModelUtility {
 	public static String BOOLEAN_TYPE = "BOOLEAN";
 	private Map<String, String> javaTypesMapping;
 	private Map<String, String> objcTypesMapping;
+	private Map<String, String> swiftTypesMapping;
 	private List<String> basicTypes;
 	private Project project;
 
@@ -73,6 +74,15 @@ public class ModelUtility {
 		mapping.put(DOUBLE_TYPE, "double");
 		mapping.put(BOOLEAN_TYPE, "BOOL");
 		this.setObjcTypesMapping(mapping);
+		
+		mapping = new HashMap<String, String>();
+		mapping.put(STRING_TYPE, "String");
+		mapping.put(LONG_TYPE, "Int64");
+		mapping.put(INTEGER_TYPE, "Int");
+		mapping.put(DOUBLE_TYPE, "Double");
+		mapping.put(BOOLEAN_TYPE, "Bool");
+		this.setSwiftTypesMapping(mapping);
+		
 		List<String> types = new ArrayList<String>();
 		types.add(STRING_TYPE);
 		types.add(LONG_TYPE);
@@ -429,6 +439,10 @@ public class ModelUtility {
 		return this.getObjcTypesMapping().get(typeName);
 	}
 	
+	public String getSwiftPrimitiveType(String typeName) {
+		return this.getSwiftTypesMapping().get(typeName);
+	}
+	
 	private Map<String, String> getJavaTypesMapping() {
 		return javaTypesMapping;
 	}
@@ -459,6 +473,14 @@ public class ModelUtility {
 
 	private void setProject(Project project) {
 		this.project = project;
+	}
+
+	private Map<String, String> getSwiftTypesMapping() {
+		return swiftTypesMapping;
+	}
+
+	private void setSwiftTypesMapping(Map<String, String> swiftTypesMapping) {
+		this.swiftTypesMapping = swiftTypesMapping;
 	}
 
 }

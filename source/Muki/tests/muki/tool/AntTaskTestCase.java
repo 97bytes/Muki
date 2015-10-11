@@ -1,5 +1,5 @@
 /**
- *  Copyright 2013 Gabriel Casarini
+ *  Copyright 2015 Gabriel Casarini
  *  
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -141,6 +141,87 @@ public class AntTaskTestCase {
 		assertTrue(this.getIo().existsFile(TEMP_DIR + "/XmlSerializer.m"));
 		assertTrue(this.getIo().existsFile(TEMP_DIR + "/XmlAttribute.h"));
 		assertTrue(this.getIo().existsFile(TEMP_DIR + "/XmlAttribute.m"));
+	}
+
+	@Test
+	public void testRunTaskSwiftOk() throws Exception {
+		this.getIo().deleteDirectory(TEMP_DIR);
+		assertTrue(!this.getIo().existsFile(TEMP_DIR));
+		this.getIo().createDirectory(TEMP_DIR);
+		String projectFile = this.getIo().getAbsolutePathForLocalResource("/tests/store-project-ok.xml");
+				
+		// Step 1: Configure Ant script for invoking from here
+		String eclipseProjectPath = this.getProjectPath();
+		String buildFile = this.getIo().getAbsolutePathForLocalResource("/tests/build-compilation-tests.xml");
+
+		DefaultLogger consoleLogger = new DefaultLogger();
+		consoleLogger.setErrorPrintStream(System.err);
+		consoleLogger.setOutputPrintStream(System.out);
+		consoleLogger.setMessageOutputLevel(org.apache.tools.ant.Project.MSG_INFO);
+
+		org.apache.tools.ant.Project antProject = new org.apache.tools.ant.Project();
+		antProject.setUserProperty("ant.file", buildFile);
+		antProject.setUserProperty("project.dir", eclipseProjectPath);
+		antProject.setUserProperty("option", MukiGenerator.GENERATE_SWIFT);
+		antProject.setUserProperty("outputDirectory", TEMP_DIR);
+		antProject.setUserProperty("projectFile", projectFile);
+		antProject.addBuildListener(consoleLogger);
+		antProject.fireBuildStarted();
+		antProject.init();
+		
+		ProjectHelper helper = ProjectHelper.getProjectHelper();
+		antProject.addReference("ant.projectHelper", helper);
+		helper.parse(antProject, new File(buildFile));
+
+		// Step 2: invoke Ant script
+		antProject.executeTarget("test-ant-task");
+		String antResult = antProject.getProperty("test-ant-task.result");
+		assertEquals("ok", antResult);
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/Track.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/Cd.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/CdParserDelegate.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/TrackParserDelegate.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/Controller1Stub.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/Controller2Stub.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/ObjectParserDelegate.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/XmlSerializer.swift"));
+		assertTrue(this.getIo().existsFile(TEMP_DIR + "/XmlAttribute.swift"));
+	}
+
+	@Test
+	public void testRunTaskSwiftOk2() throws Exception {
+		this.getIo().deleteDirectory(TEMP_DIR);
+		assertTrue(!this.getIo().existsFile(TEMP_DIR));
+		this.getIo().createDirectory(TEMP_DIR);
+		String projectFile = this.getIo().getAbsolutePathForLocalResource("/tests/muki-definitions.xml");
+				
+		// Step 1: Configure Ant script for invoking from here
+		String eclipseProjectPath = this.getProjectPath();
+		String buildFile = this.getIo().getAbsolutePathForLocalResource("/tests/build-compilation-tests.xml");
+
+		DefaultLogger consoleLogger = new DefaultLogger();
+		consoleLogger.setErrorPrintStream(System.err);
+		consoleLogger.setOutputPrintStream(System.out);
+		consoleLogger.setMessageOutputLevel(org.apache.tools.ant.Project.MSG_INFO);
+
+		org.apache.tools.ant.Project antProject = new org.apache.tools.ant.Project();
+		antProject.setUserProperty("ant.file", buildFile);
+		antProject.setUserProperty("project.dir", eclipseProjectPath);
+		antProject.setUserProperty("option", MukiGenerator.GENERATE_SWIFT);
+		antProject.setUserProperty("outputDirectory", TEMP_DIR);
+		antProject.setUserProperty("projectFile", projectFile);
+		antProject.addBuildListener(consoleLogger);
+		antProject.fireBuildStarted();
+		antProject.init();
+		
+		ProjectHelper helper = ProjectHelper.getProjectHelper();
+		antProject.addReference("ant.projectHelper", helper);
+		helper.parse(antProject, new File(buildFile));
+
+		// Step 2: invoke Ant script
+		antProject.executeTarget("test-ant-task");
+		String antResult = antProject.getProperty("test-ant-task.result");
+		assertEquals("ok", antResult);
 	}
 
 	@Test
