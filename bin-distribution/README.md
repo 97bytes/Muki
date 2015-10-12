@@ -3,7 +3,7 @@
 Muki distribution
 =================
 
-Download the [muki-generator-1.2.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.2.jar?raw=true) file above and follow the instructions available [in the documentation](https://github.com/97bytes/Muki/wiki)
+Download the [muki-generator-1.3.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.3.jar?raw=true) file above and follow the instructions available [in the documentation](https://github.com/97bytes/Muki/wiki)
 
 History
 =======
