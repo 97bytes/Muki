@@ -10,10 +10,10 @@ public class Version {
 	}
 	
 	public static String id() {
-		return "1.3";
+		return "1.4";
 	}
 	
 	public static String date() {
-		return "2015-10-04";
+		return "2015-10-20";
 	}
 }

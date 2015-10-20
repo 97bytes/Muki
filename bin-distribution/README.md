@@ -3,7 +3,7 @@
 Muki distribution
 =================
 
-Download the [muki-generator-1.3.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.3.jar?raw=true) file above and follow the instructions available [in the documentation](https://github.com/97bytes/Muki/wiki)
+Download the [muki-generator-1.4.jar](https://github.com/97bytes/Muki/blob/master/bin-distribution/muki-generator-1.4.jar?raw=true) file above and follow the instructions available [in the documentation](https://github.com/97bytes/Muki/wiki)
 
 History
 =======
@@ -12,6 +12,11 @@ History
     <tr>
         <th align="center"><b>Version</b></th>
         <th align="center"><b>Comments</b></th>
+    </tr>
+    <tr>
+        <td align="center">1.4</td>
+        <td align="left">- Fixed error in Swift generated code.
+         </td>
     </tr>
     <tr>
         <td align="center">1.3</td>

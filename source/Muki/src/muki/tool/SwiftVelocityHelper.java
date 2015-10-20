@@ -180,7 +180,7 @@ public class SwiftVelocityHelper extends VelocityHelper {
 	 */
 	public String getDidStartElementAssigmentExpression(SimpleAttrType attribute) {
 		StringBuffer result = new StringBuffer();
-		result.append("self.object!.").append(attribute.getName()).append(" = ");
+		result.append("self.object?.").append(attribute.getName()).append(" = ");
 		String typeName = attribute.getType();
 		if(this.isLongType(typeName)) {
 			result.append("self.toInt64(value)");
@@ -205,7 +205,7 @@ public class SwiftVelocityHelper extends VelocityHelper {
 			return null;
 		}
 		StringBuffer result = new StringBuffer();
-		result.append("self.object!.").append(attribute.getName()).append(" = self.currentStringValue");
+		result.append("self.object?.").append(attribute.getName()).append(" = self.currentStringValue");
 		return result.toString();
 	}
 	
